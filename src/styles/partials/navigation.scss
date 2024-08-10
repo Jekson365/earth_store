@@ -1,0 +1,58 @@
+@import "../config.scss";
+
+.navigation {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  max-width: 1200px;
+  width: 100%;
+  .set-nav {
+    background: black;
+    color: white;
+    font-size: 17px;
+    padding: 10px;
+    @media (min-width: 960px) {
+      display: none;
+    }
+  }
+  .person {
+    @media (max-width: 960px) {
+      display: none;
+    }
+  }
+  .responsive-nav {
+    @media (max-width: 960px) {
+      flex-direction: column;
+      position: absolute;
+      background: white;
+      width: 100%;
+      top: 80px;
+      gap: 30px;
+      padding: 10px 0;
+      left: 0;
+      align-items: flex-start;
+      .nav-name {
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    font-family: $main-font;
+    color: $color-dark;
+  }
+
+  .responsive-nav {
+    .nav-name {
+      letter-spacing: 4px;
+      font-size: 16px;
+      cursor: pointer ;
+      font-weight: 400;
+      color: #2c541d;
+    }
+  }
+}
