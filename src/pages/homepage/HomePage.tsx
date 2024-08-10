@@ -9,7 +9,7 @@ import {Priors} from "./priors/Priors.tsx";
 export const HomePage = () => {
     return (
         <>
-            <HeaderContent/>
+            <HeaderContent title={'EARTH'} height={'80vh'} desc={'MULTIPURPOSE STORE'} mainPage={true}/>
             <Featured/>
             <Customers/>
             <Postcard/>

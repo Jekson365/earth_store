@@ -5,9 +5,12 @@
   margin: 0;
   padding: 0;
 }
+a {
+  text-decoration: none;
+  color: $color-green;
+}
 
 .section {
-  min-height: 80vh;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,6 +19,15 @@
   justify-content: center;
   @media (max-width: 700px) {
     min-height: 30vh;
+  }
+}
+.custom-input {
+  padding: 15px;
+  outline: 0;
+  font-size: 18px;
+  border: 0.5px solid rgba(0,0,0,0.3);
+  &::placeholder {
+    color: gray;
   }
 }
 

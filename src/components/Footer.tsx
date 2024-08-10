@@ -1,7 +1,7 @@
 import '../styles/partials/footer.scss'
 import {Grid} from "@mui/material";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import {Link} from "react-router-dom";
 
 export const Footer = () => {
     return (
@@ -11,7 +11,7 @@ export const Footer = () => {
                     display: "flex",
                     alignItems: "center",
                     borderTop:"1px solid gray",
-                    minHeight: "12vh",
+                    minHeight: "15vh",
                 }}
                 className={'footer-section'}
             >
@@ -21,14 +21,14 @@ export const Footer = () => {
                           display: "flex",
                           alignItems: "center",
                       }}
-                      rowSpacing={5}
+                      rowSpacing={{xs:5,md:0}}
                 >
                     <Grid item xs={12} md={4} display={'flex'} justifyContent={'center'}>
                         <Stack direction={'row'} gap={'20px'}>
-                            <Typography>Home</Typography>
-                            <Typography>About</Typography>
-                            <Typography>Shop</Typography>
-                            <Typography>Contact</Typography>
+                            <Link to={'/'}>Home</Link>
+                            <Link to={'/about'}>About</Link>
+                            <Link to={'/shop'}>Shop</Link>
+                            <Link to={'/contact'}>Contact</Link>
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={4} textAlign={'center'}>

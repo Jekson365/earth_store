@@ -1,0 +1,70 @@
+@import "../config.scss";
+
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+
+  .contact-box {
+    padding: 80px 40px;
+    @media (max-width: 900px) {
+      padding: 80px 20px;
+    }
+  }
+
+  .shadowed {
+    border-radius: 5px;
+    box-shadow: 0 0 50px 0.1px rgba(0, 0, 0, 0.1);
+  }
+
+  .each-info {
+    .title {
+      font-size: 15px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .content {
+      font-size: 22px;
+    }
+
+    .icon {
+      color: $color-green-light;
+      border: 1px solid $color-green;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+  }
+  .min-title {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  .social-icon {
+    background-color: $color-green-light;
+    color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      background-color: $color-green;
+    }
+  }
+}

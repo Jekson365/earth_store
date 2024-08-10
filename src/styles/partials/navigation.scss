@@ -22,6 +22,10 @@
       display: none;
     }
   }
+  .nav-name {
+    text-decoration: none;
+    color: $color-green;
+  }
   .responsive-nav {
     @media (max-width: 960px) {
       flex-direction: column;
@@ -49,11 +53,12 @@
 
   .responsive-nav {
     .nav-name {
+      text-decoration: none;
+      color: $color-green;
       letter-spacing: 4px;
       font-size: 16px;
       cursor: pointer ;
       font-weight: 400;
-      color: #2c541d;
     }
   }
 }

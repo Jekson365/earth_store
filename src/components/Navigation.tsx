@@ -4,6 +4,7 @@ import {ShoppingBag} from "@mui/icons-material";
 import PersonIcon from '@mui/icons-material/Person';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import {useState} from "react";
+import {Link} from "react-router-dom";
 export const Navigation = () => {
     const [navOpen,setNavOpen] = useState<Boolean>(false)
     return (
@@ -25,10 +26,10 @@ export const Navigation = () => {
                         <Stack
                             display={navOpen ? 'none' : "flex"}
                             className={'responsive-nav'} direction={'row'} gap={'30px'}>
-                            <Typography className={'nav-name'}>HOME</Typography>
-                            <Typography className={'nav-name'}>ABOUT</Typography>
-                            <Typography className={'nav-name'}>SHOP</Typography>
-                            <Typography className={'nav-name'}>CONTACT</Typography>
+                            <Link className={'nav-name'} to={'/'}>HOME</Link>
+                            <Link className={'nav-name'} to={'/about'}>ABOUT</Link>
+                            <Link className={'nav-name'} to={'/shop'}>SHOP</Link>
+                            <Link className={'nav-name'} to={'/contact'}>CONTACT</Link>
                         </Stack>
                         <Stack direction={'row'} gap={'10px'} alignItems={'center'}>
                             <Box>

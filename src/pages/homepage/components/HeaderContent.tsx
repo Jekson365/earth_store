@@ -1,11 +1,13 @@
 import Stack from "@mui/material/Stack";
 import Typography from '@mui/material/Typography'
 
-export const HeaderContent = () => {
+export const HeaderContent = ({title, desc,height, mainPage}) => {
     return (
         <>
             <div className={'section'}
-                 style={{backgroundImage: 'url("https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Banner.jpg")'}}
+                 style={{
+                     height:height,
+                     backgroundImage: 'url("https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Banner.jpg")'}}
             >
                 <div className={'inner-section'}>
                     <Stack
@@ -16,10 +18,10 @@ export const HeaderContent = () => {
                         gap={'10px'}
                     >
                         <Stack direction={'column'} alignItems={'center'}>
-                            <Typography className={'title'}>EARTH</Typography>
-                            <Typography className={'min-title'}>MULTIPURPOSE STORE</Typography>
+                            <Typography className={'title'}>{title}</Typography>
+                            {mainPage ? <Typography className={'min-title'}>{desc}</Typography> : null}
                         </Stack>
-                        <button className={'main-button'}>SHOP NOW</button>
+                        {mainPage ? <button className={'main-button'}>SHOP NOW</button> : null}
                     </Stack>
                 </div>
             </div>

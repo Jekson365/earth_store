@@ -1,0 +1,39 @@
+@import "../config.scss";
+
+.shop {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 900px) {
+    padding: 20px;
+  }
+  .min-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: $color-green-light;
+    letter-spacing: 1px;
+  }
+  .sub-cat {
+    font-weight: 500;
+    color: $color-green-light;
+  }
+  .shop-title {
+    color: $color-green-light;
+    font-size: 50px;
+  }
+}
+
+.main-icon {
+  background-color: $color-green-light;
+  transition: 0.3s;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  border: 0;
+  outline: 0;
+  color: white;
+
+  &:hover {
+    background-color: $color-dark;
+  }
+}
