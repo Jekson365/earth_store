@@ -1,7 +1,6 @@
 import {Box, Grid, Stack, Typography} from "@mui/material";
 import '../../styles/shop/shop.scss'
 import SearchIcon from '@mui/icons-material/Search';
-import {useState} from "react";
 
 export const Shop = () => {
     const products = [

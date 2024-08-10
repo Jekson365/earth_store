@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import {Grid, Stack, Box} from "@mui/material";
+import {Grid, Stack} from "@mui/material";
 
 export const Customers = () => {
     const customers = [

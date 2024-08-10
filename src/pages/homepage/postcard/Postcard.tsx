@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import {Box, Button} from "@mui/material";
+import {Box} from "@mui/material";
 
 export const Postcard = () => {
     return (

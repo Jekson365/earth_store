@@ -1,7 +1,14 @@
 import Stack from "@mui/material/Stack";
 import Typography from '@mui/material/Typography'
+import React from "react";
 
-export const HeaderContent = ({title, desc,height, mainPage}) => {
+interface HeaderContentProps {
+    title: String;
+    desc: String;
+    height: any,
+    mainPage: boolean
+}
+export const HeaderContent: React.FC<HeaderContentProps> = ({title, desc,height, mainPage}) => {
     return (
         <>
             <div className={'section'}
