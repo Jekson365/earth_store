@@ -1,0 +1,48 @@
+@import 'config.scss';
+
+
+.cart-slide {
+  transform: translateX(0%) !important;
+}
+.cart {
+  cursor: pointer;
+  transition: 0.3s;
+  transform: translateX(100%);
+  position: absolute;
+  max-width: 400px;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  .cart-item-price {
+    color: #585858 !important;
+  }
+
+  .title {
+    color: $color-green-light;
+  }
+
+  .close {
+    border: 1px solid $color-green-light;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-green-light;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+
+    &:hover {
+      background-color: $color-green-light;
+      color: white;
+    }
+  }
+}

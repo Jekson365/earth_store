@@ -3,10 +3,12 @@ import {Stack, Typography, Box} from "@mui/material";
 import {ShoppingBag} from "@mui/icons-material";
 import PersonIcon from '@mui/icons-material/Person';
 import DehazeIcon from '@mui/icons-material/Dehaze';
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Link} from "react-router-dom";
+import {CartController} from "../router/CustomRouter.tsx";
 export const Navigation = () => {
     const [navOpen,setNavOpen] = useState<Boolean>(false)
+    const {setCart} = useContext<any>(CartController)
     return (
         <>
             <div className={'navigation'}>
@@ -17,7 +19,11 @@ export const Navigation = () => {
                     p={2}
                     mt={2}
                 >
-                    <Typography className={'title'}>EARTH STORE</Typography>
+                    <Typography className={'title'}>
+                        <Link to={'/'}>
+                            EARTH STORE
+                        </Link>
+                    </Typography>
                     <Stack
                         direction={'row'}
                         alignItems={'center'}
@@ -32,7 +38,9 @@ export const Navigation = () => {
                             <Link className={'nav-name'} to={'/contact'}>CONTACT</Link>
                         </Stack>
                         <Stack direction={'row'} gap={'10px'} alignItems={'center'}>
-                            <Box>
+                            <Box
+                                onClick={()=> setCart(true)}
+                            >
                                 <ShoppingBag className={'icon'}
                                              sx={{fontSize: "30px"}}
                                 />
