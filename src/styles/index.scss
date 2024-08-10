@@ -5,20 +5,162 @@
   margin: 0;
   padding: 0;
 }
+
 .section {
   min-height: 80vh;
-  background-position:center center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  .inner-section {
+  @media (max-width: 700px) {
+    min-height: 30vh;
+  }
+}
+
+.inner-section {
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-section {
+  min-height: 75vh;
+  border-bottom: 1px solid gray;
+
+  .featured-item {
+    background-size: cover;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .feat-content {
+    .cat {
+      font-size: 15px;
+      color: gray;
+    }
+
+    .title, .price {
+      font-weight: 500;
+    }
+  }
+}
+
+.customers-section {
+  min-height: 55vh;
+  @media (max-width: 900px) {
+    padding: 20px !important;
+  }
+  .customers-inner-section {
     max-width: 1200px;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .header {
+      font-size: 35px;
+      font-weight: bold;
+      font-family: $main-font;
+    }
+
+    .customers-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 80%;
+
+      .desc {
+        color: gray;
+        font-size: 16px;
+      }
+
+      .name {
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
   }
 }
+
+.postcard {
+  background-size: cover;
+  min-height: 50vh;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    font-weight: bold;
+    font-size: 40px;
+    letter-spacing: 5px;
+    @media (max-width: 960px) {
+      font-size: 30px;
+    }
+  }
+
+  .desc {
+    font-size: 16px;
+  }
+}
+
+.priors-section {
+  min-height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 900px) {
+    margin-top: 40px;
+  }
+  .inner-section {
+    max-width: 1200px;
+    .each-prior {
+      border-right: 0.5px solid rgba(128, 128, 128, 0.17);
+      &:not(:last-child) {
+        border-right: none;
+      }
+      @media (max-width: 900px) {
+        padding: 20px;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+      }
+    }
+
+    .title {
+      font-weight: bold;
+      letter-spacing: 3px;
+      font-size: 14px;
+    }
+    .desc {
+      color: gray;
+    }
+    .icon {
+      color: white;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: $color-green;
+    }
+  }
+}
+
 .main-button {
   background-color: $color-green-light;
   color: white;
@@ -30,6 +172,7 @@
   padding: 15px 40px;
   cursor: pointer;
   transition: 0.3s;
+
   &:hover {
     background-color: $color-green;
   }

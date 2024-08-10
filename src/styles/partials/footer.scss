@@ -1,0 +1,13 @@
+@import "../config.scss";
+
+.footer-section {
+  @media (max-width: 900px) {
+    padding: 20px;
+  }
+  .footer-title {
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 18px;
+    color: $color-green;
+  }
+}
