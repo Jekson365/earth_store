@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from "@mui/material"
+import { Box, Stack, Typography } from "@mui/material"
 import '../../styles/admin.scss'
 
 const Admin = () => {
