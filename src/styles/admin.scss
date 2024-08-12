@@ -1,0 +1,26 @@
+@import './config.scss';
+
+.admin-cover {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    .component-title {
+        font-size: 30px;
+    }
+    .featured-item {
+        box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 10px;
+        font-size: 20px;
+        border-radius: 60px;
+        transition: 0.3s;
+        cursor: pointer;
+        &:hover {
+            color: white;
+            background-color: $color-green-light;
+        }
+    }
+}

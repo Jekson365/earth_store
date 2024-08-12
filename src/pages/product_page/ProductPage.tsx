@@ -9,7 +9,7 @@ export const ProductPage = () => {
     }, [])
     return (
         <>
-            <Box mt={20}></Box>
+            <Box mt={5}></Box>
             <div className={'cover'}>
                 <Box className={'inner-cover'}>
                     <Grid container columnSpacing={7}>

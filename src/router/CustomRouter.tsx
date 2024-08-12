@@ -10,6 +10,7 @@ import {Cart} from "../components/Cart.tsx";
 import {createContext, useEffect, useState} from "react";
 import Register from "../pages/auth/Register.tsx";
 import Login from '../pages/auth/Login.tsx'
+import Admin from "../pages/admin/Admin.tsx";
 
 export const CartController = createContext<any>({})
 
@@ -37,6 +38,7 @@ export const CustomRouter = () => {
                         <Route path={'/product/:id'} element={<ProductPage/>}/>
                         <Route path={'/register'} element={<Register/>}/>
                         <Route path={"/login"} element={<Login/>}/>
+                        <Route path="/admin" element={<Admin/>}/>
                     </Routes>
                     {currentLocation != '/register' ? (<>
                     </>) : null}
