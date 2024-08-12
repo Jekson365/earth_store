@@ -10,7 +10,7 @@ a {
   color: $color-green;
 }
 body {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 .w-100 {
   width: 95%;

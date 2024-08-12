@@ -1,12 +1,15 @@
 import { Stack } from '@mui/material'
 import '../../styles/auth/auth.scss'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRegister } from '../../hooks/users/useRegister'
+import { CurrentUser } from '../../App'
 
 
 function Register() {
     const { useCreateUser } = useRegister()
+    const {currentUser} = useContext<any>(CurrentUser)
+    const [user,setUser] = useState({})
     const [registerData, setRegisterData] = useState(
         {
             username: "",
@@ -15,6 +18,12 @@ function Register() {
             password_confirmation: ""
         }
     )
+    useEffect(()=> {
+        setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
+        if (user == false) {
+            window.location.href = '/'
+        }
+    },[currentUser])
     return (
         <>
             <div className="cover">

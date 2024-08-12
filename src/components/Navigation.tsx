@@ -5,15 +5,23 @@ import PersonIcon from '@mui/icons-material/Person';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SettingsIcon from '@mui/icons-material/Settings';
 import { CartController } from "../router/CustomRouter.tsx";
 import { CurrentUser } from '../App.tsx';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 export const Navigation = () => {
     const [navOpen, setNavOpen] = useState<Boolean>(false)
     const { setCart } = useContext<any>(CartController)
-    const {currentUser} = useContext<any>(CurrentUser)
-    useEffect(()=> {
-        console.log(currentUser)
-    },[currentUser])
+    const { currentUser } = useContext<any>(CurrentUser)
+    const [user,setUser] = useState<any>({})
+    const logoutUser = () => {
+        localStorage.removeItem("token")
+        window.location.href = '/'
+    }
+    useEffect(() => {
+        setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
+    }, [currentUser])
     return (
         <>
             <div className={'navigation'}>
@@ -41,8 +49,25 @@ export const Navigation = () => {
                             <Link className={'nav-name'} to={'/about'}>ABOUT</Link>
                             <Link className={'nav-name'} to={'/shop'}>SHOP</Link>
                             <Link className={'nav-name'} to={'/contact'}>CONTACT</Link>
+                            {!user && window.innerWidth < 900 ? (<>
+                                <Link className={'nav-name'} to={'/login'}>LOGIN</Link>
+                                <Link className={'nav-name'} to={'/register'}>REGISTER</Link>
+                            </>) : null}
                         </Stack>
                         <Stack direction={'row'} gap={'10px'} alignItems={'center'}>
+                            {user.role_id == 2 ?
+                                (
+                                    <>
+                                        <Link
+                                            to={'/admin'}
+                                        >
+                                            <SettingsIcon className={'icon'}
+                                                sx={{ fontSize: "30px" }}
+                                            />
+                                        </Link>
+                                    </>
+                                )
+                                : null}
                             <Box
                                 onClick={() => setCart(true)}
                             >
@@ -51,19 +76,34 @@ export const Navigation = () => {
                                 />
                             </Box>
                             <Box>
-                                <Link to={'/register'}>
-                                <PersonIcon className={'icon person'}
-                                    sx={{ fontSize: "30px" }}
-                                />
-                            </Link>
+                                {user ? (<>
+                                    <Stack direction={'row'}>
+                                        <Box
+                                            onClick={logoutUser}
+                                            style={{ fontWeight: "bold", cursor: "pointer" }}
+                                        >
+                                            <LogoutIcon />
+                                        </Box>
+                                        <Typography ml={1}>{user.email}</Typography>
+                                    </Stack>
+                                </>) :
+                                    <>
+                                        <Link to={'/register'}>
+                                            <PersonIcon className={'icon person'}
+                                                sx={{ fontSize: "30px" }}
+                                            />
+                                        </Link>
+
+                                    </>
+                                }
                             </Box>
                             <Box
                                 onClick={() => setNavOpen(!navOpen)}
                             >
-                                    <DehazeIcon className={'set-nav'}
+                                <DehazeIcon className={'set-nav'}
 
-                                        sx={{ fontSize: "30px" }}
-                                    />
+                                    sx={{ fontSize: "30px" }}
+                                />
                             </Box>
                         </Stack>
                     </Stack>

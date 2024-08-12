@@ -1,7 +1,7 @@
 import Stack from "@mui/material/Stack";
 import Typography from '@mui/material/Typography'
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface HeaderContentProps {
     title: String;
@@ -10,14 +10,14 @@ interface HeaderContentProps {
     mainPage: boolean
 }
 
-export const HeaderContent: React.FC<HeaderContentProps> = ({title, desc, height, mainPage}) => {
+export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, height, mainPage }) => {
     return (
         <>
             <div className={'section'}
-                 style={{
-                     height: height,
-                     backgroundImage: 'url("https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Banner.jpg")'
-                 }}
+                style={{
+                    height: height,
+                    backgroundImage: 'url("https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Banner.jpg")'
+                }}
             >
                 <div className={'inner-section'}>
                     <Stack
@@ -34,7 +34,7 @@ export const HeaderContent: React.FC<HeaderContentProps> = ({title, desc, height
                         {mainPage ? <button className={'main-button'}
 
                         ><Link to={'/shop'}
-                               style={{color:"white"}}
+                            style={{ color: "white" }}
                         >SHOP NOW</Link></button> : null}
                     </Stack>
                 </div>

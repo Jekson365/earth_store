@@ -20,10 +20,7 @@ function App() {
     } else {
       console.warn("No token found in localStorage");
     }
-  }, [currentUser])
-  useEffect(() => {
-
-  })
+  }, [])
   return (
     <>
       <CurrentUser.Provider value={{ currentUser }}>

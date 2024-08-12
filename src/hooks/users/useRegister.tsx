@@ -5,7 +5,7 @@ export const useRegister = () => {
         await axiosInstance.post("/create_user",{user: payload})
             .then(() => {
                 try {
-                    window.location.reload()
+                    window.location.href = '/login'
                 }catch(err) {
                     throw err
                 }

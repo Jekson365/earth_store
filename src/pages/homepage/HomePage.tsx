@@ -1,18 +1,29 @@
-import {HeaderContent} from "./components/HeaderContent.tsx";
+import { HeaderContent } from "./components/HeaderContent.tsx";
 import '../../styles/homepage/homepage.scss'
-import {Featured} from "./featured/Featured.tsx";
-import {Customers} from "./customers/Customers.tsx";
-import {Postcard} from "./postcard/Postcard.tsx";
-import {Priors} from "./priors/Priors.tsx";
+import { Featured } from "./featured/Featured.tsx";
+import { Customers } from "./customers/Customers.tsx";
+import { Postcard } from "./postcard/Postcard.tsx";
+import { Priors } from "./priors/Priors.tsx";
+import { useOpening } from "../../hooks/openings/useOpening.tsx";
+import { useEffect } from "react";
 
 export const HomePage = () => {
+    const { getOpenings, opening } = useOpening()
+    useEffect(() => {
+        getOpenings()
+    }, [])
     return (
         <>
-            <HeaderContent title={'EARTH'} height={'80vh'} desc={'MULTIPURPOSE STORE'} mainPage={true}/>
-            <Featured/>
-            <Customers/>
-            <Postcard/>
-            <Priors/>
+            <HeaderContent title={opening && opening.title}
+                height={'80vh'}
+                desc={opening.min_title}
+                mainPage={true} 
+                
+                />
+            <Featured />
+            <Customers />
+            <Postcard />
+            <Priors />
         </>
     )
 }
