@@ -1,9 +1,7 @@
-import {useEffect} from "react";
 import {Grid, Box, Stack} from '@mui/material'
 import '../../styles/current/currentproduct.scss'
 
 export const ProductPage = () => {
-    const currentProductId = window.location.href.split("/")[4]
     return (
         <>
             <Box mt={5}></Box>

@@ -45,7 +45,7 @@ export const UpdatePrior = () => {
                                 background: "white",
                                 minWidth: "300px",
                             }}
-                            renderValue={(selected) => {
+                            renderValue={() => {
                                 const selectedItem = PriorIcons.find((item: any) => item.id === selectedValue.icon_id);
                                 return (
                                     <Stack direction="row" alignItems="center" gap="10px">

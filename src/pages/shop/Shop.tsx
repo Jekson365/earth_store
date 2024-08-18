@@ -6,7 +6,7 @@ import { useProducts } from "../../hooks/products/useProducts";
 import { useEffect } from "react";
 
 export const Shop = () => {
-    const { products, fetchProducts, loading } = useProducts<any>()
+    const { products, fetchProducts } = useProducts()
     useEffect(() => {
         fetchProducts()
     }, [])
