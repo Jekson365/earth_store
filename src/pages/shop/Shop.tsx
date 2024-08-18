@@ -1,69 +1,18 @@
-import {Box, Grid, Stack, Typography} from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import '../../styles/shop/shop.scss'
 import SearchIcon from '@mui/icons-material/Search';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useProducts } from "../../hooks/products/useProducts";
+import { useEffect } from "react";
 
 export const Shop = () => {
-    const products = [
-        {
-            category: "Postcards",
-            id: 1,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-        {
-            category: "Postcards",
-            id: 2,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-        {
-            category: "Postcards",
-            id: 3,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-        {
-            category: "Postcards",
-            id: 4,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-        {
-            category: "Postcards",
-            id: 5,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-        {
-            category: "Postcards",
-            id: 6,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-        {
-            category: "Postcards",
-            id: 7,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-        {
-            category: "Postcards",
-            id: 8,
-            title: "Postcard V1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/Postcard1-1000x1000.jpg"
-        },
-
-    ]
-
+    const { products, fetchProducts, loading } = useProducts<any>()
+    useEffect(() => {
+        fetchProducts()
+    }, [])
+    useEffect(()=> {
+        console.log(products)
+    },[[products]])
     return (
         <>
             <Box mt={15}></Box>
@@ -73,13 +22,13 @@ export const Shop = () => {
                         <Box>
                             <Stack direction={'column'} alignItems={'flex-start'}>
                                 <Stack direction={'row'}
-                                       gap={'5px'}
-                                       alignItems={'center'} justifyContent={'center'}>
+                                    gap={'5px'}
+                                    alignItems={'center'} justifyContent={'center'}>
                                     <input
-                                        style={{maxWidth: "190px"}}
-                                        placeholder={'Search Products...'} className={'custom-input'}/>
+                                        style={{ maxWidth: "190px" }}
+                                        placeholder={'Search Products...'} className={'custom-input'} />
                                     <button className={'main-icon'}>
-                                        <SearchIcon/>
+                                        <SearchIcon />
                                     </button>
                                 </Stack>
                             </Stack>
@@ -101,14 +50,14 @@ export const Shop = () => {
                                 <Typography>Sorting</Typography>
                             </Stack>
                             <Grid container spacing={3} mt={3}>
-                                {products.map((e) => {
+                                {products && products.map((e : any) => {
                                     return (
                                         <>
                                             <Grid item xs={12} md={4} sm={6}>
                                                 <Link to={`/product/${e.id}`}>
                                                     <Box
                                                         style={{
-                                                            backgroundImage: `url('${e.img}')`,
+                                                            backgroundImage: `url('http://127.0.0.1:3000/${e.product_images.length > 0 ? e.product_images[0].image.url : ''}')`,
                                                             backgroundRepeat: "no-repeat",
                                                             backgroundSize: "cover",
                                                             overflow: "hidden",
@@ -119,10 +68,10 @@ export const Shop = () => {
                                                     <Stack direction={'column'} gap={'5px'}>
                                                         <Typography
                                                             mt={1}
-                                                            style={{fontSize: "13px", color: "gray"}}
-                                                        >{e.category}</Typography>
+                                                            style={{ fontSize: "13px", color: "gray" }}
+                                                        >{e.category.name}</Typography>
                                                         <Typography mt={1}>{e.title}</Typography>
-                                                        <Typography>{e.price}</Typography>
+                                                        <Typography>{e.price}$</Typography>
                                                     </Stack>
                                                 </Link>
                                             </Grid>

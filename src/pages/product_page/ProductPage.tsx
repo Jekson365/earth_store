@@ -4,9 +4,6 @@ import '../../styles/current/currentproduct.scss'
 
 export const ProductPage = () => {
     const currentProductId = window.location.href.split("/")[4]
-    useEffect(() => {
-        console.log(currentProductId)
-    }, [])
     return (
         <>
             <Box mt={5}></Box>

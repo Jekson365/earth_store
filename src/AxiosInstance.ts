@@ -6,4 +6,5 @@ const axiosInstance = axios.create({
         Authorization:JSON.parse(localStorage.getItem("token") || '{}')
     }
 })
+export const defaultUrl = 'http://127.0.0.1:3000'
 export default axiosInstance

@@ -1,44 +1,34 @@
-import LockIcon from '@mui/icons-material/Lock';
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import { PriorIcons } from '../../../icons/prioricons';
 import Typography from "@mui/material/Typography";
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import { UsePriors } from '../../../hooks/priors/usePriors';
+import { useEffect } from 'react';
 export const Priors = () => {
-    const priors = [
-        {
-            title:"SECURE PAYMENT",
-            desc:"All our payments our SSL secured",
-            icon:<LockIcon/>
-        },
-        {
-            title:"DELIVERED WITH CARE",
-            desc:"All our payments our SSL secured",
-            icon:<LocalShippingIcon/>
-        },
-        {
-            title:"EXCELLENT SERVICE",
-            desc:"All our payments our SSL secured",
-            icon:<VolunteerActivismIcon/>
-        },
-    ]
+    const { priors, fetchPriors } = UsePriors()
+    useEffect(() => {
+        fetchPriors()
+    }, [])
     return (
         <>
             <div className={'priors-section'}>
                 <div className={'inner-section'}>
-                    <Grid container columnSpacing={3} rowSpacing={5}>
-                        {priors.map((e)=> {
+                    <Grid container columnSpacing={3} rowSpacing={5} justifyContent={'center'}>
+                        {priors && priors.map((e: any) => {
                             return (
                                 <>
                                     <Grid item xs={12} md={4}>
                                         <Stack direction={'row'}
-                                               gap={'20px'} alignItems={'flex-start'} className={'each-prior'}>
+                                            gap={'20px'} alignItems={'flex-start'} className={'each-prior'}>
                                             <div className={'icon'}>
-                                                {e.icon}
+                                                {(() => {
+                                                    const matchedIcon = PriorIcons.find((m) => m.id === e.icon_id);
+                                                    return matchedIcon ? <>{matchedIcon.icon}</> : null;
+                                                })()}
                                             </div>
                                             <Stack direction={'column'} gap={'5px'}>
                                                 <Typography className={'title'}>{e.title}</Typography>
-                                                <Typography className={'desc'}>{e.desc}</Typography>
+                                                <Typography className={'desc'}>{e.description}</Typography>
                                             </Stack>
                                         </Stack>
                                     </Grid>
