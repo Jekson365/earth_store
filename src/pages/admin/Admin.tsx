@@ -9,6 +9,9 @@ import { CreateProduct } from "./components/CreateProduct"
 import { CreateCategory } from "./components/CreateCategory"
 import { CreateAbout } from "./components/CreateAbout"
 import { UpdateFeat } from "./components/UpdateFeat"
+import ContactInfo from "./components/ContactInfo"
+import { useOpening } from "../../hooks/openings/useOpening"
+import { CreateCustomers } from "./components/CreateCustomers"
 
 const Admin = () => {
     const { currentUser } = useContext<any>(CurrentUser)
@@ -30,7 +33,8 @@ const Admin = () => {
         }
     }, [user])
 
-    const [openingData, setOpeningData] = useState<any>({ title: "", min_title: "",image:""})
+    const [openingData, setOpeningData] = useState<any>({ title: "", min_title: "", image: "" })
+    const { getOpenings, opening } = useOpening()
     const [postCardData, setPostCardData] = useState<any>({ title: '', min_title: "" })
 
     const handlePostCard = () => {
@@ -42,7 +46,15 @@ const Admin = () => {
             throw err
         }
     }
-
+    useEffect(() => {
+        getOpenings()
+    }, [])
+    useEffect(() => {
+        if (opening) {
+            console.log(opening)
+            setOpeningData({ title: opening.title, min_title: opening.min_title, image: null })
+        }
+    }, [opening])
     return (
         <>
             <Box mt={15}></Box>
@@ -53,9 +65,11 @@ const Admin = () => {
                         <form encType="multipart/form-data">
                             <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
                                 <input type="text"
+                                    value={openingData.title}
                                     onChange={(e: any) => setOpeningData({ ...openingData, title: e.target.value })}
                                     placeholder="title" className="custom-input" />
                                 <input type="text"
+                                    value={openingData.min_title}
                                     onChange={(e: any) => setOpeningData({ ...openingData, min_title: e.target.value })}
                                     placeholder="subtitle" className="custom-input" />
                                 <input
@@ -86,11 +100,12 @@ const Admin = () => {
                             >SAVE</button>
                         </Box>
                     </Box>
-
+                    <CreateCustomers/>
                     <UpdatePrior />
                     <CreateAbout />
                     <CreateCategory />
                     <CreateProduct />
+                    <ContactInfo />
                 </Stack>
             </div>
 

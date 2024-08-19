@@ -7,13 +7,13 @@ import { useEffect } from "react";
 import { defaultUrl } from "../../AxiosInstance";
 
 export const Shop = () => {
-    const { products, fetchProducts } = useProducts()
+    const { products, fetchProducts, loading } = useProducts()
     useEffect(() => {
         fetchProducts()
     }, [])
-    useEffect(()=> {
+    useEffect(() => {
         console.log(products)
-    },[[products]])
+    }, [[products]])
     return (
         <>
             <Box mt={15}></Box>
@@ -51,34 +51,36 @@ export const Shop = () => {
                                 <Typography>Sorting</Typography>
                             </Stack>
                             <Grid container spacing={3} mt={3}>
-                                {products && products.map((e : any) => {
-                                    return (
-                                        <>
-                                            <Grid item xs={12} md={4} sm={6}>
-                                                <Link to={`/product/${e.id}`}>
-                                                    <Box
-                                                        style={{
-                                                            backgroundImage: `url('${defaultUrl}${e.product_images.length > 0 ? e.product_images[0].image.url : ''}')`,
-                                                            backgroundRepeat: "no-repeat",
-                                                            backgroundSize: "cover",
-                                                            overflow: "hidden",
-                                                            minWidth: "250px",
-                                                            minHeight: "250px"
-                                                        }}
-                                                    ></Box>
-                                                    <Stack direction={'column'} gap={'5px'}>
-                                                        <Typography
-                                                            mt={1}
-                                                            style={{ fontSize: "13px", color: "gray" }}
-                                                        >{e.category.name}</Typography>
-                                                        <Typography mt={1}>{e.title}</Typography>
-                                                        <Typography>{e.price}$</Typography>
-                                                    </Stack>
-                                                </Link>
-                                            </Grid>
-                                        </>
-                                    )
-                                })}
+                                {loading ? <>Loading...</> : (<>
+                                    {products && products.map((e: any) => {
+                                        return (
+                                            <>
+                                                <Grid item xs={12} md={4} sm={6}>
+                                                    <Link to={`/product/${e.id}`}>
+                                                        <Box
+                                                            style={{
+                                                                backgroundImage: `url('${defaultUrl}${e.product_images.length > 0 ? e.product_images[0].image.url : ''}')`,
+                                                                backgroundRepeat: "no-repeat",
+                                                                backgroundSize: "cover",
+                                                                overflow: "hidden",
+                                                                minWidth: "250px",
+                                                                minHeight: "250px"
+                                                            }}
+                                                        ></Box>
+                                                        <Stack direction={'column'} gap={'5px'}>
+                                                            <Typography
+                                                                mt={1}
+                                                                style={{ fontSize: "13px", color: "gray" }}
+                                                            >{e.category.name}</Typography>
+                                                            <Typography mt={1}>{e.title}</Typography>
+                                                            <Typography>{e.price}$</Typography>
+                                                        </Stack>
+                                                    </Link>
+                                                </Grid>
+                                            </>
+                                        )
+                                    })}
+                                </>)}
                             </Grid>
                         </Stack>
                     </Grid>

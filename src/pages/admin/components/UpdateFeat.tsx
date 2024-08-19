@@ -18,6 +18,10 @@ export const UpdateFeat = () => {
         fetchProducts()
     }, [])
 
+    useEffect(()=> {
+        console.log(featItem)
+    },[featItem])
+
     return (
         <>
             <Box>
