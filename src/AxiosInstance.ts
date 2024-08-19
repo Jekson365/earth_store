@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL:"http://127.0.0.1:3000",
+    baseURL:"http://server.testpuzzle.ge",
     headers: {
         Authorization:JSON.parse(localStorage.getItem("token") || '{}')
     }
 })
-export const defaultUrl = 'http://127.0.0.1:3000'
+export const defaultUrl = 'http://server.testpuzzle.ge'
 export default axiosInstance

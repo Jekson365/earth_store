@@ -9,8 +9,14 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
+import { useOpening } from "../../hooks/openings/useOpening.tsx";
+import { useEffect } from "react";
 
 export const Contact = () => {
+    const { getOpenings, opening } = useOpening()
+    useEffect(() => {
+        getOpenings()
+    }, [])
     const info = [
         {
             title: "email",
@@ -45,7 +51,7 @@ export const Contact = () => {
     ]
     return (
         <>
-            <HeaderContent title={'CONTACT'} height={'50vh'} desc={''} mainPage={false}/>
+            <HeaderContent title={'CONTACT'} height={'50vh'} desc={''} mainPage={false} image={opening.image}/>
             <div className={'contact-section'}>
                 <Grid container maxWidth={'1200px'} margin={'0 auto'}>
                     <Grid xs={12} md={6} item p={5}>

@@ -5,6 +5,7 @@ export const useCreateCategories = () => {
         axiosInstance.post("/categories", { category: payload })
             .then(() => {
                 try {
+                    window.location.reload()
                     console.log('created')
                 }
                 catch (err) {

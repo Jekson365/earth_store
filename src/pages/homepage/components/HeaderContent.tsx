@@ -2,21 +2,23 @@ import Stack from "@mui/material/Stack";
 import Typography from '@mui/material/Typography'
 import React from "react";
 import { Link } from 'react-router-dom'
+import { defaultUrl } from "../../../AxiosInstance";
 
 interface HeaderContentProps {
     title: String;
     desc: String;
     height: any,
-    mainPage: boolean
+    mainPage: boolean,
+    image: any
 }
 
-export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, height, mainPage }) => {
+export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, height, mainPage,image }) => {
     return (
         <>
             <div className={'section'}
                 style={{
                     height: height,
-                    backgroundImage: 'url("https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Banner.jpg")'
+                    backgroundImage: `url('${image ? defaultUrl + image['url'] : null}')`
                 }}
             >
                 <div className={'inner-section'}>

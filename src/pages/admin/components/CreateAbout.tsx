@@ -16,8 +16,8 @@ export const CreateAbout = () => {
         <>
             <Box>
                 <Typography className="component-title">About</Typography>
-                <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
-                    <form encType="multipart/form-data">
+                <form encType="multipart/form-data">
+                    <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
                         <input type="text"
                             onChange={(e) => setAboutParams({ ...aboutParams, title: e.target.value })}
                             placeholder="title" className="custom-input" />
@@ -27,9 +27,9 @@ export const CreateAbout = () => {
                         <input type="file" placeholder="image"
                             onChange={(e: any) => setAboutParams({ ...aboutParams, about_image_attributes: { image: e.target.files[0] } })}
                             className="custom-input" />
-                    </form>
+                    </Stack>
+                </form>
 
-                </Stack>
                 <Stack direction={'row'} mt={3} gap={'20px'} flexWrap={'wrap'}>
                     {about && about.map((e: any) => {
                         return (

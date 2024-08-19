@@ -1,59 +1,57 @@
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import Box from '@mui/material/Box';
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import {Link} from 'react-router-dom'
+import { useEffect } from "react";
+import { Link } from 'react-router-dom'
+import { useFeaturedProducts } from "../../../hooks/featured_products/useFeaturedProducts";
+import { defaultUrl } from "../../../AxiosInstance";
 
 export const Featured = () => {
-    const products = [
-        {
-            category: "Poster",
-            id: 22,
-            title: "Poster v1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster5-1000x1000.jpg",
-        },
-        {
-            category: "Poster",
-            id: 23,
-            title: "Poster v1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster6-1000x1000.jpg"
-        },
-        {
-            category: "Poster",
-            id: 24,
-            title: "Poster v1",
-            price: "23.99",
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster4-1000x1000.jpg"
-        },
-    ];
-
+    const { featuredProducts, fetchFeaturedProducts } = useFeaturedProducts()
+    useEffect(() => {
+        console.log(featuredProducts)
+        fetchFeaturedProducts()
+    }, [])
     return (
         <>
             <section className={'featured-section'}
-                     style={{
-                         display: "flex",
-                         justifyContent: "center",
-                         alignItems: 'center',
-                         marginTop: "50px",
-                         padding: "0 7px"
-                     }}>
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: 'center',
+                    marginTop: "50px",
+                    padding: "0 7px"
+                }}>
                 <div className={'inner-section'}>
                     <Grid container columnSpacing={1} rowSpacing={1}>
-                        {products.map((e, index) => {
+                        {featuredProducts && featuredProducts.map((e: any, index: number) => {
                             return (
-
-                                <Grid xs={12} md={4} item key={index}>
+                                <Grid item xs={12} md={4} key={index}>
                                     <Link to={`/product/${e.id}`}>
                                         <Stack direction={'column'} alignItems={'flex-start'} gap={'10px'}>
-                                            <Box className={'featured-item'}
-                                                 sx={{
-                                                     width: "95%",
-                                                     margin: "0 auto"
-                                                 }}
+                                            <Box
+                                                className={'featured-item'}
+                                                sx={{
+                                                    width: '100%', // Ensures the box takes full width
+                                                    paddingTop: '100%', // This makes the box square by setting height equal to width
+                                                    position: 'relative', // Needed to position the image inside the square
+                                                    margin: '0 auto',
+                                                }}
                                             >
-                                                <img src={e.img} alt={'m'}/>
+                                                <img
+                                                    src={defaultUrl + e.product.product_images[0].image.url}
+                                                    alt={e.product.title}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        top: 0,
+                                                        left: 0,
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover', // Ensures the image covers the box while maintaining its aspect ratio
+                                                        borderRadius: '8px',
+                                                    }}
+                                                />
                                             </Box>
                                             <Stack
                                                 direction={'column'}
@@ -62,9 +60,9 @@ export const Featured = () => {
                                                 pl={2}
                                                 className={'feat-content'}
                                             >
-                                                <Typography className={'cat'}>{e.category}</Typography>
-                                                <Typography className={'title'}>{e.title}</Typography>
-                                                <Typography className={'price'}>${e.price}</Typography>
+                                                <Typography className={'cat'}>{e.product.category.name}</Typography>
+                                                <Typography className={'title'}>{e.product.title}</Typography>
+                                                <Typography className={'price'}>${e.product.price}</Typography>
                                             </Stack>
                                         </Stack>
                                     </Link>
@@ -73,6 +71,7 @@ export const Featured = () => {
                         })}
                     </Grid>
                 </div>
+
             </section>
         </>
     );

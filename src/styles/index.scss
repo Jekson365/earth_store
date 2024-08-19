@@ -5,13 +5,16 @@
   margin: 0;
   padding: 0;
 }
+
 a {
   text-decoration: none;
   color: $color-green;
 }
+
 body {
   overflow-x: hidden !important;
 }
+
 .w-100 {
   width: 95%;
 }
@@ -23,10 +26,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
   @media (max-width: 700px) {
     min-height: 30vh;
   }
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -34,18 +39,21 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
+
 .line {
   width: 100%;
   height: 1px;
   background-color: rgba(128, 128, 128, 0.61);
 }
+
 .custom-input {
   padding: 15px;
   outline: 0;
   font-size: 18px;
-  border: 0.5px solid rgba(0,0,0,0.3);
+  border: 0.5px solid rgba(0, 0, 0, 0.3);
+
   &::placeholder {
     color: gray;
   }
@@ -67,6 +75,7 @@ body {
   .featured-item {
     background-size: cover;
     overflow: hidden;
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
 
     img {
       width: 100%;
@@ -81,7 +90,8 @@ body {
       color: gray;
     }
 
-    .title, .price {
+    .title,
+    .price {
       font-weight: 500;
     }
   }
@@ -89,9 +99,11 @@ body {
 
 .customers-section {
   min-height: 55vh;
+
   @media (max-width: 900px) {
     padding: 20px !important;
   }
+
   .customers-inner-section {
     max-width: 1200px;
     width: 100%;
@@ -139,6 +151,7 @@ body {
     font-weight: bold;
     font-size: 40px;
     letter-spacing: 5px;
+
     @media (max-width: 960px) {
       font-size: 30px;
     }
@@ -154,16 +167,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
   @media (max-width: 900px) {
     margin-top: 40px;
   }
+
   .inner-section {
     max-width: 1200px;
+
     .each-prior {
       border-right: 0.5px solid rgba(128, 128, 128, 0.17);
+
       &:not(:last-child) {
         border-right: none;
       }
+
       @media (max-width: 900px) {
         padding: 20px;
         flex-direction: column !important;
@@ -177,9 +195,11 @@ body {
       letter-spacing: 3px;
       font-size: 14px;
     }
+
     .desc {
       color: gray;
     }
+
     .icon {
       color: white;
       width: 40px;
