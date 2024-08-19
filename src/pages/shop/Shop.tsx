@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom'
 import { useProducts } from "../../hooks/products/useProducts";
 import { useEffect } from "react";
+import { defaultUrl } from "../../AxiosInstance";
 
 export const Shop = () => {
     const { products, fetchProducts } = useProducts()
@@ -57,7 +58,7 @@ export const Shop = () => {
                                                 <Link to={`/product/${e.id}`}>
                                                     <Box
                                                         style={{
-                                                            backgroundImage: `url('http://127.0.0.1:3000/${e.product_images.length > 0 ? e.product_images[0].image.url : ''}')`,
+                                                            backgroundImage: `url('${defaultUrl}${e.product_images.length > 0 ? e.product_images[0].image.url : ''}')`,
                                                             backgroundRepeat: "no-repeat",
                                                             backgroundSize: "cover",
                                                             overflow: "hidden",
