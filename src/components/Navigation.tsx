@@ -9,12 +9,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { CartController } from "../router/CustomRouter.tsx";
 import { CurrentUser } from '../App.tsx';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useTranslation } from 'react-i18next';
 
 export const Navigation = () => {
+    const { t } = useTranslation()
     const [navOpen, setNavOpen] = useState<Boolean>(false)
     const { setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
-    const [user,setUser] = useState<any>({})
+    const [user, setUser] = useState<any>({})
     const logoutUser = () => {
         localStorage.removeItem("token")
         window.location.href = '/'
@@ -45,13 +47,13 @@ export const Navigation = () => {
                         <Stack
                             display={navOpen ? 'none' : "flex"}
                             className={'responsive-nav'} direction={'row'} gap={'30px'}>
-                            <Link className={'nav-name'} to={'/'}>HOME</Link>
-                            <Link className={'nav-name'} to={'/about'}>ABOUT</Link>
-                            <Link className={'nav-name'} to={'/shop'}>SHOP</Link>
-                            <Link className={'nav-name'} to={'/contact'}>CONTACT</Link>
+                            <Link className={'nav-name'} to={'/'}>{t('home')}</Link>
+                            <Link className={'nav-name'} to={'/about'}>{t('about')}</Link>
+                            <Link className={'nav-name'} to={'/shop'}>{t('shop')}</Link>
+                            <Link className={'nav-name'} to={'/contact'}>{t('contact')}</Link>
                             {!user && window.innerWidth < 900 ? (<>
-                                <Link className={'nav-name'} to={'/login'}>LOGIN</Link>
-                                <Link className={'nav-name'} to={'/register'}>REGISTER</Link>
+                                <Link className={'nav-name'} to={'/login'}>{t('auth.register')}</Link>
+                                <Link className={'nav-name'} to={'/register'}>{t('auth.login')}</Link>
                             </>) : null}
                         </Stack>
                         <Stack direction={'row'} gap={'10px'} alignItems={'center'}>

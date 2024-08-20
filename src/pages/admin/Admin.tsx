@@ -12,24 +12,28 @@ import { UpdateFeat } from "./components/UpdateFeat"
 import ContactInfo from "./components/ContactInfo"
 import { useOpening } from "../../hooks/openings/useOpening"
 import { CreateCustomers } from "./components/CreateCustomers"
+import { CustomError } from "../../components/CustomError"
 
 const Admin = () => {
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState<any>({})
     const { updateOpening } = useUpdateOpening()
+    const [open, setOpen] = useState(false)
     const { updatePostcard } = useUpdatePostcard()
+
     useEffect(() => {
-        setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
-    }, [user])
+        if (!currentUser || Object.keys(currentUser).length === 0) {
+            setUser(false)
+        } else {
+            setUser(currentUser)
+        }
+    }, [currentUser])
 
     useEffect(() => {
         if (user) {
             if (user.role_id === 1) {
                 window.location.href = '/'
             }
-        }
-        else {
-            window.location.href = '/'
         }
     }, [user])
 
@@ -38,14 +42,18 @@ const Admin = () => {
     const [postCardData, setPostCardData] = useState<any>({ title: '', min_title: "" })
 
     const handlePostCard = () => {
-        try {
-            updatePostcard(postCardData)
-            window.location.href = '/'
+        if (!postCardData.title || !postCardData.min_title) {
+            setOpen(true)
         }
-        catch (err) {
-            throw err
+        else {
+            try {
+                updatePostcard(postCardData);
+                window.location.href = '/';
+            } catch (err) {
+                console.error(err);
+            }
         }
-    }
+    };
     useEffect(() => {
         getOpenings()
     }, [])
@@ -57,6 +65,7 @@ const Admin = () => {
     }, [opening])
     return (
         <>
+            <CustomError open={open} setOpen={setOpen} />
             <Box mt={15}></Box>
             <div className="admin-cover">
                 <Stack direction={'column'} alignItems={'flex-start'} gap={'40px'}>
@@ -100,7 +109,7 @@ const Admin = () => {
                             >SAVE</button>
                         </Box>
                     </Box>
-                    <CreateCustomers/>
+                    <CreateCustomers />
                     <UpdatePrior />
                     <CreateAbout />
                     <CreateCategory />

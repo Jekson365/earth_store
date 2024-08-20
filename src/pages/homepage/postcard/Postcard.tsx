@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { usePostcard } from "../../../hooks/postcards/usePostcard.";
 
 export const Postcard = () => {
-    const { getPostcard,postcard } = usePostcard()
+    const { getPostcard, postcard } = usePostcard()
 
     useEffect(() => {
         getPostcard()

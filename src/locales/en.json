@@ -1,0 +1,10 @@
+{
+    "home":"HOME",
+    "about":"ABOUT",
+    "shop":"SHOP",
+    "contact":"CONTACT",
+    "auth": {
+        "login":"LOGIN",
+        "register":"REGISTER"
+    }
+}
