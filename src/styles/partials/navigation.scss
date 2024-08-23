@@ -8,6 +8,11 @@
   max-width: 1200px;
   width: 100%;
   z-index: 10;
+  .email {
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
   .set-nav {
     background: black;
     color: white;

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useCategories } from "../../../hooks/categories/useCategories"
 import { useRemoveCategory } from "../../../hooks/categories/useRemoveCategory"
 import { CustomError } from "../../../components/CustomError"
+import { FeaturedItem } from "../../../cusomts/FeaturedItem"
 
 export const CreateCategory = () => {
     const { createCategory } = useCreateCategories()
@@ -38,17 +39,18 @@ export const CreateCategory = () => {
                     {categories && categories.map((e: any) => {
                         return (
                             <>
-                                <div className="featured-item"
-                                    onClick={() => removeCategory(e.id)}
+                                <FeaturedItem
+                                    id={e.id}
+                                    content={e.name}
+                                    action={removeCategory}
                                 >
-                                    {e.name}
-                                </div>
+                                </FeaturedItem>
                             </>
                         )
                     })}
                 </Stack>
                 <Box mt={2}>
-                    <button className="main-button"
+                    <button className="admin-button"
                         onClick={handleSaveCat}
                     >SAVE</button>
                 </Box>

@@ -1,5 +1,10 @@
 @import './config.scss';
 
+.line {
+    width: 5%;
+    height: 1px;
+    background-color: $admin-color;
+}
 .admin-cover {
     max-width: 1200px;
     margin: 0 auto;
@@ -8,19 +13,40 @@
         font-size: 30px;
     }
     .featured-item {
-        box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px 1px rgba(0,0,0,0.01);
         min-width: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 10px;
+        padding: 10px 20px;
         font-size: 20px;
-        border-radius: 60px;
+        border-radius: 3px;
+        border: 1px solid $admin-color;
         transition: 0.3s;
+        overflow: hidden;
         cursor: pointer;
+        &:hover .remove-button {
+            outline: 1px solid white;
+            transform: translateX(10px);
+        }
+        .remove-button {
+            color: white;
+            background-color: rgb(255, 78, 78);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            transition: 0.3s;
+            transform: translateX(100px);
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
         &:hover {
             color: white;
-            background-color: $color-green-light;
+            background-color: $admin-color;
         }
     }
 }

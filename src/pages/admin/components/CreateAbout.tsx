@@ -3,6 +3,7 @@ import { useCreateAbout } from "../../../hooks/about/useCreateAbout"
 import { useEffect, useState } from "react"
 import { useAbouts } from "../../../hooks/about/useAbouts"
 import { useRemoveAbout } from "../../../hooks/about/useRemoveAbout"
+import { FeaturedItem } from "../../../cusomts/FeaturedItem"
 
 export const CreateAbout = () => {
     const { createAbout } = useCreateAbout()
@@ -35,17 +36,18 @@ export const CreateAbout = () => {
                         return (
                             <>
 
-                                <div className="featured-item"
-                                    onClick={() => removeAbout(e.id)}
+                                <FeaturedItem
+                                    id={e.id}
+                                    content={e.title}
+                                    action={removeAbout}
                                 >
-                                    {e.title}
-                                </div>
+                                </FeaturedItem>
                             </>
                         )
                     })}
                 </Stack>
                 <Box mt={2}>
-                    <button className="main-button"
+                    <button className="admin-button"
                         onClick={() => createAbout(aboutParams)}
                     >SAVE</button>
                 </Box>

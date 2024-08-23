@@ -1,19 +1,73 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import '../../styles/shop/shop.scss'
-import SearchIcon from '@mui/icons-material/Search';
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useProducts } from "../../hooks/products/useProducts";
-import { useEffect } from "react";
-import { defaultUrl } from "../../AxiosInstance";
+import { useEffect, useState } from "react";
+import { useCategories } from "../../hooks/categories/useCategories";
+import CloseIcon from '@mui/icons-material/Close';
+import { ShopItem } from "./ShopItem";
 
 export const Shop = () => {
     const { products, fetchProducts, loading } = useProducts()
+    const [filterdProducts, setFilteredProducts] = useState([])
+    const [selectedCat, setSelectedCat] = useState<Number | null>(null)
+    const location = useLocation()
     useEffect(() => {
         fetchProducts()
     }, [])
     useEffect(() => {
-        console.log(products)
-    }, [[products]])
+        setFilteredProducts(products)
+    }, [products])
+    const applyShopStyles = () => {
+        document.documentElement.style.setProperty('--nav-item-color', 'black');
+    };
+
+    useEffect(() => {
+        if (location.pathname === '/shop') {
+            applyShopStyles();
+        }
+    }, [location.pathname]);
+
+    if (location.pathname === '/shop') {
+        applyShopStyles();
+    }
+
+    const { fetchCatsByCount, catCounted } = useCategories()
+
+    useEffect(() => {
+        fetchCatsByCount()
+    }, [])
+
+
+    const handleCategorySearch = (category_id: Number) => {
+        setSelectedCat(category_id)
+        let filtered = products.filter((e: any) => e.category.id === category_id)
+        setFilteredProducts(filtered)
+    }
+    const removeCat = () => {
+        setSelectedCat(null)
+        setFilteredProducts(products)
+    }
+
+    const handleSearch = (searchParam: String) => {
+        let filtered = products.filter((e: any) => e.title.includes(searchParam))
+        setFilteredProducts(filtered)
+    }
+
+    const handleSort = (e: any) => {
+        let option = Number(e.target.value);
+        let sorted = [...products];
+
+        if (option === 1) {
+            sorted.sort((a: any, b: any) => a.price - b.price);
+        } else {
+            sorted.sort((a: any, b: any) => b.price - a.price);
+        }
+
+        setFilteredProducts(sorted);
+    };
+
+
     return (
         <>
             <Box mt={15}></Box>
@@ -27,55 +81,55 @@ export const Shop = () => {
                                     alignItems={'center'} justifyContent={'center'}>
                                     <input
                                         style={{ maxWidth: "190px" }}
+                                        onChange={(e) => handleSearch(e.target.value)}
                                         placeholder={'Search Products...'} className={'custom-input'} />
-                                    <button className={'main-icon'}>
-                                        <SearchIcon />
-                                    </button>
                                 </Stack>
                             </Stack>
                             <Stack direction={'column'} alignItems={'flex-start'} mt={3}>
                                 <Typography className={'min-title'}>Categories</Typography>
                                 <Stack direction={'column'} pl={3}>
-                                    <Typography className={'sub-cat'}>Postcards (6)</Typography>
-                                    <Typography className={'sub-cat'}>Posters (6)</Typography>
+                                    {catCounted && catCounted.map((e: any) => {
+                                        return (
+                                            <>
+                                                <Stack direction={'row'} alignItems={'center'} gap={'10px'}>
+                                                    <Typography className={`sub-cat ${e.id == selectedCat ? 'selected-category' : null}`}
+                                                        onClick={() => handleCategorySearch(e.id)}
+                                                    >{e.name} ({e.count})</Typography>
+                                                    {e.id == selectedCat ? (<>
+                                                        <Box className='remove-cat'
+                                                            onClick={removeCat}
+                                                        >
+                                                            <CloseIcon />
+                                                        </Box>
+                                                    </>) : null}
+                                                </Stack>
+                                            </>
+                                        )
+                                    })}
                                 </Stack>
                             </Stack>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={8}>
                         <Stack direction={'column'}>
-                            <Typography className={'shop-title'}>Postcards</Typography>
+                            <Typography className={'shop-title'}>Products</Typography>
                             <Box mt={5}></Box>
                             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                                 <Typography>Showing all 6 results</Typography>
-                                <Typography>Sorting</Typography>
+                                <Typography>
+                                    <select className="custom-input" onChange={handleSort}>
+                                        <option value="1">price Asc</option>
+                                        <option value="2">price Desc</option>
+                                    </select>
+                                </Typography>
                             </Stack>
                             <Grid container spacing={3} mt={3}>
                                 {loading ? <>Loading...</> : (<>
-                                    {products && products.map((e: any) => {
+                                    {filterdProducts && filterdProducts.map((e: any) => {
                                         return (
                                             <>
                                                 <Grid item xs={12} md={4} sm={6}>
-                                                    <Link to={`/product/${e.id}`}>
-                                                        <Box
-                                                            style={{
-                                                                backgroundImage: `url('${defaultUrl}${e.product_images.length > 0 ? e.product_images[0].image.url : ''}')`,
-                                                                backgroundRepeat: "no-repeat",
-                                                                backgroundSize: "cover",
-                                                                overflow: "hidden",
-                                                                minWidth: "250px",
-                                                                minHeight: "250px"
-                                                            }}
-                                                        ></Box>
-                                                        <Stack direction={'column'} gap={'5px'}>
-                                                            <Typography
-                                                                mt={1}
-                                                                style={{ fontSize: "13px", color: "gray" }}
-                                                            >{e.category.name}</Typography>
-                                                            <Typography mt={1}>{e.title}</Typography>
-                                                            <Typography>{e.price}$</Typography>
-                                                        </Stack>
-                                                    </Link>
+                                                    <ShopItem product={e} />
                                                 </Grid>
                                             </>
                                         )

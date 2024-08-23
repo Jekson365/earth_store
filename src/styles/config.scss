@@ -1,9 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-$color-green:#2c541d;
-$color-green-light:#74a84a;
-$color-dark:#050505;
+:root {
+    --nav-item-color: #2c541d;
+    --main-title-color: white;
+    --main-subtitle-color:white;
+    --main-button-color:white;
+    --postcard-title-color:white;
+    --postcard-subtitle-color:white;
+    --contact-icon-color:white;
+    --social-icon-color:white;
+    --shop-titles-color:white;
+    --admin-color:white;
+}
 
-$color-green-light-transparent:#74a84a77;
+$main-title-color: var(--main-title-color);
+$main-subtitle-color: var(--main-subtitle-color);
+$main-button-color:var(--main-button-color);
+$postcard-title-color:var(--postcard-title-color);
+$postcard-subtitle-color:var(--postcard-subtitle-color);
+$contact-icon-color:var(--contact-icon-color);
+$social-icon-color:var(--social-icon-color);
+$shop-titles-color:var(--shop-titles-color);
+$admin-color:var(--admin-color);
+$footer-color:black;
+
+$color-green: var(--nav-item-color);
+$color-green-light: #74a84a;
+$color-dark: #050505;
+
+$color-green-light-transparent: #74a84a77;
 
 $main-font: "Mukta", sans-serif;

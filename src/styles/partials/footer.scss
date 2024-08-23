@@ -8,6 +8,11 @@
     font-weight: bold;
     letter-spacing: 2px;
     font-size: 18px;
-    color: $color-green;
+    color: $footer-color;
+  }
+  .footer-items {
+    a {
+      color: $footer-color;
+    }
   }
 }

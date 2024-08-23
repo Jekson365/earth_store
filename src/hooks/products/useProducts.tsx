@@ -7,14 +7,14 @@ export const useProducts = () => {
     const fetchProducts = async () => {
         try {
             await axiosInstance.get("/products")
-                .then((res)=> {
+                .then((res) => {
                     setProdcuts(res.data)
                     setLoading(false)
                 })
         }
-        catch(err) {
+        catch (err) {
             throw err
         }
     }
-    return { products, fetchProducts, loading }
+    return { products, fetchProducts, loading, setProdcuts }
 }

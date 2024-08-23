@@ -1,10 +1,24 @@
-import {Grid, Box, Stack} from '@mui/material'
+import { Grid, Box, Stack } from '@mui/material'
 import '../../styles/current/currentproduct.scss'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
-export const ProductPage = () => {
+export const ProductPage = ({ currentProduct }: any) => {
+    const location = useLocation()
+    const applyShopStyles = () => {
+        document.documentElement.style.setProperty('--nav-item-color', 'black');
+    };
+
+    useEffect(() => {
+        if (location.pathname === `/product/${currentProduct.id}`) {
+            applyShopStyles();
+        }
+    }, [location.pathname]);
+
+    applyShopStyles();
     return (
         <>
-            <Box mt={5}></Box>
+            <Box mt={15}></Box>
             <div className={'cover'}>
                 <Box className={'inner-cover'}>
                     <Grid container columnSpacing={7}>
@@ -15,7 +29,7 @@ export const ProductPage = () => {
                                 overflow={'hidden'}
                             >
                                 <img
-                                    src={'https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster6.jpg'}/>
+                                    src={'https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster6.jpg'} />
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -30,7 +44,7 @@ export const ProductPage = () => {
                                     how much beauty awaits in the world, luring you out of your comfort zone and into a
                                     world where possibility resides.</p>
                                 <button className={'main-button'}
-                                        style={{width: "fit-content", padding: "10px", fontSize: "15px"}}
+                                    style={{ width: "fit-content", padding: "10px", fontSize: "15px" }}
                                 >ADD TO CART
                                 </button>
                                 <div className={'line'}></div>
@@ -41,8 +55,8 @@ export const ProductPage = () => {
                     <Stack direction={'column'} gap={'30px'} className={'description'} mt={5}>
                         <Box>
                             <b className={'title'}>Framed Without Borders:</b>
-                            <ul style={{marginLeft: "25px", display: "flex", flexDirection: "column", gap: "10px"}}>
-                                <li style={{marginTop:"10px"}}>1-inch thick wooden back frame.</li>
+                            <ul style={{ marginLeft: "25px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                                <li style={{ marginTop: "10px" }}>1-inch thick wooden back frame.</li>
                                 <li>No additional hanging hardware is required</li>
                                 <li>Printed on High-Quality vinyl.</li>
                                 <li>Care: Dust with a soft, dry cloth.</li>
@@ -50,8 +64,8 @@ export const ProductPage = () => {
                         </Box>
                         <Box>
                             <b className={'title'}>Framed Without Borders:</b>
-                            <ul style={{marginLeft: "25px", display: "flex", flexDirection: "column", gap: "10px"}}>
-                                <li style={{marginTop:"10px"}}>1-inch thick wooden back frame.</li>
+                            <ul style={{ marginLeft: "25px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                                <li style={{ marginTop: "10px" }}>1-inch thick wooden back frame.</li>
                                 <li>No additional hanging hardware is required</li>
                                 <li>Printed on High-Quality vinyl.</li>
                                 <li>Care: Dust with a soft, dry cloth.</li>

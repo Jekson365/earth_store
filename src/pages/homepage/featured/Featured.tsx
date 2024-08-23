@@ -10,7 +10,6 @@ import { defaultUrl } from "../../../AxiosInstance";
 export const Featured = () => {
     const { featuredProducts, fetchFeaturedProducts } = useFeaturedProducts()
     useEffect(() => {
-        console.log(featuredProducts)
         fetchFeaturedProducts()
     }, [])
     return (
@@ -34,7 +33,7 @@ export const Featured = () => {
                                                 className={'featured-item'}
                                                 sx={{
                                                     width: '100%', // Ensures the box takes full width
-                                                    paddingTop: '100%', // This makes the box square by setting height equal to width
+                                                    paddingTop: '120%', // This makes the box square by setting height equal to width
                                                     position: 'relative', // Needed to position the image inside the square
                                                     margin: '0 auto',
                                                 }}

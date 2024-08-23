@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useCreateCustomers } from "../../../hooks/customers/useCreateCustomers"
 import { useCustomers } from "../../../hooks/customers/useCustomers"
 import { useRemoveCustomers } from "../../../hooks/customers/useRemoveCustomers"
+import { FeaturedItem } from "../../../cusomts/FeaturedItem"
 
 export const CreateCustomers = () => {
     const [customer, setCustomer] = useState<any>({})
@@ -10,9 +11,9 @@ export const CreateCustomers = () => {
     const { customers, fetchCustomers } = useCustomers()
     const { createCustomers } = useCreateCustomers()
 
-    useEffect(()=> {
+    useEffect(() => {
         fetchCustomers()
-    },[])
+    }, [])
     return (
         <>
             <Box>
@@ -43,18 +44,19 @@ export const CreateCustomers = () => {
                     {customers && customers.map((e: any) => {
                         return (
                             <>
-                                <div className="featured-item"
-                                    onClick={() => removeCustomers(e.id)}
+                                <FeaturedItem
+                                    id={e.id}
+                                    content={e.name + ' ' + e.surname}
+                                    action={removeCustomers}
                                 >
-                                    {e.name} - {e.surname}
-                                </div>
+                                </FeaturedItem>
                             </>
                         )
                     })}
                 </Stack>
                 <Box mt={2}>
                     <button
-                        className="main-button"
+                        className="admin-button"
                         onClick={() => createCustomers(customer)}
                     >
                         SAVE

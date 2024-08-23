@@ -30,11 +30,10 @@ export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, heigh
                         gap={'10px'}
                     >
                         <Stack direction={'column'} alignItems={'center'}>
-                            <Typography className={'title'}>{title}</Typography>
-                            {mainPage ? <Typography className={'min-title'}>{desc}</Typography> : null}
+                            <Typography className={'title main-title-color'}>{title}</Typography>
+                            {mainPage ? <Typography className={'min-title main-subtitle-color'}>{desc}</Typography> : null}
                         </Stack>
                         {mainPage ? <button className={'main-button'}
-
                         ><Link to={'/shop'}
                             style={{ color: "white" }}
                         >SHOP NOW</Link></button> : null}

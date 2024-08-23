@@ -60,7 +60,7 @@ function ContactInfo() {
 
                 <Box mt={2}>
                     <button
-                        className="main-button"
+                        className="admin-button"
                         onClick={() => updateContactInfo(contactInfoParams)}
                     >
                         SAVE

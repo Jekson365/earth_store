@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { useRegister } from '../../hooks/users/useRegister'
 import { CurrentUser } from '../../App'
+import { useLocation } from 'react-router-dom'
 
 
 function Register() {
     const { useCreateUser } = useRegister()
-    const {currentUser} = useContext<any>(CurrentUser)
-    const [user,setUser] = useState({})
+    const { currentUser } = useContext<any>(CurrentUser)
+    const [user, setUser] = useState({})
     const [registerData, setRegisterData] = useState(
         {
             username: "",
@@ -18,12 +19,26 @@ function Register() {
             password_confirmation: ""
         }
     )
-    useEffect(()=> {
+    useEffect(() => {
         setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
         if (user == false) {
             window.location.href = '/'
         }
-    },[currentUser])
+    }, [currentUser])
+    const location = useLocation()
+    const applyShopStyles = () => {
+        document.documentElement.style.setProperty('--nav-item-color', 'black');
+    };
+
+    useEffect(() => {
+        if (location.pathname === '/register') {
+            applyShopStyles();
+        }
+    }, [location.pathname]);
+
+    if (location.pathname === '/register') {
+        applyShopStyles();
+    }
     return (
         <>
             <div className="cover">
@@ -48,11 +63,11 @@ function Register() {
                                 style={{
                                     width: "100%"
                                 }}
-                                onClick={()=> useCreateUser(registerData)}
+                                onClick={() => useCreateUser(registerData)}
                             >REGISTER</button>
                         </Stack>
                         <Link to={'/login'} className='register-href'
-                           
+
                         >Login</Link>
                     </Stack>
                 </div>

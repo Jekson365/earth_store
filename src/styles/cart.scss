@@ -2,16 +2,16 @@
 
 
 .cart-slide {
-  transform: translateX(0%) !important;
+  right: 380px !important;
 }
 .cart {
   cursor: pointer;
   transition: 0.3s;
   transform: translateX(100%);
-  position: absolute;
+  position: fixed;
   max-width: 400px;
   height: 100vh;
-  right: 0;
+  right: 0%;
   top: 0;
   width: 100%;
   background-color: white;
@@ -21,16 +21,16 @@
   }
 
   .title {
-    color: $color-green-light;
+    color: $main-title-color;
   }
 
   .close {
-    border: 1px solid $color-green-light;
+    border: 1px solid $main-button-color;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $color-green-light;
+    color: $main-button-color;
     cursor: pointer;
     transition: 0.3s;
     position: absolute;
@@ -41,7 +41,7 @@
     height: 25px;
 
     &:hover {
-      background-color: $color-green-light;
+      background-color: $main-button-color;
       color: white;
     }
   }

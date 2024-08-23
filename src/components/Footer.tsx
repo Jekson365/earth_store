@@ -24,7 +24,7 @@ export const Footer = () => {
                       rowSpacing={{xs:5,md:0}}
                 >
                     <Grid item xs={12} md={4} display={'flex'} justifyContent={'center'}>
-                        <Stack direction={'row'} gap={'20px'}>
+                        <Stack direction={'row'} gap={'20px'} className='footer-items'>
                             <Link to={'/'}>Home</Link>
                             <Link to={'/about'}>About</Link>
                             <Link to={'/shop'}>Shop</Link>

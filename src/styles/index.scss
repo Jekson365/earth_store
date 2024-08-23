@@ -6,6 +6,18 @@
   padding: 0;
 }
 
+.white-icon {
+  color: $color-green;
+}
+
+.main-subtitle-color {
+  color: $main-subtitle-color !important;
+}
+
+.main-title-color {
+  color: $main-title-color !important;
+}
+
 a {
   text-decoration: none;
   color: $color-green;
@@ -49,7 +61,7 @@ body {
 }
 
 .custom-input {
-  padding: 15px;
+  padding: 10px;
   outline: 0;
   font-size: 18px;
   border: 0.5px solid rgba(0, 0, 0, 0.3);
@@ -75,7 +87,7 @@ body {
   .featured-item {
     background-size: cover;
     overflow: hidden;
-    box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
 
     img {
       width: 100%;
@@ -85,6 +97,8 @@ body {
   }
 
   .feat-content {
+    color: black;
+
     .cat {
       font-size: 15px;
       color: gray;
@@ -148,6 +162,7 @@ body {
   justify-content: center;
 
   .title {
+    color: $postcard-title-color;
     font-weight: bold;
     font-size: 40px;
     letter-spacing: 5px;
@@ -159,6 +174,7 @@ body {
 
   .desc {
     font-size: 16px;
+    color: $postcard-subtitle-color;
   }
 }
 
@@ -208,13 +224,13 @@ body {
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: $color-green;
+      background: $main-button-color;
     }
   }
 }
 
 .main-button {
-  background-color: $color-green-light;
+  background-color: $main-button-color;
   color: white;
   border: 0;
   outline: 0;
@@ -226,6 +242,26 @@ body {
   transition: 0.3s;
 
   &:hover {
-    background-color: $color-green;
+    outline: 2px solid $main-button-color;
+    color: $main-button-color !important;
+    background-color: transparent;
+  }
+}
+
+.admin-button {
+  background-color: $admin-color;
+  color: white;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 3px;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: white;
+    color: $admin-color;
   }
 }

@@ -7,24 +7,74 @@
   @media (max-width: 900px) {
     padding: 20px;
   }
+
   .min-title {
+    color: $shop-titles-color;
     font-size: 20px;
     font-weight: bold;
-    color: $color-green-light;
     letter-spacing: 1px;
   }
+
   .sub-cat {
     font-weight: 500;
-    color: $color-green-light;
+    color: gray;
+    cursor: pointer;
   }
+
   .shop-title {
-    color: $color-green-light;
+    color: $shop-titles-color;
     font-size: 50px;
   }
 }
 
+.remove-cat {
+  transition: 0.3s;
+  transition: 0.3s;
+  width: 25px;
+  border-radius: 50%;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: $shop-titles-color;
+  }
+}
+
+.selected-category {
+  color: $shop-titles-color !important;
+}
+
+.product-image {
+  position: relative;
+  &:hover .add-cart-button {
+    opacity: 1;
+  }
+  .add-cart-button {
+    transition: 0.3s;
+    position: absolute;
+    top: 10px;
+    z-index: 1000000;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    color: $main-button-color;
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+}
+
 .main-icon {
-  background-color: $color-green-light;
+  background-color: $shop-titles-color;
   transition: 0.3s;
   cursor: pointer;
   width: 55px;

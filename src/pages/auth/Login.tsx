@@ -4,22 +4,40 @@ import { Link } from 'react-router-dom'
 import { useLogin } from '../../hooks/users/useLogin'
 import { useContext, useEffect, useState } from 'react'
 import { CurrentUser } from '../../App'
+import { useLocation } from 'react-router-dom'
 
 function Register() {
     const { useLoginUser } = useLogin()
-    const {currentUser} = useContext<any>(CurrentUser)
-    const [user,setUser] = useState()
+    const { currentUser } = useContext<any>(CurrentUser)
+    const [user, setUser] = useState()
+
 
     const [loginParams, setLoginParams] = useState<any>({
         email: "",
         password: ""
     })
-    useEffect(()=> {
+    useEffect(() => {
         setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
         if (user) {
             window.location.href = '/'
         }
-    },[currentUser])
+    }, [currentUser])
+
+
+    const location = useLocation()
+    const applyShopStyles = () => {
+        document.documentElement.style.setProperty('--nav-item-color', 'black');
+    };
+
+    useEffect(() => {
+        if (location.pathname === '/login') {
+            applyShopStyles();
+        }
+    }, [location.pathname]);
+
+    if (location.pathname === '/login') {
+        applyShopStyles();
+    }
     return (
         <>
             <div className="cover">

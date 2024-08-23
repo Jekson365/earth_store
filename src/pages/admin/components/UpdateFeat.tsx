@@ -4,6 +4,7 @@ import { useRemoveFeatProducts } from "../../../hooks/featured_products/useRemov
 import { useCreateFeatProducts } from "../../../hooks/featured_products/useCreateFeatProducts"
 import { useEffect, useState } from "react"
 import { useProducts } from "../../../hooks/products/useProducts"
+import { FeaturedItem } from "../../../cusomts/FeaturedItem"
 
 export const UpdateFeat = () => {
     const { featuredProducts, fetchFeaturedProducts } = useFeaturedProducts()
@@ -18,9 +19,9 @@ export const UpdateFeat = () => {
         fetchProducts()
     }, [])
 
-    useEffect(()=> {
+    useEffect(() => {
         console.log(featItem)
-    },[featItem])
+    }, [featItem])
 
     return (
         <>
@@ -47,17 +48,17 @@ export const UpdateFeat = () => {
                     {featuredProducts && featuredProducts.map((e: any) => {
                         return (
                             <>
-                                <div className="featured-item"
-                                    onClick={() => removeFeat(e.id)}
-                                >
-                                    {e.product.title}
-                                </div>
+                                <FeaturedItem
+                                    id={e.id}
+                                    content={e.product.title}
+                                    action={removeFeat}
+                                ></FeaturedItem>
                             </>
                         )
                     })}
                 </Stack>
                 <Box mt={2}>
-                    <button className="main-button"
+                    <button className="admin-button"
                         onClick={() => createFeat(featItem)}
                     >SAVE</button>
                 </Box>

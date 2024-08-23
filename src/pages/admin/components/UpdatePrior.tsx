@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { createPrior } from "../../../hooks/priors/useCreatePrior";
 import { UsePriors } from "../../../hooks/priors/usePriors";
 import { useRemovePrior } from "../../../hooks/priors/useRemovePrior";
+import { FeaturedItem } from "../../../cusomts/FeaturedItem";
 
 
 export const UpdatePrior = () => {
@@ -55,6 +56,11 @@ export const UpdatePrior = () => {
                                 );
                             }}
                         >
+                            <MenuItem value={''}>
+                                <Stack direction="row" gap="10px" alignItems="center">
+                                    <Typography>Choose</Typography>
+                                </Stack>
+                            </MenuItem>
                             {PriorIcons.map((e) => (
                                 <MenuItem key={e.id} value={e.id}>
                                     <Stack direction="row" gap="10px" alignItems="center">
@@ -70,27 +76,19 @@ export const UpdatePrior = () => {
                     {priors && priors.map((e: any) => {
                         return (
                             <>
-                                <div className="featured-item"
-                                    onClick={()=>handleRemove(e.id)}
-                                >
-                                    <Stack direction={'row'} justifyContent={'space-between'} gap={'80px'}>
-                                        <Box>
-                                            {e.title}
-                                        </Box>
-                                        <Box>
-                                            {(() => {
-                                                const matchedIcon = PriorIcons.find((m) => m.id === e.icon_id);
-                                                return matchedIcon ? <>{matchedIcon.icon}</> : null;
-                                            })()}
-                                        </Box>
-                                    </Stack>
-                                </div>
+
+                            <FeaturedItem
+                                id={e.id}
+                                content={e.title}
+                                action={handleRemove}
+                            >
+                            </FeaturedItem>
                             </>
                         )
                     })}
                 </Stack>
                 <Box mt={2}>
-                    <button className="main-button"
+                    <button className="admin-button"
                         onClick={handlePrior}
                     >SAVE</button>
                 </Box>

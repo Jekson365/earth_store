@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { PriorIcons } from '../../../icons/prioricons';
 import Typography from "@mui/material/Typography";
@@ -23,7 +23,7 @@ export const Priors = () => {
                                             <div className={'icon'}>
                                                 {(() => {
                                                     const matchedIcon = PriorIcons.find((m) => m.id === e.icon_id);
-                                                    return matchedIcon ? <>{matchedIcon.icon}</> : null;
+                                                    return matchedIcon ? <><Box className='prior-icon'>{matchedIcon.icon}</Box></> : null;
                                                 })()}
                                             </div>
                                             <Stack direction={'column'} gap={'5px'}>

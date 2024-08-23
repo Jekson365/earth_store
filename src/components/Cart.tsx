@@ -1,36 +1,34 @@
 import '../styles/cart.scss'
 import { Box, Stack } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartController } from "../router/CustomRouter.tsx";
+import { useCart } from '../hooks/cart/useCart.tsx';
+import { CurrentUser } from '../App.tsx';
+import { defaultUrl } from '../AxiosInstance.ts';
+import { useRemoveCart } from '../hooks/cart/useRemoveCart.tsx';
 export const Cart = () => {
     const { cart, setCart } = useContext<any>(CartController)
-    const data = [
-        {
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster6-1000x1000.jpg",
-            title: "Poster V2",
-            amount: "2",
-            price: "17.99"
-        },
-        {
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster6-1000x1000.jpg",
-            title: "Poster V2",
-            amount: "2",
-            price: "17.99"
-        },
-        {
-            img: "https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster6-1000x1000.jpg",
-            title: "Poster V2",
-            amount: "2",
-            price: "17.99"
-        },
-    ]
+    const { currentUser } = useContext<any>(CurrentUser)
+    const { removeCart } = useRemoveCart()
+
+    const { cartItems, fetchCart } = useCart()
+    useEffect(() => {
+        fetchCart({ user_id: currentUser.id })
+    }, [cart, currentUser])
+
+    const handleRemoveCartItem = (product_id: Number, cart_id: Number) => {
+        console.log(product_id,cart_id)
+        removeCart({ user_id: currentUser.id, product_id: product_id })
+        window.location.reload()
+    }
+
     return (
         <>
             <div className={'overlay'}
                 style={{ display: cart ? 'block' : 'none' }}
                 onClick={() => setCart(false)}
-                ></div>
+            ></div>
             <div className={`cart ${cart ? 'cart-slide' : ''}`}>
                 <Stack direction={'column'}
                     height={'100%'}
@@ -49,7 +47,7 @@ export const Cart = () => {
                             gap={'20px'}
                             mt={5}
                         >
-                            {data.map((e) => {
+                            {cartItems && cartItems.map((e: any) => {
                                 return (
                                     <>
                                         <Stack
@@ -58,18 +56,18 @@ export const Cart = () => {
                                             position={'relative'}
                                             alignItems={'center'}
                                         >
-                                            <img src={e.img}
+                                            <img src={defaultUrl + e.image_url}
                                                 width={'70px'}
                                                 height={'70px'}
                                             />
                                             <Stack direction={'column'} gap={'15px'}>
                                                 <p className={'cart-item-title'}>{e.title}</p>
-                                                <p className={'cart-item-price'}>{e.amount} x ${e.price}</p>
+                                                <p className={'cart-item-price'}>{e.product_count} x ${e.price}</p>
                                             </Stack>
                                             <div className={'close'}
-
+                                                onClick={() => handleRemoveCartItem(e.product_id, e.cart_id)}
                                             >
-                                                <CloseIcon style={{ fontSize: "5px" }} />
+                                                <CloseIcon style={{ fontSize: "15px" }} />
                                             </div>
                                         </Stack>
                                     </>

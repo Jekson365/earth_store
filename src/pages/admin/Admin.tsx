@@ -22,6 +22,7 @@ const Admin = () => {
     const { updatePostcard } = useUpdatePostcard()
 
     useEffect(() => {
+        document.documentElement.style.setProperty('--nav-item-color', 'black')
         if (!currentUser || Object.keys(currentUser).length === 0) {
             setUser(false)
         } else {
@@ -87,12 +88,14 @@ const Admin = () => {
                             </Stack>
                         </form>
                         <Box mt={2}>
-                            <button className="main-button"
+                            <button className="admin-button"
                                 onClick={() => updateOpening(openingData)}
                             >SAVE</button>
                         </Box>
                     </Box>
+                    <div className="line"></div>
                     <UpdateFeat />
+                    <div className="line"></div>
                     <Box>
                         <Typography className="component-title">Postcard</Typography>
                         <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
@@ -104,16 +107,22 @@ const Admin = () => {
                                 placeholder="subtitle" className="custom-input" />
                         </Stack>
                         <Box mt={2}>
-                            <button className="main-button"
+                            <button className="admin-button"
                                 onClick={handlePostCard}
                             >SAVE</button>
                         </Box>
                     </Box>
+                    <div className="line"></div>
                     <CreateCustomers />
+                    <div className="line"></div>
                     <UpdatePrior />
+                    <div className="line"></div>
                     <CreateAbout />
+                    <div className="line"></div>
                     <CreateCategory />
+                    <div className="line"></div>
                     <CreateProduct />
+                    <div className="line"></div>
                     <ContactInfo />
                 </Stack>
             </div>

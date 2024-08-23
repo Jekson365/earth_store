@@ -15,6 +15,7 @@
 
   .contact-box {
     padding: 80px 40px;
+
     @media (max-width: 900px) {
       padding: 80px 20px;
     }
@@ -37,7 +38,7 @@
     }
 
     .icon {
-      color: $color-green-light;
+      color: $contact-icon-color;
       border: 1px solid $color-green;
       width: 40px;
       height: 40px;
@@ -47,13 +48,15 @@
       border-radius: 50%;
     }
   }
+
   .min-title {
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 1px;
   }
+
   .social-icon {
-    background-color: $color-green-light;
+    background-color: $social-icon-color;
     color: white;
     border-radius: 50%;
     width: 35px;
@@ -63,6 +66,7 @@
     justify-content: center;
     cursor: pointer;
     transition: 0.3s;
+
     &:hover {
       background-color: $color-green;
     }

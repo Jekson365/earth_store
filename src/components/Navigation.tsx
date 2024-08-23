@@ -17,6 +17,7 @@ export const Navigation = () => {
     const { setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState<any>({})
+
     const logoutUser = () => {
         localStorage.removeItem("token")
         window.location.href = '/'
@@ -73,7 +74,7 @@ export const Navigation = () => {
                             <Box
                                 onClick={() => setCart(true)}
                             >
-                                <ShoppingBag className={'icon'}
+                                <ShoppingBag className={'icon white-icon'}
                                     sx={{ fontSize: "30px" }}
                                 />
                             </Box>
@@ -84,14 +85,19 @@ export const Navigation = () => {
                                             onClick={logoutUser}
                                             style={{ fontWeight: "bold", cursor: "pointer" }}
                                         >
-                                            <LogoutIcon />
+                                            <LogoutIcon 
+                                                className='white-icon'
+                                            />
                                         </Box>
-                                        <Typography ml={1}>{user.email}</Typography>
+                                        <Typography 
+                                        className='white-icon email'
+                                        ml={1}>{user.email}</Typography>
                                     </Stack>
                                 </>) :
                                     <>
                                         <Link to={'/register'}>
-                                            <PersonIcon className={'icon person'}
+                                            <PersonIcon 
+                                            className={'icon person white-icon'}
                                                 sx={{ fontSize: "30px" }}
                                             />
                                         </Link>
