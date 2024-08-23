@@ -11,6 +11,7 @@ export const Featured = () => {
     const { featuredProducts, fetchFeaturedProducts } = useFeaturedProducts()
     useEffect(() => {
         fetchFeaturedProducts()
+        console.log(featuredProducts)
     }, [])
     return (
         <>
@@ -27,7 +28,7 @@ export const Featured = () => {
                         {featuredProducts && featuredProducts.map((e: any, index: number) => {
                             return (
                                 <Grid item xs={12} md={4} key={index}>
-                                    <Link to={`/product/${e.id}`}>
+                                    <Link to={`/product/${e.product.id}`}>
                                         <Stack direction={'column'} alignItems={'flex-start'} gap={'10px'}>
                                             <Box
                                                 className={'featured-item'}

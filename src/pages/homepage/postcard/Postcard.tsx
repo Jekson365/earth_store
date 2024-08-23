@@ -3,12 +3,14 @@ import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { usePostcard } from "../../../hooks/postcards/usePostcard.";
+import { defaultUrl } from "../../../AxiosInstance";
 
 export const Postcard = () => {
     const { getPostcard, postcard } = usePostcard()
 
     useEffect(() => {
         getPostcard()
+        console.log(postcard)
     }, [])
 
     return (
@@ -16,7 +18,7 @@ export const Postcard = () => {
             <div className={'postcard'}
                 style={{
                     marginTop: "20px",
-                    backgroundImage: `url('https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Call-to-action.jpg')`
+                    backgroundImage: `url('${postcard.image && defaultUrl + postcard.image.url}')`
                 }}
             >
                 <Stack

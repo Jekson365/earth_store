@@ -46,6 +46,11 @@ export const Cart = () => {
                             direction={'column'}
                             gap={'20px'}
                             mt={5}
+                            maxHeight={'550px'}
+                            style={{
+                                overflowX:"hidden",
+                                overflowY:"auto"
+                            }}
                         >
                             {cartItems && cartItems.map((e: any) => {
                                 return (
@@ -85,7 +90,6 @@ export const Cart = () => {
                         </Stack>
                         <Stack gap={'20px'}>
                             <button className={'main-button'}>VIEW CART</button>
-                            <button className={'main-button'}>CHECKOUT</button>
                         </Stack>
                     </Box>
                 </Stack>

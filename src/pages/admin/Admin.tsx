@@ -40,7 +40,7 @@ const Admin = () => {
 
     const [openingData, setOpeningData] = useState<any>({ title: "", min_title: "", image: "" })
     const { getOpenings, opening } = useOpening()
-    const [postCardData, setPostCardData] = useState<any>({ title: '', min_title: "" })
+    const [postCardData, setPostCardData] = useState<any>({ title: '', min_title: "", image: '' })
 
     const handlePostCard = () => {
         if (!postCardData.title || !postCardData.min_title) {
@@ -66,7 +66,10 @@ const Admin = () => {
     }, [opening])
     return (
         <>
-            <CustomError open={open} setOpen={setOpen} />
+            <CustomError open={open} setOpen={setOpen}
+                message="ველი ცარიელია"
+                severity={'error'}
+            />
             <Box mt={15}></Box>
             <div className="admin-cover">
                 <Stack direction={'column'} alignItems={'flex-start'} gap={'40px'}>
@@ -104,6 +107,9 @@ const Admin = () => {
                                 placeholder="title" className="custom-input" />
                             <input type="text"
                                 onChange={(e) => setPostCardData({ ...postCardData, min_title: e.target.value })}
+                                placeholder="subtitle" className="custom-input" />
+                            <input type="file"
+                                onChange={(e : any) => setPostCardData({ ...postCardData, image: e.target.files[0] })}
                                 placeholder="subtitle" className="custom-input" />
                         </Stack>
                         <Box mt={2}>

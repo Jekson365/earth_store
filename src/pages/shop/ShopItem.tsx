@@ -2,22 +2,26 @@ import { Box, Stack, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
 import { defaultUrl } from "../../AxiosInstance"
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useCreateCart } from "../../hooks/cart/useCreateCart";
 import { CurrentUser } from "../../App";
+import { CustomError } from "../../components/CustomError";
 
 export const ShopItem = ({ product }: any) => {
     const { currentUser } = useContext<any>(CurrentUser)
     const { createCart } = useCreateCart()
+    const [open,setOpen] = useState(false)
 
     const handleCart = (event: React.MouseEvent) => {
         event.preventDefault();
 
         createCart({ product_id: product.id, user_id: currentUser.id });
+        setOpen(true)
     };
 
     return (
         <>
+        <CustomError open={open} setOpen={setOpen} message="added to cart" severity="success"/>
             <Link to={`/product/${product.id}`}>
                 <Box
                     className='product-image'

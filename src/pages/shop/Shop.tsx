@@ -71,7 +71,9 @@ export const Shop = () => {
     return (
         <>
             <Box mt={15}></Box>
-            <div className={'shop'}>
+            <div className={'shop'}
+                style={{minHeight:"100vh"}}
+            >
                 <Grid container>
                     <Grid item xs={12} md={4}>
                         <Box>

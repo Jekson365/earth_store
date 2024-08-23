@@ -5,7 +5,7 @@
   max-width: 1200px;
   margin: 0px auto;
   min-height: 100vh;
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
   @media (max-width:900px) {
     margin: 220px auto;
   }
@@ -21,6 +21,8 @@
   }
 
   .inner-cover {
+    height: 100%;
+    width: 100%;
     @media (max-width: 900px) {
       padding: 20px;
     }

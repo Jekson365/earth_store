@@ -24,12 +24,12 @@ export const CustomRouter = () => {
         // opening headers title
         document.documentElement.style.setProperty('--main-title-color', 'yellow')
         // opning headers subtitle
-        document.documentElement.style.setProperty('--main-subtitle-color', 'black')
+        document.documentElement.style.setProperty('--main-subtitle-color', 'white')
         // all button and prior icons
         document.documentElement.style.setProperty('--main-button-color', 'rgba(50,50,100)')
         // postcards
-        document.documentElement.style.setProperty('--postcard-title-color', 'green')
-        document.documentElement.style.setProperty('--postcard-subtitle-color', 'green')
+        document.documentElement.style.setProperty('--postcard-title-color', 'white')
+        document.documentElement.style.setProperty('--postcard-subtitle-color', 'white')
         // contact icon color
         document.documentElement.style.setProperty('--contact-icon-color', 'rgb(200,200,100)')
         // social icons

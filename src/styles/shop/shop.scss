@@ -7,7 +7,6 @@
   @media (max-width: 900px) {
     padding: 20px;
   }
-
   .min-title {
     color: $shop-titles-color;
     font-size: 20px;
@@ -47,18 +46,19 @@
 .selected-category {
   color: $shop-titles-color !important;
 }
-
 .product-image {
   position: relative;
+  z-index: 20; // Increased to ensure it's above other content
   &:hover .add-cart-button {
     opacity: 1;
   }
+  
   .add-cart-button {
     transition: 0.3s;
     position: absolute;
     top: 10px;
-    z-index: 1000000;
     right: 10px;
+    z-index: 100; // Ensure it's higher than the image
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -72,6 +72,7 @@
     opacity: 0;
   }
 }
+
 
 .main-icon {
   background-color: $shop-titles-color;
