@@ -7,6 +7,7 @@ export const useCart = () => {
         try {
             await axiosInstance.post("/cart_items", payload)
                 .then((res) => {
+                    console.log(res.data)
                     setCart(res.data)
                 })
         }

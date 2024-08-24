@@ -10,7 +10,6 @@ export const Postcard = () => {
 
     useEffect(() => {
         getPostcard()
-        console.log(postcard)
     }, [])
 
     return (
@@ -18,7 +17,9 @@ export const Postcard = () => {
             <div className={'postcard'}
                 style={{
                     marginTop: "20px",
-                    backgroundImage: `url('${postcard.image && defaultUrl + postcard.image.url}')`
+                    backgroundImage: `
+                    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                    url('${postcard && postcard.image && defaultUrl + postcard.image.url || ''}')`
                 }}
             >
                 <Stack
@@ -27,8 +28,8 @@ export const Postcard = () => {
                     gap={'10px'}
                     textAlign={'center'}
                 >
-                    <Typography className={'title'}>{postcard.title}</Typography>
-                    <Typography className={'desc'}>{postcard.min_title}</Typography>
+                    <Typography className={'title'}>{postcard && postcard.title}</Typography>
+                    <Typography className={'desc'}>{postcard && postcard.min_title}</Typography>
                     <Box mt={5}>
                         <button className={'main-button'}>PURCHASE A POSTCARD</button>
                     </Box>

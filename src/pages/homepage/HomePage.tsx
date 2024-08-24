@@ -14,13 +14,14 @@ export const HomePage = () => {
     }, [])
     return (
         <>
-            <HeaderContent title={opening && opening.title}
-                height={'80vh'}
-                desc={opening.min_title}
-                mainPage={true} 
-                image={opening.image}
-                
+            {opening ? (<>
+                <HeaderContent title={opening && opening.title}
+                    height={'80vh'}
+                    desc={opening.min_title}
+                    mainPage={true}
+                    image={opening.image}
                 />
+            </>) : null}
             <Featured />
             <Customers />
             <Postcard />

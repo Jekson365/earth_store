@@ -17,8 +17,7 @@ export const Cart = () => {
         fetchCart({ user_id: currentUser.id })
     }, [cart, currentUser])
 
-    const handleRemoveCartItem = (product_id: Number, cart_id: Number) => {
-        console.log(product_id,cart_id)
+    const handleRemoveCartItem = (product_id: Number) => {
         removeCart({ user_id: currentUser.id, product_id: product_id })
         window.location.reload()
     }
@@ -70,7 +69,7 @@ export const Cart = () => {
                                                 <p className={'cart-item-price'}>{e.product_count} x ${e.price}</p>
                                             </Stack>
                                             <div className={'close'}
-                                                onClick={() => handleRemoveCartItem(e.product_id, e.cart_id)}
+                                                onClick={() => handleRemoveCartItem(e.product_id)}
                                             >
                                                 <CloseIcon style={{ fontSize: "15px" }} />
                                             </div>

@@ -22,22 +22,22 @@ export const CustomRouter = () => {
         // header items
         document.documentElement.style.setProperty('--nav-item-color', 'white')
         // opening headers title
-        document.documentElement.style.setProperty('--main-title-color', 'yellow')
+        document.documentElement.style.setProperty('--main-title-color', '#219ebc')
         // opning headers subtitle
-        document.documentElement.style.setProperty('--main-subtitle-color', 'white')
+        document.documentElement.style.setProperty('--main-subtitle-color', '#8ecae6')
         // all button and prior icons
-        document.documentElement.style.setProperty('--main-button-color', 'rgba(50,50,100)')
+        document.documentElement.style.setProperty('--main-button-color', '#fb8500')
         // postcards
         document.documentElement.style.setProperty('--postcard-title-color', 'white')
-        document.documentElement.style.setProperty('--postcard-subtitle-color', 'white')
+        document.documentElement.style.setProperty('--postcard-subtitle-color', '#8ecae6')
         // contact icon color
-        document.documentElement.style.setProperty('--contact-icon-color', 'rgb(200,200,100)')
+        document.documentElement.style.setProperty('--contact-icon-color', '#ffb703')
         // social icons
-        document.documentElement.style.setProperty('--social-icon-color', 'rgb(200,200,100)')
+        document.documentElement.style.setProperty('--social-icon-color', '#ffb703')
         // titles in shop page
-        document.documentElement.style.setProperty('--shop-titles-color', 'black')
+        document.documentElement.style.setProperty('--shop-titles-color', '#023047')
         // admin 
-        document.documentElement.style.setProperty('--admin-color', 'green')
+        document.documentElement.style.setProperty('--admin-color', '#023047')
     }
     useEffect(() => {
         applyStyles()

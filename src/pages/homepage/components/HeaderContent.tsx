@@ -12,16 +12,23 @@ interface HeaderContentProps {
     image: any
 }
 
-export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, height, mainPage,image }) => {
+export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, height, mainPage, image }) => {
     return (
         <>
             <div className={'section'}
                 style={{
                     height: height,
-                    backgroundImage: `url('${image ? defaultUrl + image['url'] : null}')`
+                    backgroundImage: `
+                        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+                        url('${image ? defaultUrl + image['url'] : ''}')
+                    `,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                 }}
             >
-                <div className={'inner-section'}>
+                <div className={'inner-section'}
+
+                >
                     <Stack
                         direction={"column"}
                         alignItems={'center'}
