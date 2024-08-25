@@ -74,7 +74,7 @@ export const ProductPage = () => {
                         <Grid item xs={12} md={6}>
                             {loading ? (<>Loading...</>) : (<>
                                 <Stack gap={'20px'} className={'prod-content'} mt={2}>
-                                    <p className={'category'}>{product.category.name}</p>
+                                    <p className={'category category-title-color'}>{product.category.name}</p>
                                     <h2 className={'main-title'}>{product.title}</h2>
                                     <p className={'price'}>{product.price}$</p>
                                     <p className={'desc'}>{product.description}</p>
@@ -84,7 +84,7 @@ export const ProductPage = () => {
                                     >ADD TO CART
                                     </button>
                                     <div className={'line'}></div>
-                                    <p className={'currentcat'}>Category: <span className={'green'}>{product.category.name}</span></p>
+                                    <p className={'currentcat'}>Category: <span className={'category-title-color'}>{product.category.name}</span></p>
                                 </Stack>
                             </>)}
                         </Grid>

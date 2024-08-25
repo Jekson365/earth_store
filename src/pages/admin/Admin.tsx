@@ -13,6 +13,7 @@ import ContactInfo from "./components/ContactInfo"
 import { useOpening } from "../../hooks/openings/useOpening"
 import { CreateCustomers } from "./components/CreateCustomers"
 import { CustomError } from "../../components/CustomError"
+import { CustomTheme } from "./components/CustomTheme"
 
 const Admin = () => {
     const { currentUser } = useContext<any>(CurrentUser)
@@ -109,7 +110,7 @@ const Admin = () => {
                                 onChange={(e) => setPostCardData({ ...postCardData, min_title: e.target.value })}
                                 placeholder="subtitle" className="custom-input" />
                             <input type="file"
-                                onChange={(e : any) => setPostCardData({ ...postCardData, image: e.target.files[0] })}
+                                onChange={(e: any) => setPostCardData({ ...postCardData, image: e.target.files[0] })}
                                 placeholder="subtitle" className="custom-input" />
                         </Stack>
                         <Box mt={2}>
@@ -130,6 +131,8 @@ const Admin = () => {
                     <CreateProduct />
                     <div className="line"></div>
                     <ContactInfo />
+                    <div className="line"></div>
+                    <CustomTheme />
                 </Stack>
             </div>
 

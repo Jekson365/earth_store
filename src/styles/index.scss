@@ -33,7 +33,7 @@ body {
 
 .section {
   background-position: center center;
-  background-repeat: no-repeat;
+background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -264,4 +264,18 @@ body {
     background-color: white;
     color: $admin-color;
   }
+}
+
+.colors-cover {
+  padding: 10px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 60px;
+  &:hover {
+    cursor: pointer;
+    outline: 2px solid black;
+  }
+}
+
+.category-title-color {
+  color: $main-button-color !important;
 }
