@@ -1,7 +1,7 @@
 import '../styles/cart.scss'
 import { Box, Stack } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartController } from "../router/CustomRouter.tsx";
 import { useCart } from '../hooks/cart/useCart.tsx';
 import { CurrentUser } from '../App.tsx';
@@ -10,6 +10,7 @@ import { useRemoveCart } from '../hooks/cart/useRemoveCart.tsx';
 export const Cart = () => {
     const { cart, setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
+    const [totalCost, setTotalCost] = useState(0)
     const { removeCart } = useRemoveCart()
 
     const { cartItems, fetchCart } = useCart()
@@ -19,8 +20,16 @@ export const Cart = () => {
 
     const handleRemoveCartItem = (product_id: Number) => {
         removeCart({ user_id: currentUser.id, product_id: product_id })
-        window.location.reload()
     }
+
+    useEffect(() => {
+        let total = 0
+        cartItems.forEach((e: any) => {
+            console.log(e)
+            total += (Number(e.price) * e.product_count)
+        })
+        setTotalCost(total)
+    }, [cartItems])
 
     return (
         <>
@@ -47,8 +56,8 @@ export const Cart = () => {
                             mt={5}
                             maxHeight={'550px'}
                             style={{
-                                overflowX:"hidden",
-                                overflowY:"auto"
+                                overflowX: "hidden",
+                                overflowY: "auto"
                             }}
                         >
                             {cartItems && cartItems.map((e: any) => {
@@ -85,7 +94,7 @@ export const Cart = () => {
                             mb={5}
                         >
                             <p className={'title'}>Subtotal</p>
-                            <p>$55.32</p>
+                            <p>${totalCost}</p>
                         </Stack>
                         <Stack gap={'20px'}>
                             <button className={'main-button'}>VIEW CART</button>

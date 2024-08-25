@@ -36,7 +36,7 @@ export const Contact = () => {
     ]
     return (
         <>
-            <HeaderContent title={'CONTACT'} height={'50vh'} desc={''} mainPage={false} image={opening.image} />
+            <HeaderContent title={'CONTACT'} height={'50vh'} desc={''} mainPage={false} opening_images={opening.opening_images} slider={false} />
             <div className={'contact-section'}>
                 <Grid container maxWidth={'1200px'} margin={'0 auto'}>
                     <Grid xs={12} md={6} item p={5}>

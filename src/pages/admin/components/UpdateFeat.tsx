@@ -35,6 +35,7 @@ export const UpdateFeat = () => {
                         }}
                         onChange={(e: any) => setFeatItem(e.target.value)}
                     >
+                        <option value="">Choose Featured Product</option>
                         {products && products.map((e: any) => {
                             return (
                                 <>

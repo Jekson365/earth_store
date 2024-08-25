@@ -19,7 +19,8 @@ export const HomePage = () => {
                     height={'80vh'}
                     desc={opening.min_title}
                     mainPage={true}
-                    image={opening.image}
+                    opening_images={opening.opening_images}
+                    slider={true} 
                 />
             </>) : null}
             <Featured />

@@ -7,6 +7,7 @@ export const useRemoveCart = () => {
                 user_id: payload.user_id,
                 product_id: payload.product_id
             })
+            window.location.reload()
         }
         catch (err) {
             throw err

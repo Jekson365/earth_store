@@ -79,18 +79,35 @@ background-repeat: no-repeat;
   align-items: center;
   justify-content: center;
 }
+.swiper-pagination-bullet {
+  background-color: $main-button-color !important;
+  width: 15px !important; 
+  height:15px !important;
+}
 
 .featured-section {
   min-height: 75vh;
   border-bottom: 1px solid gray;
-
+  .section-title {
+    font-family: $main-font !important;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
   .featured-item {
-    background-size: cover;
     overflow: hidden;
+    border-radius: 10px;
+    background-size: cover;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
-
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: 0.3s;
+    &:hover img {
+      transform: scale(1.1);
+    }
     img {
+      transition: 0.3s;
       width: 100%;
+      z-index: -10;
       height: 100%;
       object-fit: cover;
     }

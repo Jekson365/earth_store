@@ -48,6 +48,9 @@
 }
 .product-image {
   position: relative;
+  &:hover {
+    outline: 2px solid $main-button-color;
+  }
   z-index: 20; // Increased to ensure it's above other content
   &:hover .add-cart-button {
     opacity: 1;

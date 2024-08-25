@@ -14,6 +14,7 @@ import { useOpening } from "../../hooks/openings/useOpening"
 import { CreateCustomers } from "./components/CreateCustomers"
 import { CustomError } from "../../components/CustomError"
 import { CustomTheme } from "./components/CustomTheme"
+import OpeningImages from "./components/update opening/OpeningImages"
 
 const Admin = () => {
     const { currentUser } = useContext<any>(CurrentUser)
@@ -39,7 +40,7 @@ const Admin = () => {
         }
     }, [user])
 
-    const [openingData, setOpeningData] = useState<any>({ title: "", min_title: "", image: "" })
+    const [openingData, setOpeningData] = useState<any>({ title: "", min_title: "", opening_images_attributes: [] })
     const { getOpenings, opening } = useOpening()
     const [postCardData, setPostCardData] = useState<any>({ title: '', min_title: "", image: '' })
 
@@ -56,6 +57,22 @@ const Admin = () => {
             }
         }
     };
+    const handleOpeningImages = (event: any) => {
+        const files = event.target.files;
+        const imagesArray = [];
+      
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          
+          imagesArray.push({ image: file });
+          
+        }
+      
+        setOpeningData({
+          ...openingData,
+          opening_images_attributes: imagesArray
+        });
+      };
     useEffect(() => {
         getOpenings()
     }, [])
@@ -87,10 +104,12 @@ const Admin = () => {
                                     onChange={(e: any) => setOpeningData({ ...openingData, min_title: e.target.value })}
                                     placeholder="subtitle" className="custom-input" />
                                 <input
-                                    onChange={(e: any) => setOpeningData({ ...openingData, image: e.target.files[0] })}
+                                    multiple
+                                    onChange={handleOpeningImages}
                                     placeholder="subtitle" type='file' className="custom-input" />
                             </Stack>
                         </form>
+                        <OpeningImages/>
                         <Box mt={2}>
                             <button className="admin-button"
                                 onClick={() => updateOpening(openingData)}

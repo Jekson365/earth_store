@@ -3,11 +3,13 @@ import { CustomRouter } from "./router/CustomRouter.tsx";
 import { useCurrentUser } from './hooks/users/useCurrentUser.tsx';
 import { createContext, useEffect, useState } from 'react';
 import { themes } from './Themes.tsx';
+import { useLocation } from 'react-router-dom';
 
 export const CurrentUser = createContext({});
 
 function App() {
   const { getCurrentUser, currentUser } = useCurrentUser();
+  const location = useLocation()
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -46,6 +48,9 @@ function App() {
       applyStyles();
     }
   }, [currentTheme]);
+  useEffect(() => {
+    applyStyles()
+  }, [location.pathname])
 
   document.documentElement.style.setProperty('--nav-item-color', 'white');
   const applyStyles = () => {

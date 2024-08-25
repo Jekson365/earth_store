@@ -23,7 +23,7 @@ function ContactInfo() {
             setContactInfoParams({
                 email: contactInfos.email || '',
                 phone_number: contactInfos.phone_number || '',
-                location: '',
+                location: contactInfos.location,
                 id: contactInfos.id
             });
         }
@@ -51,6 +51,7 @@ function ContactInfo() {
                         />
                         <input
                             type="text"
+                            value={contactInfoParams.location}
                             placeholder="location"
                             onChange={(e: any) => setContactInfoParams({ ...contactInfoParams, location: e.target.value })}
                             className="custom-input"

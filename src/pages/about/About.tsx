@@ -12,7 +12,8 @@ export const About = () => {
     }, [])
     return (
         <>
-            <HeaderContent title={'WHO ARE WE?'} height={'50vh'} desc={''} mainPage={false} image={opening.image}/>
+            <HeaderContent title={'WHO ARE WE?'} height={'50vh'} desc={''}
+             mainPage={false} opening_images={opening.opening_images}/>
             <Content/>
             <Box mt={15}></Box>
             <Postcard/>
