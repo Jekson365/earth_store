@@ -9,8 +9,12 @@ export const CustomTheme = () => {
         setNumber(id)
     }
     useEffect(() => {
-        setCurrentTheme(Number(JSON.parse(localStorage.getItem('theme_id'))) || null)
-    }, [])
+        const storedThemeId = localStorage.getItem('theme_id');
+        if (storedThemeId) {
+          const parsedThemeId = Number(JSON.parse(storedThemeId));
+          setCurrentTheme(parsedThemeId || null);
+        }
+      }, []);
     const handleSave = () => {
         localStorage.setItem('theme_id', JSON.stringify(number))
         window.location.href = '/'

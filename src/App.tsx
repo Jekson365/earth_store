@@ -1,6 +1,5 @@
 import './styles/index.scss'
 import { CustomRouter } from "./router/CustomRouter.tsx";
-import { BrowserRouter, useLocation } from 'react-router-dom';
 import { useCurrentUser } from './hooks/users/useCurrentUser.tsx';
 import { createContext, useEffect, useState } from 'react';
 import { themes } from './Themes.tsx';
@@ -9,8 +8,6 @@ export const CurrentUser = createContext({});
 
 function App() {
   const { getCurrentUser, currentUser } = useCurrentUser();
-  const location = useLocation();
-  const currentLocation = location.pathname;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,8 +27,11 @@ function App() {
   const [currentTheme, setCurrentTheme] = useState<any>(null);
 
   useEffect(() => {
-    const themeId = Number(JSON.parse(localStorage.getItem('theme_id'))) || null;
-    setCurrentThemeId(themeId);
+    const storedId = localStorage.getItem('theme_id')
+    if (storedId) {
+      const themeId = Number(JSON.parse(storedId));
+      setCurrentThemeId(themeId);
+    }
   }, []);
 
   useEffect(() => {

@@ -11,7 +11,6 @@ import { createContext, useEffect, useState } from "react";
 import Register from "../pages/auth/Register.tsx";
 import Login from '../pages/auth/Login.tsx'
 import Admin from "../pages/admin/Admin.tsx";
-import { themes } from "../Themes.tsx";
 
 export const CartController = createContext<any>({})
 
