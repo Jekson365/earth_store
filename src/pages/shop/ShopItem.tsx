@@ -10,7 +10,7 @@ import { CustomError } from "../../components/CustomError";
 export const ShopItem = ({ product }: any) => {
     const { currentUser } = useContext<any>(CurrentUser)
     const { createCart } = useCreateCart()
-    const [open,setOpen] = useState(false)
+    const [open, setOpen] = useState(false)
 
     const handleCart = (event: React.MouseEvent) => {
         event.preventDefault();
@@ -21,7 +21,7 @@ export const ShopItem = ({ product }: any) => {
 
     return (
         <>
-        <CustomError open={open} setOpen={setOpen} message="added to cart" severity="success"/>
+            <CustomError open={open} setOpen={setOpen} message="added to cart" severity="success" />
             <Link to={`/product/${product.id}`}>
                 <Box
                     className='product-image'
@@ -49,9 +49,15 @@ export const ShopItem = ({ product }: any) => {
                     <Typography mt={1}
                         color={'black'}
                     >{product.title}</Typography>
-                    <Typography
-                        color={'black'}
-                    >{product.price}$</Typography>
+                    <Stack direction={'row'} gap={'10px'}>
+                        <Typography
+                            color={product.sale_price ? 'red' : "black"}
+                            sx={{
+                                textDecoration: product.sale_price ? 'line-through' : null,
+                            }}
+                        >{product.price}$</Typography>
+                        {product.sale_price ? <Typography>{product.sale_price}$</Typography> : null}
+                    </Stack>
                 </Stack>
             </Link>
         </>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useCategories } from "../../hooks/categories/useCategories";
 import CloseIcon from '@mui/icons-material/Close';
 import { ShopItem } from "./ShopItem";
+import { News } from "./News";
 
 export const Shop = () => {
     const { products, fetchProducts, loading } = useProducts()
@@ -113,6 +114,7 @@ export const Shop = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={8}>
+                        <News/>
                         <Stack direction={'column'}>
                             <Typography className={'shop-title'}>Products</Typography>
                             <Box mt={5}></Box>

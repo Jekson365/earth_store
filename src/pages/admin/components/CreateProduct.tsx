@@ -16,7 +16,8 @@ export const CreateProduct = () => {
         title: null,
         description: null,
         price: null,
-        category_id: "", // Default value for the select input
+        category_id: "", // Default value for the select input,
+        sale_price: null
     });
 
     const handleImages = (event: any) => {
@@ -75,6 +76,12 @@ export const CreateProduct = () => {
                             placeholder="price"
                             className="custom-input"
                         />
+                        <input
+                            type="number"
+                            onChange={(e) => setProductParams({ ...productParams, sale_price: e.target.value })}
+                            placeholder="sale_price"
+                            className="custom-input"
+                        />
                         <select
                             className="custom-input"
                             onChange={(e) => setProductParams({ ...productParams, category_id: e.target.value })}
@@ -108,7 +115,7 @@ export const CreateProduct = () => {
                     </Stack>
                     <Box mt={2}>
                         <Stack direction={'row'} alignItems={'center'} gap={'20px'} flexWrap={'wrap'}>
-                            {products && products.map((e : any)=> {
+                            {products && products.map((e: any) => {
                                 return (
                                     <>
                                         <FeaturedItem

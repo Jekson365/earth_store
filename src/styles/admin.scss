@@ -50,3 +50,24 @@
         }
     }
 }
+
+.feat-slider-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $admin-color;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        background-color: $admin-color;
+        color: white;
+    }
+}
+.selected {
+    color: white;
+    background-color:$admin-color
+}

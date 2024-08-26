@@ -11,6 +11,8 @@ import { createContext, useEffect, useState } from "react";
 import Register from "../pages/auth/Register.tsx";
 import Login from '../pages/auth/Login.tsx'
 import Admin from "../pages/admin/Admin.tsx";
+import { Map } from "../components/Map.tsx";
+import { Box } from "@mui/material";
 
 export const CartController = createContext<any>({})
 
@@ -40,6 +42,12 @@ export const CustomRouter = () => {
                 </Routes>
                 {currentLocation != '/register' ? (<>
                 </>) : null}
+                <Box
+                    height={'300px'}
+                    overflow={'hidden'}
+                >
+                    <Map />
+                </Box>
                 <Footer />
             </CartController.Provider>
         </>

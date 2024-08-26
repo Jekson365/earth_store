@@ -14,11 +14,19 @@ export const UpdateFeat = () => {
 
     const [featItem, setFeatItem] = useState<any>({})
 
+    const [sliderCount] = useState(JSON.parse(localStorage.getItem('slider_per_view') || '0'))
+
     useEffect(() => {
         fetchFeaturedProducts()
         fetchProducts()
     }, [])
 
+    const counts = [2, 3, 4, 5]
+
+    const handleSliderCount = (number: Number) => {
+        localStorage.setItem('slider_per_view', JSON.stringify(number))
+        window.location.reload()
+    }
     useEffect(() => {
         console.log(featItem)
     }, [featItem])
@@ -62,6 +70,23 @@ export const UpdateFeat = () => {
                     <button className="admin-button"
                         onClick={() => createFeat(featItem)}
                     >SAVE</button>
+                </Box>
+                <Box mt={3}>
+                    <Typography>Slider Per View</Typography>
+                    <Stack direction={'row'} gap={'10px'} width={'100%'} mt={1}>
+                        {counts.map((e) => {
+                            return (
+                                <>
+                                    <Box
+                                        className={`feat-slider-count ${e === sliderCount ? 'selected' : ''}`}
+                                        onClick={() => handleSliderCount(e)}
+                                    >
+                                        {e}
+                                    </Box>
+                                </>
+                            )
+                        })}
+                    </Stack>
                 </Box>
             </Box>
         </>
