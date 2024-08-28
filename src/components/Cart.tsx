@@ -17,8 +17,13 @@ export const Cart = () => {
 
     const { cartItems, fetchCart } = useCart()
     useEffect(() => {
-        fetchCart({ user_id: currentUser.id })
+        if (currentUser) {
+            fetchCart({ user_id: currentUser.id })
+        }
     }, [cart, currentUser])
+    useEffect(() => {
+        fetchCart({ user_id: currentUser.id })
+    }, [])
 
     const handleRemoveCartItem = (product_id: Number) => {
         removeCart({ user_id: currentUser.id, product_id: product_id })
