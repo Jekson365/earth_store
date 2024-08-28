@@ -3,27 +3,17 @@ import { Box, Stack } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import { useContext, useEffect, useState } from "react";
 import { CartController } from "../router/CustomRouter.tsx";
-import { useCart } from '../hooks/cart/useCart.tsx';
-import { CurrentUser } from '../App.tsx';
+import { CartContext, CurrentUser } from '../App.tsx';
 import { defaultUrl } from '../AxiosInstance.ts';
 import { useRemoveCart } from '../hooks/cart/useRemoveCart.tsx';
 import { useTranslation } from 'react-i18next';
 export const Cart = () => {
     const { cart, setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
+    const { cartItems } = useContext(CartContext)
     const [totalCost, setTotalCost] = useState(0)
     const { removeCart } = useRemoveCart()
     const { t } = useTranslation()
-
-    const { cartItems, fetchCart } = useCart()
-    useEffect(() => {
-        if (currentUser) {
-            fetchCart({ user_id: currentUser.id })
-        }
-    }, [cart, currentUser])
-    useEffect(() => {
-        fetchCart({ user_id: currentUser.id })
-    }, [])
 
     const handleRemoveCartItem = (product_id: Number) => {
         removeCart({ user_id: currentUser.id, product_id: product_id })
@@ -32,7 +22,6 @@ export const Cart = () => {
     useEffect(() => {
         let total = 0
         cartItems.forEach((e: any) => {
-            console.log(e)
             total += (Number(e.price) * e.product_count)
         })
         setTotalCost(total)

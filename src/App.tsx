@@ -4,12 +4,17 @@ import { useCurrentUser } from './hooks/users/useCurrentUser.tsx';
 import { createContext, useEffect, useState } from 'react';
 import { themes } from './Themes.tsx';
 import { useLocation } from 'react-router-dom';
+import { useCart } from './hooks/cart/useCart.tsx';
 
 export const CurrentUser = createContext({});
+export const CartContext = createContext<any>([])
 
 function App() {
   const { getCurrentUser, currentUser } = useCurrentUser();
+  const { cartItems, fetchCart } = useCart()
   const location = useLocation()
+
+  const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -23,6 +28,7 @@ function App() {
     } else {
       console.warn("No token found in localStorage");
     }
+    setLoadingUser(false)
   }, []);
 
   const [currenThemeId, setCurrentThemeId] = useState<number | null>(null);
@@ -77,9 +83,16 @@ function App() {
     document.documentElement.style.setProperty('--admin-color', currentTheme.colors[4]);
   };
 
+  useEffect(() => {
+    if (currentUser && !loadingUser) {
+      fetchCart({ user_id: currentUser.id })
+    }
+  }, [currentUser])
   return (
     <CurrentUser.Provider value={{ currentUser }}>
-      <CustomRouter />
+      <CartContext.Provider value={{ cartItems }}>
+        <CustomRouter />
+      </CartContext.Provider>
     </CurrentUser.Provider>
   );
 }
