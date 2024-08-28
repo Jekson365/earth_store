@@ -5,7 +5,7 @@ export const useCart = () => {
     const [cartItems, setCart] = useState([])
     const fetchCart = async (payload: any) => {
         try {
-            await axiosInstance.post("/cart_items", payload)
+            await axiosInstance.post("/cart_items", {cart: payload})
                 .then((res) => {
                     setCart(res.data)
                 })

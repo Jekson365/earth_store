@@ -28,8 +28,8 @@ export const CustomRouter = () => {
     return (
         <>
             <CartController.Provider value={{ cart, setCart }}>
-                <Navigation />
                 <Cart />
+                <Navigation />
                 <Routes>
                     <Route path={'/'} element={<HomePage />} />
                     <Route path={'/about'} element={<About />} />
