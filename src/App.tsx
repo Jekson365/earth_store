@@ -58,7 +58,7 @@ function App() {
     applyStyles()
   }, [location.pathname])
 
-  document.documentElement.style.setProperty('--nav-item-color', 'white');
+  // document.documentElement.style.setProperty('--nav-item-color', 'white');
   const applyStyles = () => {
     if (!currentTheme || !currentTheme.colors) return;
 

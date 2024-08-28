@@ -16,7 +16,7 @@ export const About = () => {
         <>
             <HeaderContent title={t('about_us.who')} height={'50vh'} desc={''}
                 mainPage={false} opening_images={opening.opening_images}
-                slider={false}
+                slider={true}
             />
             <Content />
             <Box mt={15}></Box>

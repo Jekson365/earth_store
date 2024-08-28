@@ -96,7 +96,9 @@ export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, heigh
                         gap={'10px'}
                     >
                         <Stack direction={'column'} alignItems={'center'}>
-                            <Typography className={'title main-title-color extra-font'}>{title}</Typography>
+                            <Typography 
+                                style={{textAlign:"center"}}
+                            className={'title main-title-color extra-font'}>{title}</Typography>
                             {mainPage ? <Typography className={'min-title main-subtitle-color'}>{desc}</Typography> : null}
                         </Stack>
                         {mainPage ? <button className={'main-button'}

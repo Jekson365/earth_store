@@ -3,7 +3,7 @@
 
 
 :root {
-    --nav-item-color: #2c541d;
+    --nav-item-color: black;
     --main-title-color: white;
     --main-subtitle-color: white;
     --main-button-color: white;
@@ -29,6 +29,7 @@ $social-icon-color: var(--social-icon-color);
 $shop-titles-color: var(--shop-titles-color);
 $admin-color: var(--admin-color);
 $footer-color: black;
+$nav-item-color: var(--nav-item-color);
 
 $main-font: var(--main-font);
 

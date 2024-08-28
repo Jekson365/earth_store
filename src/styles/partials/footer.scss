@@ -4,16 +4,24 @@
   @media (max-width: 900px) {
     padding: 20px
   }
+
   .footer-title {
     font-weight: bold;
     letter-spacing: 2px;
     font-size: 18px;
     color: $footer-color;
   }
+
   .footer-items {
     a {
       white-space: nowrap;
       color: $footer-color;
+
+      @media (max-width:900px) {
+        & {
+          font-size: 13px;
+        }
+      }
     }
   }
 }
