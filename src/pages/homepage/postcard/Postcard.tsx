@@ -4,9 +4,11 @@ import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { usePostcard } from "../../../hooks/postcards/usePostcard.";
 import { defaultUrl } from "../../../AxiosInstance";
+import { useTranslation } from "react-i18next";
 
 export const Postcard = () => {
     const { getPostcard, postcard } = usePostcard()
+    const { t } = useTranslation()
 
     useEffect(() => {
         getPostcard()
@@ -31,7 +33,7 @@ export const Postcard = () => {
                     <Typography className={'title'}>{postcard && postcard.title}</Typography>
                     <Typography className={'desc'}>{postcard && postcard.min_title}</Typography>
                     <Box mt={5}>
-                        <button className={'main-button'}>PURCHASE A POSTCARD</button>
+                        <button className={'main-button'}>{t('buy.buy_now')}</button>
                     </Box>
                 </Stack>
             </div>

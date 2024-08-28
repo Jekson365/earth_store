@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useUpdateContactInfo } from '../../../hooks/contact_infos/useUpdateContactInfo';
 import { Box, Stack, Typography } from '@mui/material';
 import { useContactInfo } from '../../../hooks/contact_infos/useContactInfo';
+import { useTranslation } from 'react-i18next';
 
 function ContactInfo() {
     const [contactInfoParams, setContactInfoParams] = useState({
@@ -29,30 +30,31 @@ function ContactInfo() {
         }
     }, [contactInfos]);
 
+    const { t } = useTranslation()
     return (
         <>
             <Box>
-                <Typography className="component-title">Contact</Typography>
+                <Typography className="component-title">{t('admin.contact')}</Typography>
                 <form encType="multipart/form-data">
                     <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
                         <input
                             type="text"
                             value={contactInfoParams.email}
                             onChange={(e) => setContactInfoParams({ ...contactInfoParams, email: e.target.value })}
-                            placeholder="email"
+                            placeholder={t('admin.email')}
                             className="custom-input"
                         />
                         <input
                             type="text"
                             value={contactInfoParams.phone_number}
                             onChange={(e) => setContactInfoParams({ ...contactInfoParams, phone_number: e.target.value })}
-                            placeholder="phone number"
+                            placeholder={t('admin.phone')}
                             className="custom-input"
                         />
                         <input
                             type="text"
                             value={contactInfoParams.location}
-                            placeholder="location"
+                            placeholder={t('admin.location')}
                             onChange={(e: any) => setContactInfoParams({ ...contactInfoParams, location: e.target.value })}
                             className="custom-input"
                         />
@@ -64,7 +66,7 @@ function ContactInfo() {
                         className="admin-button"
                         onClick={() => updateContactInfo(contactInfoParams)}
                     >
-                        SAVE
+                        {t('admin.save')}
                     </button>
                 </Box>
             </Box>

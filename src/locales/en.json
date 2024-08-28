@@ -1,10 +1,92 @@
 {
-    "home":"HOME",
-    "about":"ABOUT",
-    "shop":"SHOP",
-    "contact":"CONTACT",
+    "home": "HOME",
+    "about": "ABOUT",
+    "shop": "SHOP",
+    "contact": "CONTACT",
     "auth": {
-        "login":"LOGIN",
-        "register":"REGISTER"
-    }
+        "email": "email",
+        "password": "password",
+        "repeat_password": "Repeat Password",
+        "register": "Registration",
+        "login": "login"
+    },
+    "shops": {
+        "category": "კატეგორია",
+        "products": "პროდუქცია"
+    },
+    "featured": {
+        "featured_items": "Featured Items"
+    },
+    "clients": {
+        "clients_thought": "What Our Customers Say"
+    },
+    "shop_page": {
+        "search_products": "Search Products",
+        "sort": {
+            "price_asc": "Price asc",
+            "price_desc": "Price desc",
+            "sale": "Sale"
+        }
+    },
+    "buy": {
+        "buy_now": "BUY NOW"
+    },
+    "about_us": {
+        "who": "WHO ARE WE?"
+    },
+    "contact_page": {
+        "full_name": "Full Name",
+        "phone_number": "Phone Number",
+        "email": "EMAIL",
+        "text": "text",
+        "send": "Send Now",
+        "get_in_touch": "Get In Touch",
+        "talk_to_us": "Talk To Us",
+        "location": "LOCATION",
+        "follow_us": "Follow Us"
+    },
+    "admin": {
+        "amount":"amount",
+        "no_file_chosen": "No file chosen",
+        "save": "SAVE",
+        "featured": "Featured",
+        "choose_featured_product": "Choose Featured Product",
+        "slider_per_view": "Slider Per View",
+        "postcard": "Postcard",
+        "header": "Title",
+        "subtitle": "Subtitle",
+        "customers": "Customers",
+        "name": "Name",
+        "surname": "Surname",
+        "review": "Review",
+        "priorities": "Priorities",
+        "care": "Care",
+        "reliability": "Reliability",
+        "price": "Price",
+        "phone": "phone",
+        "title": "Title",
+        "about": "About",
+        "description": "Description",
+        "location": "location",
+        "categories": "Categories",
+        "products": "Products",
+        "sale_price": "Sale Price",
+        "select_category": "Select Category",
+        "contact": "Contact",
+        "themes": "Themes",
+        "shop_slider": {
+            "photo": "Image",
+            "head": "Header",
+            "slider":"Shop Slider"
+        },
+        "social":"Socials"
+    },
+    "cart": {
+        "cart": "Cart",
+        "add_to_cart": "ADD TO CART",
+        "category": "Category",
+        "view_cart": "VIEW CART",
+        "total": "Subtotal"
+    },
+    "loading": "Loading..."
 }

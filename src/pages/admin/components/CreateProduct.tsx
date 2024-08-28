@@ -1,22 +1,27 @@
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useCreateProduct } from "../../../hooks/products/useCreateProduct";
 import { useCategories } from "../../../hooks/categories/useCategories";
 import { CustomError } from "../../../components/CustomError";
 import { useProducts } from "../../../hooks/products/useProducts";
 import { useRemoveProduct } from "../../../hooks/products/useRemoveProduct";
-import { FeaturedItem } from "../../../cusomts/FeaturedItem";
+import { ProductPopUp } from "./update product/ProductPopup";
+import { useTranslation } from "react-i18next";
+import { ProductFeatItem } from "../../../cusomts/ProductFeatItem";
 
 export const CreateProduct = () => {
     const { categories, fetchCategories } = useCategories();
     const { products, fetchProducts } = useProducts()
     const { removeProduct } = useRemoveProduct()
     const [open, setOpen] = useState(false);
+    const [popUp, setPopUp] = useState(false)
+    const { t } = useTranslation()
+    const [popProduct, setPopProduct] = useState<any>({})
     const [productParams, setProductParams] = useState<any>({
         title: null,
         description: null,
         price: null,
-        category_id: "", // Default value for the select input,
+        category_id: "",
         sale_price: null
     });
 
@@ -59,27 +64,34 @@ export const CreateProduct = () => {
 
     return (
         <>
+            <ProductPopUp open={popUp} setOpen={setPopUp} product={popProduct} />
             <CustomError open={open} setOpen={setOpen} />
             <Box>
                 <form encType="multipart/form-data">
-                    <Typography className="component-title">Products</Typography>
+                    <Typography className="component-title">{t('admin.products')}</Typography>
                     <Stack direction={"row"} gap={"20px"} flexWrap={"wrap"} mt={1}>
                         <input
                             type="text"
                             onChange={(e) => setProductParams({ ...productParams, title: e.target.value })}
-                            placeholder="title"
+                            placeholder={t('admin.title')}
                             className="custom-input"
                         />
                         <input
                             type="number"
                             onChange={(e) => setProductParams({ ...productParams, price: e.target.value })}
-                            placeholder="price"
+                            placeholder={t('admin.price')}
                             className="custom-input"
                         />
                         <input
                             type="number"
                             onChange={(e) => setProductParams({ ...productParams, sale_price: e.target.value })}
-                            placeholder="sale_price"
+                            placeholder={t('admin.sale_price')}
+                            className="custom-input"
+                        />
+                        <input
+                            type="number"
+                            onChange={(e) => setProductParams({ ...productParams, amount: e.target.value })}
+                            placeholder={t('admin.amount')}
                             className="custom-input"
                         />
                         <select
@@ -92,7 +104,7 @@ export const CreateProduct = () => {
                             value={productParams.category_id}
                         >
                             <option value="" disabled>
-                                Select Category
+                                {t('admin.select_category')}
                             </option>
                             {categories &&
                                 categories.map((category: any) => (
@@ -114,24 +126,28 @@ export const CreateProduct = () => {
                         ></textarea>
                     </Stack>
                     <Box mt={2}>
-                        <Stack direction={'row'} alignItems={'center'} gap={'20px'} flexWrap={'wrap'}>
+                        <Grid container direction={'row'} alignItems={'center'} gap={'20px'} flexWrap={'wrap'}>
                             {products && products.map((e: any) => {
                                 return (
                                     <>
-                                        <FeaturedItem
-                                            id={e.id}
-                                            content={e.title}
-                                            action={removeProduct}
-                                        >
-                                        </FeaturedItem>
+                                        <Grid xs={12}>
+                                            <ProductFeatItem
+                                                product={e}
+                                                content={e.title}
+                                                action={removeProduct}
+                                                popUpAction={setPopUp}
+                                                setPopProduct={setPopProduct}
+                                            >
+                                            </ProductFeatItem>
+                                        </Grid>
                                     </>
                                 )
                             })}
-                        </Stack>
+                        </Grid>
                     </Box>
                     <Box mt={2}>
                         <button className="admin-button" onClick={handleProductSave}>
-                            SAVE
+                            {t('admin.save')}
                         </button>
                     </Box>
                 </form>

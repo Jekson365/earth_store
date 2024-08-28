@@ -7,7 +7,7 @@
   justify-content: center;
 
   .title {
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
     letter-spacing: 2px;
     margin-bottom: 15px;
@@ -55,20 +55,20 @@
     letter-spacing: 1px;
   }
 
-  .social-icon {
-    background-color: $social-icon-color;
-    color: white;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.3s;
+}
+.social-icon {
+  background-color: $social-icon-color;
+  color: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
 
-    &:hover {
-      background-color: $color-green;
-    }
+  &:hover {
+    background-color: $color-green;
   }
 }

@@ -13,6 +13,7 @@ import 'swiper/css/pagination';
 
 import { EffectFade, Autoplay, Pagination } from 'swiper/modules';
 import { defaultUrl } from "../../../AxiosInstance";
+import { useTranslation } from "react-i18next";
 
 
 interface HeaderContentProps {
@@ -25,6 +26,7 @@ interface HeaderContentProps {
 }
 
 export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, height, mainPage, opening_images, slider }) => {
+    const { t } = useTranslation()
     return (
         <>
             <div className={'section'}
@@ -94,13 +96,13 @@ export const HeaderContent: React.FC<HeaderContentProps> = ({ title, desc, heigh
                         gap={'10px'}
                     >
                         <Stack direction={'column'} alignItems={'center'}>
-                            <Typography className={'title main-title-color'}>{title}</Typography>
+                            <Typography className={'title main-title-color extra-font'}>{title}</Typography>
                             {mainPage ? <Typography className={'min-title main-subtitle-color'}>{desc}</Typography> : null}
                         </Stack>
                         {mainPage ? <button className={'main-button'}
                         ><Link to={'/shop'}
                             style={{ color: "white" }}
-                        >SHOP NOW</Link></button> : null}
+                        >{t('buy.buy_now')}</Link></button> : null}
                     </Stack>
                 </div>
             </div>

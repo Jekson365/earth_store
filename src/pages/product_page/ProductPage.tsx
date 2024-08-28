@@ -11,12 +11,19 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import { useCreateCart } from '../../hooks/cart/useCreateCart'
 import { CurrentUser } from '../../App'
 import { CustomError } from '../../components/CustomError'
+import { useTranslation } from 'react-i18next'
+import { Socials } from '../../components/Socials'
+import '../../styles/contact/contact.scss'
+import { useContactInfo } from '../../hooks/contact_infos/useContactInfo'
+
 
 export const ProductPage = () => {
     const location = useLocation()
     const { currentUser } = useContext<any>(CurrentUser)
     const { createCart } = useCreateCart()
     const [open, setOpen] = useState(false)
+    const { t } = useTranslation()
+    const { contactInfos, fetchContactInfos } = useContactInfo()
 
     const applyShopStyles = () => {
         document.documentElement.style.setProperty('--nav-item-color', 'black');
@@ -41,6 +48,7 @@ export const ProductPage = () => {
     const { product, getCurrentProduct, loading } = useCurrentProduct()
 
     useEffect(() => {
+        fetchContactInfos()
         getCurrentProduct(Number(location.pathname.split("/")[2]))
     }, [])
 
@@ -72,19 +80,22 @@ export const ProductPage = () => {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            {loading ? (<>Loading...</>) : (<>
+                            {loading ? (<>{t('loading')}</>) : (<>
                                 <Stack gap={'20px'} className={'prod-content'} mt={2}>
-                                    <p className={'category category-title-color'}>{product.category.name}</p>
                                     <h2 className={'main-title'}>{product.title}</h2>
                                     <p className={'price'}>{product.price}$</p>
                                     <p className={'desc'}>{product.description}</p>
                                     <button className={'main-button'}
                                         onClick={handleCart}
                                         style={{ width: "fit-content", padding: "10px", fontSize: "15px" }}
-                                    >ADD TO CART
+                                    >{t('cart.add_to_cart')}
                                     </button>
+                                    <p className={'currentcat'}>{t('cart.category')}: <span className={'category-title-color'}>{product.category.name}</span></p>
                                     <div className={'line'}></div>
-                                    <p className={'currentcat'}>Category: <span className={'category-title-color'}>{product.category.name}</span></p>
+                                    <Stack direction={'column'} alignItems={'flex-start'}>
+                                        <div className='call-button'>{contactInfos && contactInfos.phone_number}</div>
+                                        <Socials />
+                                    </Stack>
                                 </Stack>
                             </>)}
                         </Grid>

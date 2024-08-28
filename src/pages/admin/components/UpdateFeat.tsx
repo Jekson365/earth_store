@@ -5,12 +5,14 @@ import { useCreateFeatProducts } from "../../../hooks/featured_products/useCreat
 import { useEffect, useState } from "react"
 import { useProducts } from "../../../hooks/products/useProducts"
 import { FeaturedItem } from "../../../cusomts/FeaturedItem"
+import { useTranslation } from "react-i18next"
 
 export const UpdateFeat = () => {
     const { featuredProducts, fetchFeaturedProducts } = useFeaturedProducts()
     const { removeFeat } = useRemoveFeatProducts()
     const { createFeat } = useCreateFeatProducts()
     const { products, fetchProducts } = useProducts()
+    const {t} = useTranslation()
 
     const [featItem, setFeatItem] = useState<any>({})
 
@@ -34,7 +36,7 @@ export const UpdateFeat = () => {
     return (
         <>
             <Box>
-                <Typography className="component-title">Featured</Typography>
+                <Typography className="component-title">{t('admin.featured')}</Typography>
                 <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
                     <select className="custom-input"
                         style={{
@@ -43,7 +45,7 @@ export const UpdateFeat = () => {
                         }}
                         onChange={(e: any) => setFeatItem(e.target.value)}
                     >
-                        <option value="">Choose Featured Product</option>
+                        <option value="">{t('admin.choose_featured_product')}</option>
                         {products && products.map((e: any) => {
                             return (
                                 <>
@@ -69,10 +71,10 @@ export const UpdateFeat = () => {
                 <Box mt={2}>
                     <button className="admin-button"
                         onClick={() => createFeat(featItem)}
-                    >SAVE</button>
+                    >{t('admin.save')}</button>
                 </Box>
                 <Box mt={3}>
-                    <Typography>Slider Per View</Typography>
+                    <Typography>{t('admin.slider_per_view')}</Typography>
                     <Stack direction={'row'} gap={'10px'} width={'100%'} mt={1}>
                         {counts.map((e) => {
                             return (

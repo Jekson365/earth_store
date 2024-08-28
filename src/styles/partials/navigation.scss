@@ -30,7 +30,9 @@
   }
   .nav-name {
     text-decoration: none;
+    font-family: $geo-font !important;
     color: $color-green;
+    letter-spacing: 1px !important;
   }
   .responsive-nav {
     @media (max-width: 960px) {

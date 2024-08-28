@@ -12,10 +12,12 @@ import 'swiper/css/pagination';
 
 
 import { Pagination, Autoplay } from 'swiper/modules';
+import { useTranslation } from 'react-i18next';
 
 export const Featured = () => {
     const { featuredProducts, fetchFeaturedProducts } = useFeaturedProducts()
-    const [sliderPerView, setSliderPerView] = useState<any>(JSON.parse(localStorage.getItem('slider_per_view') || '3'))
+    const { t } = useTranslation()
+    const [sliderPerView] = useState<any>(JSON.parse(localStorage.getItem('slider_per_view') || '3'))
 
 
     useEffect(() => {
@@ -45,7 +47,7 @@ export const Featured = () => {
                             style={{
                                 fontSize: "30px"
                             }}
-                        >Featured Items</Typography>
+                        >{t('featured.featured_items')}</Typography>
                     </Stack>
                     <Box mt={2}></Box>
                     <Swiper

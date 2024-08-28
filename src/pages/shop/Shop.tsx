@@ -7,10 +7,15 @@ import { useCategories } from "../../hooks/categories/useCategories";
 import CloseIcon from '@mui/icons-material/Close';
 import { ShopItem } from "./ShopItem";
 import { News } from "./News";
+import WindowIcon from '@mui/icons-material/Window';
+import ViewCompactIcon from '@mui/icons-material/ViewCompact';
+import AppsIcon from '@mui/icons-material/Apps';
+import { useTranslation } from "react-i18next";
 
 export const Shop = () => {
     const { products, fetchProducts, loading } = useProducts()
     const [filterdProducts, setFilteredProducts] = useState([])
+    const { t } = useTranslation()
     const [selectedCat, setSelectedCat] = useState<Number | null>(null)
     const location = useLocation()
     useEffect(() => {
@@ -61,22 +66,43 @@ export const Shop = () => {
 
         if (option === 1) {
             sorted.sort((a: any, b: any) => a.price - b.price);
-        } else {
+            setFilteredProducts(sorted);
+        } if (option === 2) {
             sorted.sort((a: any, b: any) => b.price - a.price);
+            setFilteredProducts(sorted);
         }
-
-        setFilteredProducts(sorted);
+        if (option === 3) {
+            let filtered = sorted.filter((e: any) => Boolean(e.sale_price) === true)
+            setFilteredProducts(filtered)
+        }
     };
-
+    const gridStyles = [
+        {
+            id: 1,
+            icon: <ViewCompactIcon fontSize="medium" />,
+            count: 3,
+        },
+        {
+            id: 2,
+            icon: <AppsIcon fontSize="medium" />,
+            count: 4,
+        },
+        {
+            id: 3,
+            icon: <WindowIcon fontSize="medium" />,
+            count: 6,
+        },
+    ]
+    const [gridStyle, setGridStyle] = useState(4)
 
     return (
         <>
             <Box mt={15}></Box>
             <div className={'shop'}
-                style={{minHeight:"100vh"}}
+                style={{ minHeight: "100vh" }}
             >
                 <Grid container>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={3}>
                         <Box>
                             <Stack direction={'column'} alignItems={'flex-start'}>
                                 <Stack direction={'row'}
@@ -85,11 +111,11 @@ export const Shop = () => {
                                     <input
                                         style={{ maxWidth: "190px" }}
                                         onChange={(e) => handleSearch(e.target.value)}
-                                        placeholder={'Search Products...'} className={'custom-input'} />
+                                        placeholder={t('shop_page.search_products')} className={'custom-input'} />
                                 </Stack>
                             </Stack>
                             <Stack direction={'column'} alignItems={'flex-start'} mt={3}>
-                                <Typography className={'min-title'}>Categories</Typography>
+                                <Typography className={'min-title'}>{t('shops.category')}</Typography>
                                 <Stack direction={'column'} pl={3}>
                                     {catCounted && catCounted.map((e: any) => {
                                         return (
@@ -113,26 +139,39 @@ export const Shop = () => {
                             </Stack>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} md={8}>
-                        <News/>
-                        <Stack direction={'column'}>
-                            <Typography className={'shop-title'}>Products</Typography>
+                    <Grid item xs={12} md={9}>
+                        <News />
+                        <Stack direction={'column'} mt={3}>
                             <Box mt={5}></Box>
                             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-                                <Typography>Showing all 6 results</Typography>
+                                <Stack direction={'row'} alignItems={'flex-end'}>
+                                    {gridStyles.map((e: any) => {
+                                        return (
+                                            <>
+                                                <Box
+                                                    style={{ cursor: "pointer" }}
+                                                    onClick={() => setGridStyle(e.count)}
+                                                >
+                                                    {e.icon}
+                                                </Box>
+                                            </>
+                                        )
+                                    })}
+                                </Stack>
                                 <Typography>
                                     <select className="custom-input" onChange={handleSort}>
-                                        <option value="1">price Asc</option>
-                                        <option value="2">price Desc</option>
+                                        <option value="1">{t('shop_page.sort.price_desc')}</option>
+                                        <option value="2">{t('shop_page.sort.price_asc')}</option>
+                                        <option value="3">{t('shop_page.sort.sale')}</option>
                                     </select>
                                 </Typography>
                             </Stack>
                             <Grid container spacing={3} mt={3}>
-                                {loading ? <>Loading...</> : (<>
-                                    {filterdProducts && filterdProducts.map((e: any) => {
+                                {loading ? <>{t('loading')}</> : (<>
+                                    {filterdProducts && filterdProducts.map((e: AnimationPlaybackEvent) => {
                                         return (
                                             <>
-                                                <Grid item xs={12} md={4} sm={6}>
+                                                <Grid item xs={12} md={gridStyle} sm={6}>
                                                     <ShopItem product={e} />
                                                 </Grid>
                                             </>

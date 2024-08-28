@@ -12,7 +12,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useTranslation } from 'react-i18next';
 
 export const Navigation = () => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const [navOpen, setNavOpen] = useState<Boolean>(false)
     const { setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
@@ -22,6 +22,9 @@ export const Navigation = () => {
         localStorage.removeItem("token")
         window.location.href = '/'
     }
+    useEffect(()=> {
+        i18n.changeLanguage('ka')
+    },[])
     useEffect(() => {
         setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
     }, [currentUser])
@@ -85,19 +88,19 @@ export const Navigation = () => {
                                             onClick={logoutUser}
                                             style={{ fontWeight: "bold", cursor: "pointer" }}
                                         >
-                                            <LogoutIcon 
+                                            <LogoutIcon
                                                 className='white-icon'
                                             />
                                         </Box>
-                                        <Typography 
-                                        className='white-icon email'
-                                        ml={1}>{user.email}</Typography>
+                                        <Typography
+                                            className='white-icon email'
+                                            ml={1}>{user.email}</Typography>
                                     </Stack>
                                 </>) :
                                     <>
                                         <Link to={'/register'}>
-                                            <PersonIcon 
-                                            className={'icon person white-icon'}
+                                            <PersonIcon
+                                                className={'icon person white-icon'}
                                                 sx={{ fontSize: "30px" }}
                                             />
                                         </Link>

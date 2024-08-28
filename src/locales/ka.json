@@ -1,10 +1,91 @@
 {
-    "home":"მთავარი",
-    "about":"ჩვენს შესახებ",
-    "shop":"პროდუქცია",
-    "contact":"კონტაქტი",
+    "home": "მთავარი",
+    "about": "ჩვენს შესახებ",
+    "shop": "პროდუქცია",
+    "contact": "კონტაქტი",
     "auth": {
-        "login":"ავტორიზაცია",
-        "register":"რეგისტრაცია"
-    }
+        "email":"იმეილი",
+        "password":"პაროლი",
+        "repeat_password":"გაიმეორეთ პაროლი",
+        "register":"რეგისტრაცია",
+        "login":"შესვლა"
+    },
+    "featured": {
+        "featured_items": "პროდუქცია"
+    },
+    "clients": {
+        "clients_thought": "მომხმარებელთა აზრი"
+    },
+    "shops": {
+        "category": "კატეგორია",
+        "products": "პროდუქცია"
+    },
+    "shop_page": {
+        "search_products": "მოძებნე...",
+        "sort": {
+            "price_asc": "ფასი - კლებით",
+            "price_desc": "ფასი - მატებით",
+            "sale": "ფასდაკლებული"
+        }
+    },
+    "buy": {
+        "buy_now": "ყიდვა"
+    },
+    "about_us": {
+        "who": "ვინ ვართ?"
+    },
+    "contact_page": {
+        "full_name": "სახელი",
+        "phone_number": "ტელეფონის ნომერი",
+        "email": "იმეილი",
+        "text": "ტექსტი",
+        "send": "გაგზავნა",
+        "get_in_touch": "დაგვიკავშირდით",
+        "talk_to_us": "გაგვესაუბრეთ",
+        "location": "ლოკაცია",
+        "follow_us": "გამოგყვებით",
+        "phone": "ტელეფონი"
+    },
+    "admin": {
+        "amount":"რაოდენობა",
+        "no_file_chosen": "ფაილი არჩეული არ არის",
+        "save": "შენახვა",
+        "featured": "გამორჩეული",
+        "choose_featured_product": "აირჩიეთ გამორჩეული პროდუქტი",
+        "slider_per_view": "სლაიდერი თითო ხედზე",
+        "postcard": "ღია ბარათი",
+        "header": "სათაური",
+        "phone":"ტელეფონი",
+        "title":"სათაური",
+        "location":"ლოკაცია",
+        "subtitle": "ქვესათაური",
+        "customers": "მომხმარებლები",
+        "name": "სახელი",
+        "price":"ფასი",
+        "surname": "გვარი",
+        "review": "მიმოხილვა",
+        "priorities": "პრიორიტეტები",
+        "about": "ჩვენს შესახებ",
+        "description": "აღწერა",
+        "categories": "კატეგორიები",
+        "products": "პროდუქტები",
+        "sale_price": "ფასდაკლების ფასი",
+        "select_category": "აირჩიეთ კატეგორია",
+        "contact": "კონტაქტი",
+        "themes": "თემები",
+        "shop_slider": {
+            "photo": "სურათი",
+            "head": "სათაური",
+            "slider":"სლაიდერი"
+        },
+        "social":"სოციალური ქსელები"
+    },
+    "cart": {
+        "cart":"კალათა",
+        "add_to_cart":"კალათაში დამატება",
+        "category":"კატეგორია",
+        "view_cart":"კალათის გახსნა",
+        "total":"ჯამი"
+    },
+    "loading": "იტვირთება..."
 }

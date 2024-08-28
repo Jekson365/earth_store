@@ -4,8 +4,10 @@ import { useCreateCustomers } from "../../../hooks/customers/useCreateCustomers"
 import { useCustomers } from "../../../hooks/customers/useCustomers"
 import { useRemoveCustomers } from "../../../hooks/customers/useRemoveCustomers"
 import { FeaturedItem } from "../../../cusomts/FeaturedItem"
+import { useTranslation } from "react-i18next"
 
 export const CreateCustomers = () => {
+    const { t } = useTranslation();
     const [customer, setCustomer] = useState<any>({})
     const { removeCustomers } = useRemoveCustomers()
     const { customers, fetchCustomers } = useCustomers()
@@ -14,27 +16,28 @@ export const CreateCustomers = () => {
     useEffect(() => {
         fetchCustomers()
     }, [])
+
     return (
         <>
             <Box>
-                <Typography className="component-title">Customers</Typography>
+                <Typography className="component-title">{t('admin.customers')}</Typography>
                 <form encType="multipart/form-data">
                     <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
                         <input
                             type="text"
                             onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
-                            placeholder="name"
+                            placeholder={t('admin.name')}
                             className="custom-input"
                         />
                         <input
                             type="text"
                             onChange={(e) => setCustomer({ ...customer, surname: e.target.value })}
-                            placeholder="surname"
+                            placeholder={t('admin.surname')}
                             className="custom-input"
                         />
                         <input
                             type="text"
-                            placeholder="review"
+                            placeholder={t('admin.review')}
                             onChange={(e: any) => setCustomer({ ...customer, review_text: e.target.value })}
                             className="custom-input"
                         />
@@ -59,7 +62,7 @@ export const CreateCustomers = () => {
                         className="admin-button"
                         onClick={() => createCustomers(customer)}
                     >
-                        SAVE
+                        {t('admin.save')}
                     </button>
                 </Box>
             </Box>

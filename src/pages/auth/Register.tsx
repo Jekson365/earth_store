@@ -5,12 +5,14 @@ import { useContext, useEffect, useState } from 'react'
 import { useRegister } from '../../hooks/users/useRegister'
 import { CurrentUser } from '../../App'
 import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 
 function Register() {
     const { useCreateUser } = useRegister()
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState({})
+    const { t } = useTranslation()
     const [registerData, setRegisterData] = useState(
         {
             username: "",
@@ -50,13 +52,13 @@ function Register() {
                             alignItems={'center'}
                             gap={'10px'}
                         >
-                            <input type="email" className="custom-input" placeholder='email' typeof='email'
+                            <input type="email" className="custom-input" placeholder={t('auth.email')} typeof='email'
                                 onChange={(e: any) => setRegisterData({ ...registerData, email: e.target.value })}
                             />
-                            <input type="password" className="custom-input" placeholder='password'
+                            <input type="password" className="custom-input" placeholder={t('auth.password')}
                                 onChange={(e: any) => setRegisterData({ ...registerData, password: e.target.value })}
                             />
-                            <input type="password" className="custom-input" placeholder='repeat-password'
+                            <input type="password" className="custom-input" placeholder={t('auth.repeat_password')}
                                 onChange={(e: any) => setRegisterData({ ...registerData, password_confirmation: e.target.value })}
                             />
                             <button className="main-button"
@@ -64,11 +66,11 @@ function Register() {
                                     width: "100%"
                                 }}
                                 onClick={() => useCreateUser(registerData)}
-                            >REGISTER</button>
+                            >{t('auth.register')}</button>
                         </Stack>
                         <Link to={'/login'} className='register-href'
 
-                        >Login</Link>
+                        >{t('auth.login')}</Link>
                     </Stack>
                 </div>
             </div>

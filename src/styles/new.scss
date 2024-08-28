@@ -1,0 +1,15 @@
+@import './config.scss';
+
+.news-content {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    h1 {
+        color: $main-button-color;
+        font-size: 23px;
+        font-family: $geo-font !important;
+    }
+}

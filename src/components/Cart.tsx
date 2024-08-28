@@ -7,11 +7,13 @@ import { useCart } from '../hooks/cart/useCart.tsx';
 import { CurrentUser } from '../App.tsx';
 import { defaultUrl } from '../AxiosInstance.ts';
 import { useRemoveCart } from '../hooks/cart/useRemoveCart.tsx';
+import { useTranslation } from 'react-i18next';
 export const Cart = () => {
     const { cart, setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
     const [totalCost, setTotalCost] = useState(0)
     const { removeCart } = useRemoveCart()
+    const { t } = useTranslation()
 
     const { cartItems, fetchCart } = useCart()
     useEffect(() => {
@@ -45,7 +47,7 @@ export const Cart = () => {
                     <Box>
                         <Stack
                             direction={'row'} justifyContent={'space-between'}>
-                            <p className={'title'}>Shopping Cart</p>
+                            <p className={'title'}>{t('cart.cart')}</p>
                             <Box onClick={() => setCart(false)}>
                                 <CloseIcon />
                             </Box>
@@ -54,7 +56,7 @@ export const Cart = () => {
                             direction={'column'}
                             gap={'20px'}
                             mt={5}
-                            maxHeight={'550px'}
+                            maxHeight={'600px'}
                             style={{
                                 overflowX: "hidden",
                                 overflowY: "auto"
@@ -93,12 +95,12 @@ export const Cart = () => {
                             direction={'row'} justifyContent={'space-between'}
                             mb={5}
                         >
-                            <p className={'title'}>Subtotal</p>
+                            <p className={'title'}>{t('cart.total')}</p>
                             <p>${totalCost}</p>
                         </Stack>
-                        <Stack gap={'20px'}>
-                            <button className={'main-button'}>VIEW CART</button>
-                        </Stack>
+                        {/* <Stack gap={'20px'}>
+                            <button className={'main-button'}>{t('cart.view_cart')}</button>
+                        </Stack> */}
                     </Box>
                 </Stack>
             </div>

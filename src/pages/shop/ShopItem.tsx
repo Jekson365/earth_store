@@ -30,9 +30,10 @@ export const ShopItem = ({ product }: any) => {
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "cover",
                         overflow: "hidden",
-                        minWidth: "250px",
-                        minHeight: "250px",
-                        position: "relative"
+                        width: "100%",
+                        paddingTop: "100%",
+                        position: "relative",
+                        borderRadius:"4px"
                     }}
                 >
                     <div className="add-cart-button"

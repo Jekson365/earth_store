@@ -5,11 +5,13 @@ import { useLogin } from '../../hooks/users/useLogin'
 import { useContext, useEffect, useState } from 'react'
 import { CurrentUser } from '../../App'
 import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function Register() {
     const { useLoginUser } = useLogin()
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState()
+    const { t } = useTranslation()
 
 
     const [loginParams, setLoginParams] = useState<any>({
@@ -51,8 +53,8 @@ function Register() {
                         >
                             <input
                                 onChange={(e) => setLoginParams({ ...loginParams, email: e.target.value })}
-                                type="text" className="custom-input" placeholder='email' typeof='email' />
-                            <input type="password" className="custom-input" placeholder='password'
+                                type="text" className="custom-input" placeholder={t('auth.email')} typeof='email' />
+                            <input type="password" className="custom-input" placeholder={t('auth.password')}
                                 onChange={(e) => setLoginParams({ ...loginParams, password: e.target.value })}
                             />
                             <button className="main-button"
@@ -60,9 +62,9 @@ function Register() {
                                     width: "100%"
                                 }}
                                 onClick={() => useLoginUser(loginParams)}
-                            >LOGIN</button>
+                            >{t('auth.login')}</button>
                         </Stack>
-                        <Link to={'/register'} className='register-href'>Register</Link>
+                        <Link to={'/register'} className='register-href'>{t('auth.register')}</Link>
                     </Stack>
                 </div>
             </div>
