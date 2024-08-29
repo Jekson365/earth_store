@@ -58,7 +58,17 @@ function App() {
     applyStyles()
   }, [location.pathname])
 
-  
+  const setThemeAndSlider = () => {
+    let slider = localStorage.getItem('slider_per_view')
+    let theme_id = localStorage.getItem("theme_id")
+    if (!slider) {
+      localStorage.setItem('slider_per_view',JSON.stringify(3))
+    }
+    if (!theme_id) {
+      localStorage.setItem('theme_id',JSON.stringify(1))
+    }
+  }
+
   const applyStyles = () => {
     if (!currentTheme || !currentTheme.colors) return;
 
@@ -86,6 +96,7 @@ function App() {
   };
 
   useEffect(() => {
+    setThemeAndSlider()
     if (currentUser && !loadingUser) {
       fetchCart({ user_id: currentUser.id })
     }
