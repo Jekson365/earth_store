@@ -46,13 +46,13 @@ export const CreateProduct = () => {
 
     const { loading,createProduct } = useCreateProduct();
 
-    const handleProductSave = (event: any) => {
+    const handleProductSave = async (event: any) => {
         event.preventDefault();
         const { title, description, price, category_id, product_images_attributes } = productParams;
         if (!title || !description || !price || !category_id || !product_images_attributes) {
             setOpen(true);
         } else {
-            createProduct(productParams);
+            await createProduct(productParams);
             if (!loading) {
                 window.location.reload()
             }

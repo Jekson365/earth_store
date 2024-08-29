@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import '../../styles/admin.scss';
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { CurrentUser } from "../../App";
 import { useUpdateOpening } from "../../hooks/openings/useUpdateOpening";
 import { useUpdatePostcard } from "../../hooks/postcards/useUpdatePostcard";
@@ -18,17 +18,22 @@ import OpeningImages from "./components/update opening/OpeningImages";
 import { useTranslation } from "react-i18next";
 import { CreateSlider } from "./components/CreateSlider";
 import { CreateSocial } from "./CreateSocial";
+import { useLocation } from "react-router-dom";
 
 const Admin = () => {
   const { currentUser } = useContext<any>(CurrentUser);
   const [user, setUser] = useState<any>({});
   const { updateOpening } = useUpdateOpening();
   const [open, setOpen] = useState(false);
+  const location = useLocation()
   const { updatePostcard } = useUpdatePostcard();
   const { t } = useTranslation();
   
-  useEffect(() => {
+  const applyShopStyles = () => {
     document.documentElement.style.setProperty('--nav-item-color', 'black');
+};
+
+  useEffect(() => {
     if (!currentUser || Object.keys(currentUser).length === 0) {
       setUser(false);
 
@@ -36,6 +41,12 @@ const Admin = () => {
       setUser(currentUser);
     }
   }, [currentUser]);
+
+  useLayoutEffect(() => {
+    if (location.pathname === '/admin') {
+      applyShopStyles()
+    }
+  }, [location.pathname])
 
   useEffect(() => {
     if (user) {
@@ -195,11 +206,11 @@ const Admin = () => {
           <div className="line"></div>
           <CreateProduct />
           <div className="line"></div>
-          <CreateSlider/>
+          <CreateSlider />
           <div className="line"></div>
           <ContactInfo />
           <div className="line"></div>
-          <CreateSocial/>
+          <CreateSocial />
           <div className="line"></div>
           <CustomTheme />
         </Stack>

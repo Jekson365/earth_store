@@ -58,12 +58,14 @@ function App() {
     applyStyles()
   }, [location.pathname])
 
-  // document.documentElement.style.setProperty('--nav-item-color', 'white');
+  
   const applyStyles = () => {
     if (!currentTheme || !currentTheme.colors) return;
 
     // header items 
-    document.documentElement.style.setProperty('--nav-item-color', 'white');
+    if (location.pathname != '/admin') {
+      document.documentElement.style.setProperty('--nav-item-color', 'white');
+    }
     // opening headers title
     document.documentElement.style.setProperty('--main-title-color', currentTheme.colors[0]);
     // opening headers subtitle
