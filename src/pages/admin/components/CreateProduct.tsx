@@ -44,7 +44,7 @@ export const CreateProduct = () => {
         }
     };
 
-    const { createProduct } = useCreateProduct();
+    const { loading,createProduct } = useCreateProduct();
 
     const handleProductSave = (event: any) => {
         event.preventDefault();
@@ -53,7 +53,9 @@ export const CreateProduct = () => {
             setOpen(true);
         } else {
             createProduct(productParams);
-            window.location.reload();
+            if (!loading) {
+                window.location.reload()
+            }
         }
     };
 
