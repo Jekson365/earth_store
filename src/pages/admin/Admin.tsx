@@ -27,7 +27,7 @@ const Admin = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation()
   const { updatePostcard } = useUpdatePostcard();
-  const { t } = useTranslation();
+const { t } = useTranslation();
   
   const applyShopStyles = () => {
     document.documentElement.style.setProperty('--nav-item-color', 'black');

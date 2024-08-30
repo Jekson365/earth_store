@@ -9,6 +9,7 @@
   
     .box {
         cursor: pointer;
+        padding: 20px 30px;
         min-width: 400px;
         display: flex;
         align-items: center;
@@ -17,6 +18,9 @@
         border-radius: 10px;
         transition: 0.3s;
         box-shadow: 0 0 40px 0.1px rgba(0,0,0,0.1);
+        .custom-input {
+            width: 70%;
+        }
         h1 {
             color: $color-dark;
             letter-spacing: 2px;

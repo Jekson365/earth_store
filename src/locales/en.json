@@ -3,6 +3,7 @@
     "about": "ABOUT",
     "shop": "SHOP",
     "contact": "CONTACT",
+    "logout":"Logout",
     "auth": {
         "email": "email",
         "password": "password",

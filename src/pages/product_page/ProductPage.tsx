@@ -24,6 +24,10 @@ export const ProductPage = () => {
     const [open, setOpen] = useState(false)
     const { t } = useTranslation()
     const { contactInfos, fetchContactInfos } = useContactInfo()
+    const [customError, setCustomeError] = useState({
+        message: '',
+        severity: ''
+    })
 
     const applyShopStyles = () => {
         document.documentElement.style.setProperty('--nav-item-color', 'black');
@@ -38,10 +42,23 @@ export const ProductPage = () => {
     applyShopStyles();
 
     const handleCart = (event: React.MouseEvent) => {
-        event.preventDefault();
+        if (Object.keys(currentUser).length <= 0) {
+            setOpen(true)
+            setCustomeError({
+                message: 'კალათით სარგებლობისთვის გაიარეთ ავტორიზაცია',
+                severity: 'error'
+            })
+        }
+        else {
+            event.preventDefault();
 
-        createCart({ product_id: product.id, user_id: currentUser.id });
-        setOpen(true)
+            createCart({ product_id: product.id, user_id: currentUser.id });
+            setOpen(true)
+            setCustomeError({
+                message: 'პროდუქტი დაემატე კალათაში',
+                severity: 'success'
+            })
+        }
     };
 
 
@@ -59,13 +76,14 @@ export const ProductPage = () => {
             <CustomError
                 open={open}
                 setOpen={setOpen}
-                message={'added to cart'}
-                severity={'success'}
+                message={customError.message}
+                severity={customError.severity}
             />
             <Box mt={15}></Box>
             <div className={'cover'}
             >
                 <Box className={'inner-cover'}
+                    p={3}
                 >
                     <Grid container columnSpacing={7}>
                         <Grid item xs={12} md={6}>
@@ -77,6 +95,71 @@ export const ProductPage = () => {
                                 {product.product_images && product.product_images.length > 0 && (
                                     <img src={defaultUrl + product.product_images[0].image.url} />
                                 )}
+                            </Box>
+                            <Box mt={1.3}></Box>
+                            <Box
+                                style={{
+                                    maxWidth:"600px"
+                                }}
+                            >
+                                {product && product.product_images && product.product_images.length > 1 ? (
+                                    <>
+                                        {product.product_images.length > 1 ? (
+                                            <Swiper
+                                                slidesPerView={1}
+                                                spaceBetween={10}
+                                                pagination={{
+                                                    clickable: true,
+                                                }}
+                                                autoplay={{
+                                                    delay: 2500,
+                                                    disableOnInteraction: false,
+                                                }}
+                                                breakpoints={{
+                                                    640: {
+                                                        slidesPerView: 1,
+                                                        spaceBetween: 20,
+                                                    },
+                                                    768: {
+                                                        slidesPerView: 2,
+                                                        spaceBetween: 40,
+                                                    },
+                                                    1024: {
+                                                        slidesPerView: 2,
+                                                        spaceBetween: 10,
+                                                    },
+                                                }}
+                                                modules={[Pagination, Autoplay]}
+                                                className="mySwiper"
+                                            >
+                                                {product.product_images.map((e: any, index: number) => (
+                                                    <SwiperSlide key={index}>
+                                                        <div
+                                                            style={{
+                                                                width: "100%",
+                                                                height: "180px",
+                                                                overflow: "hidden"
+                                                            }}
+                                                        >
+                                                            <img
+                                                                style={{
+                                                                    width: "100%",
+                                                                    height: "100%",
+                                                                    objectFit: "cover"
+                                                                }}
+                                                                src={defaultUrl + e.image.url} alt={`Slide ${index}`} />
+                                                        </div>
+                                                    </SwiperSlide>
+                                                ))}
+                                            </Swiper>
+                                        ) : (
+                                            <img
+                                                src={defaultUrl + product.product_images[0].image.url}
+                                                alt={product.title}
+                                            />
+                                        )}
+                                    </>
+                                ) : null}
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -101,7 +184,7 @@ export const ProductPage = () => {
                         </Grid>
                     </Grid>
                     <Box mt={7}></Box>
-                    {product && product.product_images && product.product_images.length > 1 ? (
+                    {/* {product && product.product_images && product.product_images.length > 1 ? (
                         <>
                             {product.product_images.length > 1 ? (
                                 <Swiper
@@ -150,7 +233,7 @@ export const ProductPage = () => {
                                 />
                             )}
                         </>
-                    ) : null}
+                    ) : null} */}
                 </Box>
             </div>
         </>

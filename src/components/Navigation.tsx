@@ -1,5 +1,5 @@
 import '../styles/partials/navigation.scss'
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, Typography, Box, Alert, Snackbar } from "@mui/material";
 import { ShoppingBag } from "@mui/icons-material";
 import PersonIcon from '@mui/icons-material/Person';
 import DehazeIcon from '@mui/icons-material/Dehaze';
@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import SettingsIcon from '@mui/icons-material/Settings';
 import { CartController } from "../router/CustomRouter.tsx";
 import { CurrentUser } from '../App.tsx';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { useTranslation } from 'react-i18next';
 
 export const Navigation = () => {
@@ -17,19 +16,29 @@ export const Navigation = () => {
     const { setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState<any>({})
+    useEffect(() => {
+        console.log(currentUser)
+    }, [currentUser])
 
     const logoutUser = () => {
         localStorage.removeItem("token")
         window.location.href = '/'
     }
-    useEffect(()=> {
+    useEffect(() => {
         i18n.changeLanguage('ka')
-    },[])
+    }, [])
     useEffect(() => {
         setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
     }, [currentUser])
     return (
         <>
+            {Object.keys(currentUser).length !== 0 && currentUser.confirmed_at == null ? (<>
+                <Snackbar open={true}>
+                    <Alert variant='filled' severity='error'>
+                        მომხმარებელი არ არის ავტორიზებული,შეამოწმეთ ფოსტა
+                    </Alert>
+                </Snackbar>
+            </>) : null}
             <div className={'navigation'}>
                 <Stack
                     direction={'row'}
@@ -61,7 +70,7 @@ export const Navigation = () => {
                             </>) : null}
                         </Stack>
                         <Stack direction={'row'} gap={'10px'} alignItems={'center'}>
-                            {user.role_id == 2 ?
+                            {user.role && user.role.id == 2 ?
                                 (
                                     <>
                                         <Link
@@ -74,27 +83,60 @@ export const Navigation = () => {
                                     </>
                                 )
                                 : null}
-                            <Box
-                                onClick={() => setCart(true)}
-                            >
-                                <ShoppingBag className={'icon white-icon'}
-                                    sx={{ fontSize: "30px" }}
-                                />
-                            </Box>
+                            {Object.keys(currentUser).length > 0 ? (<>
+                                <Box
+                                    onClick={() => setCart(true)}
+                                >
+                                    <ShoppingBag className={'icon white-icon'}
+                                        sx={{ fontSize: "30px" }}
+                                    />
+                                </Box>
+                            </>) : <></>}
                             <Box>
                                 {user ? (<>
-                                    <Stack direction={'row'}>
+                                    <Stack direction={'row'} alignItems={'center'} gap={'10px'}>
                                         <Box
-                                            onClick={logoutUser}
-                                            style={{ fontWeight: "bold", cursor: "pointer" }}
-                                        >
-                                            <LogoutIcon
-                                                className='white-icon'
-                                            />
-                                        </Box>
-                                        <Typography
                                             className='white-icon email'
-                                            ml={1}>{user.email}</Typography>
+                                        >
+                                            <div className="user-popup">
+                                                <Stack direction={'column'}
+                                                    gap={'10px'}
+                                                    alignItems={'flex-start'}
+                                                >
+                                                    <Typography
+                                                        color={'black'}
+                                                    >{currentUser && currentUser.username}</Typography>
+                                                    <Typography
+                                                        color={'black'}
+                                                    >{currentUser && currentUser.email}</Typography>
+                                                    <Stack
+                                                        color={'black'}
+                                                        direction={'row'}
+                                                        alignItems={'center'}
+                                                        gap={'10px'}
+                                                    >
+                                                        <Box
+                                                            style={{
+                                                                width: "15px",
+                                                                height: "15px",
+                                                                borderRadius: "50%",
+                                                                background: "green"
+                                                            }}
+                                                        ></Box>
+                                                        <Typography>
+                                                            {currentUser && currentUser.role && currentUser.role.name}
+                                                        </Typography>
+                                                    </Stack>
+                                                        <Typography
+                                                            className='logout-button'
+                                                            onClick={logoutUser}
+                                                            style={{ fontWeight: "bold", cursor: "pointer" }}
+                                                        >
+                                                            {t('logout')}
+                                                        </Typography>
+                                                </Stack>
+                                            </div>
+                                        </Box>
                                     </Stack>
                                 </>) :
                                     <>
@@ -120,7 +162,7 @@ export const Navigation = () => {
                     </Stack>
 
                 </Stack>
-            </div>
+            </div >
         </>
     )
 }

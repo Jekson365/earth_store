@@ -45,12 +45,13 @@ function Register() {
         <>
             <div className="cover">
                 <div className="box">
-                    <Stack direction={'column'} gap={'25px'} alignItems={'center'}>
+                    <Stack direction={'column'} width={'100%'} gap={'25px'} alignItems={'center'}>
                         <h1>EARTH STORE</h1>
                         <Stack
                             direction={'column'}
                             alignItems={'center'}
-                            gap={'10px'}
+                            gap={'20px'}
+                            width={'100%'}
                         >
                             <input type="email" className="custom-input" placeholder={t('auth.email')} typeof='email'
                                 onChange={(e: any) => setRegisterData({ ...registerData, email: e.target.value })}
@@ -62,9 +63,6 @@ function Register() {
                                 onChange={(e: any) => setRegisterData({ ...registerData, password_confirmation: e.target.value })}
                             />
                             <button className="main-button"
-                                style={{
-                                    width: "100%"
-                                }}
                                 onClick={() => useCreateUser(registerData)}
                             >{t('auth.register')}</button>
                         </Stack>

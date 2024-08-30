@@ -11,7 +11,16 @@
 .extra-font {
   font-family: "BPG Nino Mkhedruli Bold", sans-serif !important;
 }
-
+.logout-button {
+  border: 1px solid $main-button-color;
+  color: $main-button-color ;
+  padding: 5px 10px;
+  border-radius: 5px;
+  &:hover {
+    color: white;
+    background-color: $main-button-color;
+  }
+}
 .white-icon {
   color: $color-green;
 }
