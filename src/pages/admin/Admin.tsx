@@ -69,8 +69,6 @@ const Admin = () => {
     title: '',
     min_title: "",
     image: '',
-    min_title_ka: '',
-    title_ka: "",
   });
 
   const handlePostCard = () => {
@@ -78,6 +76,7 @@ const Admin = () => {
       setOpen(true);
     } else {
       try {
+        console.log(postCardData)
         updatePostcard(postCardData);
         window.location.href = '/';
       } catch (err) {
@@ -122,12 +121,10 @@ const Admin = () => {
       setPostCardData({
         title: postCardData.title,
         min_title: postCardData.min_title,
-        min_title_ka: postCardData.min_title_ka,
-        title_ka: postCardData.title_ka,
         image: null,
       });
     }
-  }, [postCardData]);
+  }, []);
   return (
     <>
       <CustomError
@@ -184,6 +181,7 @@ const Admin = () => {
             <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
               <input
                 type="text"
+                value={postCardData.title}
                 onChange={(e) =>
                   setPostCardData({ ...postCardData, title: e.target.value })
                 }
@@ -192,24 +190,9 @@ const Admin = () => {
               />
               <input
                 type="text"
+                value={postCardData.min_title}
                 onChange={(e) =>
                   setPostCardData({ ...postCardData, min_title: e.target.value })
-                }
-                placeholder={t("admin.subtitle")}
-                className="custom-input"
-              />
-              <input
-                type="text"
-                onChange={(e) =>
-                  setPostCardData({ ...postCardData, min_title_ka: e.target.value })
-                }
-                placeholder={t("admin.title")}
-                className="custom-input"
-              />
-              <input
-                type="text"
-                onChange={(e) =>
-                  setPostCardData({ ...postCardData, title_ka: e.target.value })
                 }
                 placeholder={t("admin.subtitle")}
                 className="custom-input"

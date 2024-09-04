@@ -12,7 +12,6 @@ export const Postcard = () => {
 
     useEffect(() => {
         getPostcard()
-        console.log(postcard)
     }, [])
 
     return (
