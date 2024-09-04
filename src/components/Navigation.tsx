@@ -16,7 +16,7 @@ export const Navigation = () => {
     const { setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState<any>({})
-    const [currentLan] = useState(JSON.parse(localStorage.getItem('lang') || '{}'))
+    const [currentLan] = useState(localStorage.getItem('lang') || '')
 
     const logoutUser = () => {
         localStorage.removeItem("token")
@@ -27,11 +27,12 @@ export const Navigation = () => {
     }, [])
 
     useEffect(()=> {
-        localStorage.setItem('lang', JSON.stringify('ka'))
+        localStorage.setItem('lang',"ka")
     },[])
     useEffect(() => {
         setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
     }, [currentUser])
+    
     return (
         <>
             {Object.keys(currentUser).length !== 0 && currentUser.confirmed_at == null ? (<>

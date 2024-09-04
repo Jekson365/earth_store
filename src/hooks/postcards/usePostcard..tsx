@@ -3,7 +3,7 @@ import axiosInstance from "../../AxiosInstance"
 
 export const usePostcard = () => {
     const [postcard, setPostCard] = useState<any>({})
-    const [currentLan] = useState(JSON.parse(localStorage.getItem('lang') || '{}'))
+    const [currentLan] = useState(localStorage.getItem('lang') || '')
     const getPostcard = async () => {
         await axiosInstance.get(`/postcards/${currentLan}`)
             .then((res) => {

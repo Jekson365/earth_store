@@ -4,7 +4,7 @@ import axiosInstance from "../../AxiosInstance"
 export const useCategories = () => {
     const [categories, setCategories] = useState<any>()
     const [catCounted, setCatCounted] = useState([])
-    const [currentLan] = useState(JSON.parse(localStorage.getItem('lang') || '{}'))
+    const [currentLan] = useState(localStorage.getItem('lang') || '{}')
     const fetchCategories = async () => {
         await axiosInstance.get("/categories")
             .then((res) => {
