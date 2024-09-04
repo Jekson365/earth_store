@@ -15,9 +15,9 @@ export const HomePage = () => {
     return (
         <>
             {opening ? (<>
-                <HeaderContent title={opening && opening.title}
+                <HeaderContent title={opening && opening.title || opening.title_ka}
                     height={'80vh'}
-                    desc={opening.min_title}
+                    desc={opening.min_title || opening.min_title_ka}
                     mainPage={true}
                     opening_images={opening.opening_images}
                     slider={true} 

@@ -13,6 +13,8 @@ import Login from '../pages/auth/Login.tsx'
 import Admin from "../pages/admin/Admin.tsx";
 import { Map } from "../components/Map.tsx";
 import { Box } from "@mui/material";
+import { SocialIcons } from "../components/SocialIcons.tsx";
+import { Foo } from "../Foo.tsx";
 
 export const CartController = createContext<any>({})
 
@@ -24,9 +26,10 @@ export const CustomRouter = () => {
         window.addEventListener('scroll', () => {
             setCart(false)
         })
-    }, []);
+}, []);
     return (
         <>
+            <SocialIcons />
             <CartController.Provider value={{ cart, setCart }}>
                 <Cart />
                 <Navigation />
@@ -39,6 +42,7 @@ export const CustomRouter = () => {
                     <Route path={'/register'} element={<Register />} />
                     <Route path={"/login"} element={<Login />} />
                     <Route path="/admin" element={<Admin />} />
+                    <Route path="foo" element={<Foo/>}/>
                 </Routes>
                 {currentLocation != '/register' ? (<>
                 </>) : null}

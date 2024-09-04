@@ -1,9 +1,11 @@
 {
     "home": "HOME",
-    "about": "ABOUT",
+    "about": "BLOG",
     "shop": "SHOP",
     "contact": "CONTACT",
     "logout":"Logout",
+    "georgian":"Georgian",
+    "english":"English",
     "auth": {
         "email": "email",
         "password": "password",
@@ -33,7 +35,7 @@
         "buy_now": "BUY NOW"
     },
     "about_us": {
-        "who": "WHO ARE WE?"
+        "who": "BLOG"
     },
     "contact_page": {
         "full_name": "Full Name",

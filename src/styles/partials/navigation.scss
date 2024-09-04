@@ -1,5 +1,15 @@
 @import "../config.scss";
 
+
+.nav-icon {
+  // color: white;
+  transition: 0.3s !important;
+  cursor: pointer;
+  &:hover {
+    color: $main-button-color !important;
+  }
+}
+
 .navigation {
   position: absolute;
   top: 0;
@@ -29,7 +39,7 @@
       display: none;
       box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
       position: absolute;
-      top:20px;
+      top:40px;
       border-radius: 10px;
       z-index: 10;
       right: 0;
@@ -58,6 +68,27 @@
     font-family: $geo-font !important;
     color: $color-green;
     letter-spacing: 1px !important;
+    transition: 0.3s;
+    position: relative;
+    &:hover {
+      font-weight: bold !important;
+      color: $main-button-color !important;
+    }
+    &:hover:before {
+      width: 100%;
+    }
+    &::before  {
+      transition: 0.3s;
+      display: block;
+      width: 0%;
+      height: 2px;
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      background-color: $main-button-color;
+    }
+
   }
   .responsive-nav {
     @media (max-width: 960px) {

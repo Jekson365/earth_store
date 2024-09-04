@@ -1,6 +1,6 @@
 {
     "home": "მთავარი",
-    "about": "ჩვენს შესახებ",
+    "about": "ბლოგი",
     "shop": "პროდუქცია",
     "contact": "კონტაქტი",
     "logout":"გასვლა",
@@ -11,6 +11,8 @@
         "register":"რეგისტრაცია",
         "login":"შესვლა"
     },
+    "georgian":"ქართული",
+    "english":"ინგლისური",
     "featured": {
         "featured_items": "პროდუქცია"
     },
@@ -33,7 +35,7 @@
         "buy_now": "ყიდვა"
     },
     "about_us": {
-        "who": "ვინ ვართ?"
+        "who": "ბლოგი"
     },
     "contact_page": {
         "full_name": "სახელი",
@@ -66,7 +68,7 @@
         "surname": "გვარი",
         "review": "მიმოხილვა",
         "priorities": "პრიორიტეტები",
-        "about": "ჩვენს შესახებ",
+        "about": "ბლოგი",
         "description": "აღწერა",
         "categories": "კატეგორიები",
         "products": "პროდუქტები",

@@ -16,42 +16,45 @@ export const News = () => {
     }, [])
     return (
         <>
-            <Box
-                height={'250px'}
-                borderRadius={"10px"}
-                overflow={"hidden"}
-                mt={{ xs: 3, md: 0 }}
-            >
-                <Swiper className="mySwiper"
-                    modules={[Autoplay]}
-                    autoplay={{
-                        delay: 1500
-                    }}
-                    spaceBetween={20}
-                    style={{ height: "100%" }}
+            {sliderImages.length > 0 ? (<>
+                <Box
+                    height={'250px'}
+                    borderRadius={"5px"}
+                    overflow={"hidden"}
+                    mt={{ xs: 3, md: 0 }}
+                    mb={{ xs: 0, md: 5 }}
                 >
-                    {sliderImages && sliderImages.map((e: any) => {
-                        return (
-                            <>
+                    <Swiper className="mySwiper"
+                        modules={[Autoplay]}
+                        autoplay={{
+                            delay: 1500
+                        }}
+                        spaceBetween={20}
+                        style={{ height: "100%" }}
+                    >
+                        {sliderImages && sliderImages.map((e: any) => {
+                            return (
+                                <>
 
-                                <SwiperSlide
-                                    style={{ position: "relative", borderRadius: "15px", overflow: "hidden" }}
-                                >
-                                    <div className="news-content">
-                                        <h1>{e.header}</h1>
-                                    </div>
-                                    <img
-                                        width={'100%'}
-                                        height={'100%'}
-                                        style={{ objectFit: "cover" }}
-                                        src={defaultUrl + e.image.url}
-                                    />
-                                </SwiperSlide>
-                            </>
-                        )
-                    })}
-                </Swiper>
-            </Box>
+                                    <SwiperSlide
+                                        style={{ position: "relative", borderRadius: "5px", overflow: "hidden" }}
+                                    >
+                                        <div className="news-content">
+                                            <h1>{e.header}</h1>
+                                        </div>
+                                        <img
+                                            width={'100%'}
+                                            height={'100%'}
+                                            style={{ objectFit: "cover" }}
+                                            src={defaultUrl + e.image.url}
+                                        />
+                                    </SwiperSlide>
+                                </>
+                            )
+                        })}
+                    </Swiper>
+                </Box>
+            </>) : null}
         </>
     )
 }

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1089" height="1096" viewBox="0 0 1089 1096">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #31bda3;
+      }
+
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Rectangle_1_copy_6" data-name="Rectangle 1 copy 6" class="cls-1" d="M65.007,0h98.527a66,66,0,0,1,66,66V166a66,66,0,0,1-66,66H65.007a66,66,0,0,1-66-66V66A66,66,0,0,1,65.007,0Z"/>
+  <path id="Rectangle_1_copy_7" data-name="Rectangle 1 copy 7" class="cls-1" d="M351.5,0h98.528a66,66,0,0,1,66,66V166a66,66,0,0,1-66,66H351.5a66,66,0,0,1-66-66V66A66,66,0,0,1,351.5,0Z"/>
+  <path id="Rectangle_1_copy_8" data-name="Rectangle 1 copy 8" class="cls-1" d="M637.984,0h98.527a66,66,0,0,1,66,66V166a66,66,0,0,1-66,66H637.984a66,66,0,0,1-66-66V66A66,66,0,0,1,637.984,0Z"/>
+  <rect id="Rectangle_1_copy_9" data-name="Rectangle 1 copy 9" class="cls-2" x="858.469" width="230.531" height="232" rx="66" ry="66"/>
+  <path id="Rectangle_1_copy_10" data-name="Rectangle 1 copy 10" class="cls-1" d="M66.007,432h98.527a66,66,0,0,1,66,66V598a66,66,0,0,1-66,66H66.007a66,66,0,0,1-66-66V498A66,66,0,0,1,66.007,432Z"/>
+  <path id="Rectangle_1_copy_10-2" data-name="Rectangle 1 copy 10" class="cls-1" d="M352.5,432h98.528a66,66,0,0,1,66,66V598a66,66,0,0,1-66,66H352.5a66,66,0,0,1-66-66V498A66,66,0,0,1,352.5,432Z"/>
+  <path id="Rectangle_1_copy_10-3" data-name="Rectangle 1 copy 10" class="cls-1" d="M638.984,432h98.527a66,66,0,0,1,66,66V598a66,66,0,0,1-66,66H638.984a66,66,0,0,1-66-66V498A66,66,0,0,1,638.984,432Z"/>
+  <rect id="Rectangle_1_copy_10-4" data-name="Rectangle 1 copy 10" class="cls-2" x="859.469" y="432" width="230.531" height="232" rx="66" ry="66"/>
+  <path id="Rectangle_1_copy_11" data-name="Rectangle 1 copy 11" class="cls-1" d="M66.007,864h98.527a66,66,0,0,1,66,66v100a66,66,0,0,1-66,66H66.007a66,66,0,0,1-66-66V930A66,66,0,0,1,66.007,864Z"/>
+  <path id="Rectangle_1_copy_11-2" data-name="Rectangle 1 copy 11" class="cls-1" d="M352.5,864h98.528a66,66,0,0,1,66,66v100a66,66,0,0,1-66,66H352.5a66,66,0,0,1-66-66V930A66,66,0,0,1,352.5,864Z"/>
+  <path id="Rectangle_1_copy_11-3" data-name="Rectangle 1 copy 11" class="cls-1" d="M638.984,864h98.527a66,66,0,0,1,66,66v100a66,66,0,0,1-66,66H638.984a66,66,0,0,1-66-66V930A66,66,0,0,1,638.984,864Z"/>
+  <rect id="Rectangle_1_copy_11-4" data-name="Rectangle 1 copy 11" class="cls-2" x="859.469" y="864" width="230.531" height="232" rx="66" ry="66"/>
+</svg>

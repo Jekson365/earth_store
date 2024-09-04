@@ -16,17 +16,19 @@ export const Navigation = () => {
     const { setCart } = useContext<any>(CartController)
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState<any>({})
-    useEffect(() => {
-        console.log(currentUser)
-    }, [currentUser])
+    const [currentLan] = useState(JSON.parse(localStorage.getItem('lang') || '{}'))
 
     const logoutUser = () => {
         localStorage.removeItem("token")
         window.location.href = '/'
     }
     useEffect(() => {
-        i18n.changeLanguage('ka')
+        i18n.changeLanguage(currentLan)
     }, [])
+
+    useEffect(()=> {
+        localStorage.setItem('lang', JSON.stringify('ka'))
+    },[])
     useEffect(() => {
         setUser(Object.keys(currentUser).length === 0 ? false : currentUser)
     }, [currentUser])
@@ -64,6 +66,9 @@ export const Navigation = () => {
                             <Link className={'nav-name'} to={'/about'}>{t('about')}</Link>
                             <Link className={'nav-name'} to={'/shop'}>{t('shop')}</Link>
                             <Link className={'nav-name'} to={'/contact'}>{t('contact')}</Link>
+                            {/* <button
+                                onClick={setLnaguage}
+                            >{currentLan}</button> */}
                             {!user && window.innerWidth < 900 ? (<>
                                 <Link className={'nav-name'} to={'/login'}>{t('auth.register')}</Link>
                                 <Link className={'nav-name'} to={'/register'}>{t('auth.login')}</Link>
@@ -76,7 +81,7 @@ export const Navigation = () => {
                                         <Link
                                             to={'/admin'}
                                         >
-                                            <SettingsIcon className={'icon'}
+                                            <SettingsIcon className={'nav-icon icon'}
                                                 sx={{ fontSize: "30px" }}
                                             />
                                         </Link>
@@ -87,7 +92,7 @@ export const Navigation = () => {
                                 <Box
                                     onClick={() => setCart(true)}
                                 >
-                                    <ShoppingBag className={'icon white-icon'}
+                                    <ShoppingBag className={'nav-icon icon white-icon'}
                                         sx={{ fontSize: "30px" }}
                                     />
                                 </Box>
@@ -127,13 +132,13 @@ export const Navigation = () => {
                                                             {currentUser && currentUser.role && currentUser.role.name}
                                                         </Typography>
                                                     </Stack>
-                                                        <Typography
-                                                            className='logout-button'
-                                                            onClick={logoutUser}
-                                                            style={{ fontWeight: "bold", cursor: "pointer" }}
-                                                        >
-                                                            {t('logout')}
-                                                        </Typography>
+                                                    <Typography
+                                                        className='logout-button'
+                                                        onClick={logoutUser}
+                                                        style={{ fontWeight: "bold", cursor: "pointer" }}
+                                                    >
+                                                        {t('logout')}
+                                                    </Typography>
                                                 </Stack>
                                             </div>
                                         </Box>
@@ -142,7 +147,7 @@ export const Navigation = () => {
                                     <>
                                         <Link to={'/register'}>
                                             <PersonIcon
-                                                className={'icon person white-icon'}
+                                                className={'nav-icon icon person white-icon'}
                                                 sx={{ fontSize: "30px" }}
                                             />
                                         </Link>

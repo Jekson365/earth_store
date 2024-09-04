@@ -27,11 +27,11 @@ const Admin = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation()
   const { updatePostcard } = useUpdatePostcard();
-const { t } = useTranslation();
-  
+  const { t } = useTranslation();
+
   const applyShopStyles = () => {
     document.documentElement.style.setProperty('--nav-item-color', 'black');
-};
+  };
 
   useEffect(() => {
     if (!currentUser || Object.keys(currentUser).length === 0) {
@@ -59,6 +59,8 @@ const { t } = useTranslation();
   const [openingData, setOpeningData] = useState<any>({
     title: "",
     min_title: "",
+    min_title_ka: '',
+    title_ka: "",
     opening_images_attributes: [],
   });
 
@@ -66,7 +68,9 @@ const { t } = useTranslation();
   const [postCardData, setPostCardData] = useState<any>({
     title: '',
     min_title: "",
-    image: ''
+    image: '',
+    min_title_ka: '',
+    title_ka: "",
   });
 
   const handlePostCard = () => {
@@ -106,11 +110,24 @@ const { t } = useTranslation();
       setOpeningData({
         title: opening.title,
         min_title: opening.min_title,
+        min_title_ka: opening.min_title_ka,
+        title_ka: opening.title_ka,
         image: null,
       });
     }
   }, [opening]);
 
+  useEffect(() => {
+    if (postCardData) {
+      setPostCardData({
+        title: postCardData.title,
+        min_title: postCardData.min_title,
+        min_title_ka: postCardData.min_title_ka,
+        title_ka: postCardData.title_ka,
+        image: null,
+      });
+    }
+  }, [postCardData]);
   return (
     <>
       <CustomError
@@ -128,18 +145,18 @@ const { t } = useTranslation();
               <Stack direction={'row'} gap={'20px'} flexWrap={'wrap'} mt={1}>
                 <input
                   type="text"
-                  value={openingData.title}
+                  value={openingData.title_ka}
                   onChange={(e: any) =>
-                    setOpeningData({ ...openingData, title: e.target.value })
+                    setOpeningData({ ...openingData, title_ka: e.target.value })
                   }
                   placeholder={t("admin.title")}
                   className="custom-input"
                 />
                 <input
                   type="text"
-                  value={openingData.min_title}
+                  value={openingData.min_title_ka}
                   onChange={(e: any) =>
-                    setOpeningData({ ...openingData, min_title: e.target.value })
+                    setOpeningData({ ...openingData, min_title_ka: e.target.value })
                   }
                   placeholder={t("admin.subtitle")}
                   className="custom-input"
@@ -177,6 +194,22 @@ const { t } = useTranslation();
                 type="text"
                 onChange={(e) =>
                   setPostCardData({ ...postCardData, min_title: e.target.value })
+                }
+                placeholder={t("admin.subtitle")}
+                className="custom-input"
+              />
+              <input
+                type="text"
+                onChange={(e) =>
+                  setPostCardData({ ...postCardData, min_title_ka: e.target.value })
+                }
+                placeholder={t("admin.title")}
+                className="custom-input"
+              />
+              <input
+                type="text"
+                onChange={(e) =>
+                  setPostCardData({ ...postCardData, title_ka: e.target.value })
                 }
                 placeholder={t("admin.subtitle")}
                 className="custom-input"

@@ -7,10 +7,10 @@ import { useCategories } from "../../hooks/categories/useCategories";
 import CloseIcon from '@mui/icons-material/Close';
 import { ShopItem } from "./ShopItem";
 import { News } from "./News";
-import WindowIcon from '@mui/icons-material/Window';
-import ViewCompactIcon from '@mui/icons-material/ViewCompact';
-import AppsIcon from '@mui/icons-material/Apps';
 import { useTranslation } from "react-i18next";
+import FourBlock from '../../../public/shop/four_block.svg'
+import TwoBlock from '../../../public/shop/f.svg'
+import OneBlock from '../../../public/shop/three.svg'
 
 export const Shop = () => {
     const { products, fetchProducts, loading } = useProducts()
@@ -79,17 +79,17 @@ export const Shop = () => {
     const gridStyles = [
         {
             id: 1,
-            icon: <ViewCompactIcon fontSize="medium" />,
+            icon: TwoBlock,
             count: 3,
         },
         {
             id: 2,
-            icon: <AppsIcon fontSize="medium" />,
+            icon: OneBlock,
             count: 4,
         },
         {
             id: 3,
-            icon: <WindowIcon fontSize="medium" />,
+            icon: FourBlock,
             count: 6,
         },
     ]
@@ -141,10 +141,10 @@ export const Shop = () => {
                     </Grid>
                     <Grid item xs={12} md={9}>
                         <News />
-                        <Stack direction={'column'} mt={3}>
-                            <Box mt={5}></Box>
+                        <Stack direction={'column'}>
+                            {/* <Box mt={5}></Box> */}
                             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-                                <Stack direction={'row'} alignItems={'flex-end'}>
+                                <Stack direction={'row'} gap={'10px'} alignItems={'flex-end'}>
                                     {gridStyles.map((e: any) => {
                                         return (
                                             <>
@@ -152,7 +152,12 @@ export const Shop = () => {
                                                     style={{ cursor: "pointer" }}
                                                     onClick={() => setGridStyle(e.count)}
                                                 >
-                                                    {e.icon}
+                                                    <img
+                                                        width={'20px'}
+                                                        style={{
+                                                            filter: 'brightness(0%) contrast(100%)',
+                                                        }}
+                                                        src={e.icon} />
                                                 </Box>
                                             </>
                                         )

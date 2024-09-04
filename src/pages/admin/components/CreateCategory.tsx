@@ -25,6 +25,7 @@ export const CreateCategory = () => {
         }
     }
     useEffect(() => {
+        console.log(categories)
         fetchCategories()
     }, [])
     return (
