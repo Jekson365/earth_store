@@ -6,6 +6,7 @@ import { Postcard } from "./postcard/Postcard.tsx";
 import { Priors } from "./priors/Priors.tsx";
 import { useOpening } from "../../hooks/openings/useOpening.tsx";
 import { useEffect } from "react";
+import Collection from "./collections/Collection.tsx";
 
 export const HomePage = () => {
     const { getOpenings, opening } = useOpening()
@@ -27,6 +28,7 @@ export const HomePage = () => {
             <Customers />
             <Postcard />
             <Priors />
+            <Collection/>
         </>
     )
 }

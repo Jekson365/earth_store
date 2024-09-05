@@ -62,7 +62,7 @@ export const Shop = () => {
 
     const handleSort = (e: any) => {
         let option = Number(e.target.value);
-        let sorted = [...products];
+        let sorted : any = [...products];
 
         if (option === 1) {
             sorted.sort((a: any, b: any) => a.price - b.price);
