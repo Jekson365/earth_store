@@ -6,12 +6,15 @@ import { useRegister } from '../../hooks/users/useRegister'
 import { CurrentUser } from '../../App'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { CustomError } from '../../components/CustomError'
 
 
 function Register() {
-    const { useCreateUser } = useRegister()
+    const { useCreateUser, result } = useRegister()
     const { currentUser } = useContext<any>(CurrentUser)
     const [user, setUser] = useState({})
+    const [open, setOpen] = useState(false)
+    const [errorData, setErrorData] = useState<any>({})
     const { t } = useTranslation()
     const [registerData, setRegisterData] = useState(
         {
@@ -27,6 +30,7 @@ function Register() {
             window.location.href = '/'
         }
     }, [currentUser])
+
     const location = useLocation()
     const applyShopStyles = () => {
         document.documentElement.style.setProperty('--nav-item-color', 'black');
@@ -41,8 +45,32 @@ function Register() {
     if (location.pathname === '/register') {
         applyShopStyles();
     }
+
+    const handleRegister = () => {
+        try {
+            useCreateUser(registerData)
+        }
+        catch (err) {
+            throw err
+        }
+    }
+    useEffect(() => {
+        if (result?.response?.status === 409) {
+            setOpen(true)
+            setErrorData({ message: 'იუზერი უკვე არსებობს', severity: "error" })
+        }
+        if (result?.response?.status === 401) {
+            setOpen(true)
+            setErrorData({ message: 'პაროლები არ ემთხვევა ერთმანეთს', severity: "error" })
+        }
+        console.log(result)
+        if (result?.status === 201 || result?.status === 200) {
+            window.location.href = '/login'
+        }
+    }, [result])
     return (
         <>
+            <CustomError open={open} setOpen={setOpen} message={errorData.message} severity={errorData.severity} />
             <div className="cover">
                 <div className="box">
                     <Stack direction={'column'} width={'100%'} gap={'25px'} alignItems={'center'}>
@@ -63,7 +91,7 @@ function Register() {
                                 onChange={(e: any) => setRegisterData({ ...registerData, password_confirmation: e.target.value })}
                             />
                             <button className="main-button"
-                                onClick={() => useCreateUser(registerData)}
+                                onClick={handleRegister}
                             >{t('auth.register')}</button>
                         </Stack>
                         <Link to={'/login'} className='register-href'

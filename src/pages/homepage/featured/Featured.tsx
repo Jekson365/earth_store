@@ -32,6 +32,7 @@ export const Featured = () => {
                     alignItems: 'center',
                     marginTop: "50px",
                     padding: "0 7px",
+                    minHeight:"100vh"
                 }}>
                 <div className={'inner-section'}
                     style={{

@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import FourBlock from '../../../public/shop/four_block.svg'
 import TwoBlock from '../../../public/shop/f.svg'
 import OneBlock from '../../../public/shop/three.svg'
+import { useIndexSettings } from "../../hooks/settings/useIndexSettings";
 
 export const Shop = () => {
     const { products, fetchProducts, loading } = useProducts()
@@ -18,6 +19,17 @@ export const Shop = () => {
     const { t } = useTranslation()
     const [selectedCat, setSelectedCat] = useState<Number | null>(null)
     const location = useLocation()
+    const { settings, fetchSettings } = useIndexSettings()
+
+    useEffect(() => {
+        fetchSettings()
+    }, [])
+
+    const isSettingEnabled = (paramName: string) => {
+        const setting = settings.find((s: any) => s.param_name === paramName)
+        return setting ? setting.status : false
+    }
+    
     useEffect(() => {
         fetchProducts()
     }, [])
@@ -140,7 +152,7 @@ export const Shop = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={9}>
-                        <News />
+                        {isSettingEnabled('shop_slider') ? <News/> : null}
                         <Stack direction={'column'}>
                             {/* <Box mt={5}></Box> */}
                             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>

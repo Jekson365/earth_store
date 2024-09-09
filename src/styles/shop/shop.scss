@@ -8,6 +8,7 @@
   @media (max-width: 900px) {
     padding: 20px;
   }
+
   .min-title {
     color: $shop-titles-color;
     font-size: 20px;
@@ -23,8 +24,54 @@
 
   .shop-title {
     color: $shop-titles-color;
-    font-size: 30px;  
+    font-size: 30px;
     font-family: $geo-font;
+  }
+}
+
+.swiper-scrollbar-drag {
+  height: 2px !important;
+  background-color: $main-button-color !important;
+}
+
+.swiper-scrollbar {
+  background-color: transparent !important;
+}
+
+.slider-cover {
+  margin-bottom: 20px;
+
+  .inner-tab-box {
+    min-width: 100px;
+    height: 50px;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+
+    &:hover {
+      font-weight: bold;
+      color: $main-button-color;
+    }
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: 0.3s;
+      width: 0%;
+      content: "";
+      display: block;
+      height: 2px;
+      background-color: $main-button-color;
+    }
+
+    &:hover:before {
+      width: 100%;
+    }
   }
 }
 
@@ -48,16 +95,20 @@
 .selected-category {
   color: $shop-titles-color !important;
 }
+
 .product-image {
   position: relative;
+
   &:hover {
     outline: 2px solid $main-button-color;
   }
+
   z-index: 20; // Increased to ensure it's above other content
+
   &:hover .add-cart-button {
     opacity: 1;
   }
-  
+
   .add-cart-button {
     transition: 0.3s;
     position: absolute;
@@ -92,4 +143,9 @@
   &:hover {
     background-color: $color-dark;
   }
+}
+
+.custom-checkbox {
+  width: 25px;
+  height: 25px;
 }

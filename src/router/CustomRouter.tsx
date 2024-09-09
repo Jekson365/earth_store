@@ -15,6 +15,7 @@ import { Map } from "../components/Map.tsx";
 import { Box } from "@mui/material";
 import { SocialIcons } from "../components/SocialIcons.tsx";
 import { Foo } from "../Foo.tsx";
+import { useIndexSettings } from "../hooks/settings/useIndexSettings.tsx";
 
 export const CartController = createContext<any>({})
 
@@ -26,10 +27,19 @@ export const CustomRouter = () => {
         window.addEventListener('scroll', () => {
             setCart(false)
         })
-}, []);
+    }, []);
+    const { settings, fetchSettings } = useIndexSettings()
+
+    useEffect(() => {
+        fetchSettings()
+    }, [])
+
+    const isSettingEnabled = (paramName: string) => {
+        const setting = settings.find((s: any) => s.param_name === paramName)
+        return setting ? setting.status : false
+    }
     return (
         <>
-            <SocialIcons />
             <CartController.Provider value={{ cart, setCart }}>
                 <Cart />
                 <Navigation />
@@ -42,16 +52,18 @@ export const CustomRouter = () => {
                     <Route path={'/register'} element={<Register />} />
                     <Route path={"/login"} element={<Login />} />
                     <Route path="/admin" element={<Admin />} />
-                    <Route path="foo" element={<Foo/>}/>
+                    <Route path="foo" element={<Foo />} />
                 </Routes>
-                {currentLocation != '/register' ? (<>
-                </>) : null}
-                <Box
-                    height={'300px'}
-                    overflow={'hidden'}
-                >
-                    <Map />
-                </Box>
+                {currentLocation == '/register' || currentLocation == '/login' ? (<>
+                </>) : <SocialIcons />}
+                {isSettingEnabled('map') ? <>
+                    <Box
+                        height={'300px'}
+                        overflow={'hidden'}
+                    >
+                        <Map />
+                    </Box>
+                </> : null}
                 <Footer />
             </CartController.Provider>
         </>

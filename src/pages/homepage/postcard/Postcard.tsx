@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { usePostcard } from "../../../hooks/postcards/usePostcard.";
 import { defaultUrl } from "../../../AxiosInstance";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export const Postcard = () => {
     const { getPostcard, postcard } = usePostcard()
@@ -33,7 +34,9 @@ export const Postcard = () => {
                     <Typography className={'title'}>{postcard && postcard.title}</Typography>
                     <Typography className={'desc'}>{postcard && postcard.min_title}</Typography>
                     <Box mt={5}>
-                        <button className={'main-button'}>{t('buy.buy_now')}</button>
+                        <Link to={'/shop'}>
+                            <button className={'main-button'}>{t('buy.buy_now')}</button>
+                        </Link>
                     </Box>
                 </Stack>
             </div>
